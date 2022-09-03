@@ -1,6 +1,6 @@
 # Requerimentos
 
-Esse documento possui como objetivo apresentar os requerimentos funcionais da aplicação utilizada.
+Esse documento possui como objetivo apresentar os requerimentos funcionais e não-funcionais da aplicação utilizada.
 
 ## Requerimentos Funcionais
 
@@ -22,5 +22,12 @@ Esse documento possui como objetivo apresentar os requerimentos funcionais da ap
 ### Notas
 1. Verificar a funcionalidade de edição de campos do Anki*
 2. Verificar a funcionalidade de criação de templates*
+
+## Requerimentos Não Funcionais
+
+| Identificador| Nome do Requrimento | Descrição
+| - | - | -
+| RNF-ARQ-1 | Arquitetura do Sistema | O sistema deve ser desenvolvido com base nos princípios da Arquitetura Limpa
+| RNF-TEC-1 | Tecnologia | O sistema deve ser desenvolvido utilizando TypeScript e NodeJS
 
 _\* Essas funcionalidades podem ser interessantes para adicionar complexidade à aplicação e expor ainda mais os benefícios da Arquitetura Limpa_
