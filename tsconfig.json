@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "ES2019",
+        "types": ["node", "mocha"]
+    },
+    "include": [
+        "src"
+    ]
+}
