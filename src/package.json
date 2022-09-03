@@ -1,0 +1,19 @@
+{
+  "name": "spaced-repetition-src",
+  "version": "1.0.0",
+  "description": "Source code for the Spaced Repetition based learning using 'Flashcards' and the SuperMemo Algorithm by Piotr Wozniak",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitorrafael/final-project.git"
+  },
+  "author": "vitorrafael",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitorrafael/final-project/issues"
+  },
+  "homepage": "https://github.com/vitorrafael/final-project#readme"
+}
