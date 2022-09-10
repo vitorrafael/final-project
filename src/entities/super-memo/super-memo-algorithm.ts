@@ -14,15 +14,15 @@ export class SuperMemoAlgorithm {
         eFactor,
         intervalForNextReview: 1,
       };
+    } else {
+      const nextInterval = this.getNextInterval(eFactor, currentInterval);
+      const newEFactor = this.calculateEFactor(eFactor, responseQuality);
+
+      return {
+        eFactor: newEFactor < 1.3 ? 1.3 : newEFactor,
+        intervalForNextReview: nextInterval,
+      };
     }
-
-    const nextInterval = this.getNextInterval(eFactor, currentInterval);
-    const newEFactor = this.calculateEFactor(eFactor, responseQuality);
-
-    return {
-      eFactor: newEFactor < 1.3 ? 1.3 : newEFactor,
-      intervalForNextReview: nextInterval,
-    };
   }
 
   private getNextInterval(eFactor: number, currentInterval: number): number {
