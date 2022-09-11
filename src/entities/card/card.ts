@@ -1,6 +1,6 @@
 import { InvalidCardError } from "./errors/invalid-card-error";
 
-export class CardData {
+export interface CardData {
   front: string;
   back: string;
   nextReviewDue?: Date;
