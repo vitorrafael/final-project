@@ -30,8 +30,8 @@ context("[Use Case] Submit Review", async () => {
 
       const updatedCard = await cardRepository.findCardByFront(card.front);
 
-      expect(updatedCard.nextReviewDue).to.be.deep.equal(
-        new Date(2022, 9 - 1, 18)
+      expect(updatedCard.nextReviewDue.toDateString()).to.be.deep.equal(
+        new Date(2022, 9 - 1, 18).toDateString()
       );
       expect(updatedCard.eFactor).to.be.equal(2.36);
     });
