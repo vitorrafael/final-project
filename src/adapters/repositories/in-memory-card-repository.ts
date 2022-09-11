@@ -1,14 +1,27 @@
 import { CardData } from "../../entities/card/card";
-import { CardRepository } from "../../use-cases/create-card/ports/card-repository";
+import {
+  CardRepository,
+  RepositoryCardData,
+} from "../../use-cases/create-card/ports/card-repository";
 
 export class InMemoryCardRepository implements CardRepository {
-  private cards: CardData[] = [];
-  constructor(cards: CardData[]) {
+  private cards: RepositoryCardData[] = [];
+  constructor(cards: RepositoryCardData[]) {
     this.cards = cards;
   }
 
-  findCardByFront(front: string): Promise<CardData> {
+  async findCardByFront(front: string): Promise<CardData> {
     const cardData = this.cards.find((card) => card.front === front);
+
+    return Promise.resolve(
+      cardData && {
+        ...cardData,
+      }
+    );
+  }
+
+  async findCardById(id: string): Promise<RepositoryCardData> {
+    const cardData = this.cards.find((card) => card.id === id);
 
     return Promise.resolve({
       ...cardData,
@@ -28,7 +41,7 @@ export class InMemoryCardRepository implements CardRepository {
 
   async add(cardData: CardData): Promise<void> {
     if (!(await this.exists(cardData.front, cardData.back))) {
-      this.cards.push({ ...cardData });
+      this.cards.push({ id: this.cards.length.toString(), ...cardData });
     }
   }
 
@@ -37,7 +50,8 @@ export class InMemoryCardRepository implements CardRepository {
       const cardIndex = this.cards.findIndex(
         (card) => card.front === cardData.front
       );
-      this.cards[cardIndex] = { ...cardData };
+      const id = this.cards[cardIndex].id;
+      this.cards[cardIndex] = { id, ...cardData };
     }
   }
 }
