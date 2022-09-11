@@ -18,6 +18,9 @@ export class CreateCard {
     await this.cardRepository.add({
       front: card.front,
       back: card.back,
+      eFactor: card.eFactor,
+      nextReviewDue: card.nextReviewDue,
+      reviewCount: card.reviewCount
     });
 
 		return card;

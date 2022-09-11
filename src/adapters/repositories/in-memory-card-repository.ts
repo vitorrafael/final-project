@@ -8,7 +8,16 @@ export class InMemoryCardRepository implements CardRepository {
   }
 
   findCardByFront(front: string): Promise<CardData> {
-    return Promise.resolve(this.cards.find((card) => card.front === front));
+    const cardData = this.cards.find((card) => card.front === front);
+
+    return Promise.resolve({
+      ...cardData,
+      nextReviewDue: new Date(
+        cardData.nextReviewDue.getFullYear(),
+        cardData.nextReviewDue.getMonth(),
+        cardData.nextReviewDue.getDate()
+      ),
+    });
   }
 
   async exists(front: string, back: string) {
