@@ -9,4 +9,6 @@ export interface CardRepository {
   findCardByFront: (front: string) => Promise<CardData>;
   findCardById: (id: string) => Promise<CardData>;
   update: (card: CardData) => Promise<void>;
+  updateCardFront: (id: string, updatedFront: string) => Promise<CardData>;
+  updateCardBack: (id: string, updatedBack: string) => Promise<CardData>;
 }
