@@ -1,4 +1,4 @@
-import { CardData } from "../../../entities/card/card";
+import { CardData } from "../../entities/card/card";
 
 export interface RepositoryCardData extends CardData {
   id?: string;

@@ -1,5 +1,5 @@
 import { Card, CardData } from "../../entities/card/card";
-import { CardRepository } from "./ports/card-repository";
+import { CardRepository } from "../ports/card-repository";
 
 export class CreateCard {
   constructor(private readonly cardRepository: CardRepository) {}

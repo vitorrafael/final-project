@@ -1,5 +1,5 @@
 import { CardGroupWithCards } from "../../entities/card-group/card-group";
-import { CardGroupRepository } from "../../use-cases/start-card-group-review/ports/card-group-repository";
+import { CardGroupRepository } from "../../use-cases/ports/card-group-repository";
 
 export class InMemoryCardGroupRepository implements CardGroupRepository {
   private cardGroups: CardGroupWithCards[] = [];

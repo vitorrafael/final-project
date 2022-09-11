@@ -2,7 +2,7 @@ import { CardData } from "../../entities/card/card";
 import {
   CardRepository,
   RepositoryCardData,
-} from "../../use-cases/create-card/ports/card-repository";
+} from "../../use-cases/ports/card-repository";
 
 export class InMemoryCardRepository implements CardRepository {
   private cards: RepositoryCardData[] = [];

@@ -1,5 +1,5 @@
 import { Card } from "../../entities/card/card";
-import { CardRepository } from "../create-card/ports/card-repository";
+import { CardRepository } from "../ports/card-repository";
 
 export interface UpdateCardRequest {
   id: string;

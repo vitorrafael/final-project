@@ -1,5 +1,5 @@
 import { CardGroupWithCards } from "../../entities/card-group/card-group";
-import { CardGroupRepository } from "./ports/card-group-repository";
+import { CardGroupRepository } from "../ports/card-group-repository";
 
 export class StartCardGroupReview {
   constructor(private cardGroupRepository: CardGroupRepository) {}

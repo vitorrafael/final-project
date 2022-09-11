@@ -1,5 +1,5 @@
 import { SuperMemoAlgorithm } from "../../entities/super-memo/super-memo-algorithm";
-import { CardRepository } from "../create-card/ports/card-repository";
+import { CardRepository } from "../ports/card-repository";
 
 export class SubmitReview {
    constructor(
