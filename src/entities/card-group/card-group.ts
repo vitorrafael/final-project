@@ -43,7 +43,9 @@ export class CardGroup {
 
     const isCardInCardGroup = cardIndex !== -1;
     if (!isCardInCardGroup) {
-      throw new InvalidOperationError("Invalid Operation - Reason: Card not in CardGroup");
+      throw new InvalidOperationError(
+        "Invalid Operation - Reason: Card not in CardGroup"
+      );
     } else {
       this.cards.splice(cardIndex, 1);
     }
