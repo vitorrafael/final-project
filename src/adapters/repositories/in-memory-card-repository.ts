@@ -31,4 +31,13 @@ export class InMemoryCardRepository implements CardRepository {
       this.cards.push({ ...cardData });
     }
   }
+
+  async update(cardData: CardData): Promise<void> {
+    if (await this.exists(cardData.front, cardData.back)) {
+      const cardIndex = this.cards.findIndex(
+        (card) => card.front === cardData.front
+      );
+      this.cards[cardIndex] = { ...cardData };
+    }
+  }
 }
