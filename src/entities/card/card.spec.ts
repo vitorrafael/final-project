@@ -6,7 +6,7 @@ describe("[Entity] Card", () => {
   it("should create a card with valid information", () => {
     const cardData = { front: "What's the answer of everything?", back: "42" };
 
-    const card = Card.create(cardData);
+    const card = Card.create(cardData.front, cardData.back);
 
     expect(card.back).to.equal(cardData.back);
     expect(card.front).to.equal(cardData.front);
@@ -16,7 +16,7 @@ describe("[Entity] Card", () => {
     const cardData = { front: "", back: "What do you mean?" };
     const expectedErrorMessage = "Invalid Card - Reason: Invalid front content";
 
-    expect(() => Card.create(cardData)).to.throw(
+    expect(() => Card.create(cardData.front, cardData.back)).to.throw(
       InvalidCardError,
       expectedErrorMessage
     );
@@ -26,7 +26,7 @@ describe("[Entity] Card", () => {
     const cardData = { front: "Some unaswered question?", back: "" };
     const expectedErrorMessage = "Invalid Card - Reason: Invalid back content";
 
-    expect(() => Card.create(cardData)).to.throw(
+    expect(() => Card.create(cardData.front, cardData.back)).to.throw(
       InvalidCardError,
       expectedErrorMessage
     );

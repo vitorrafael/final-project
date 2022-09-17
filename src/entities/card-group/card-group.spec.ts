@@ -56,7 +56,7 @@ describe("[Entity] CardGroup", () => {
       front: "What year did the Farroupilha Revolution start?",
       back: "1835",
     };
-    const card = Card.create(cardData);
+    const card = Card.create(cardData.front, cardData.back);
     const cardGroup = CardGroup.create(cardGroupData);
 
     cardGroup.addCard(card);
@@ -74,7 +74,7 @@ describe("[Entity] CardGroup", () => {
       front: "What year did the Farroupilha Revolution start?",
       back: "1835",
     };
-    const card = Card.create(cardData);
+    const card = Card.create(cardData.front, cardData.back);
     const cardGroup = CardGroup.create(cardGroupData);
     cardGroup.addCard(card);
     
@@ -94,7 +94,7 @@ describe("[Entity] CardGroup", () => {
       front: "What year did the Farroupilha Revolution start?",
       back: "1835",
     };
-    const card = Card.create(cardData);
+    const card = Card.create(cardData.front, cardData.back);
     const cardGroup = CardGroup.create(cardGroupData);
     
     expect(() => cardGroup.removeCard(card)).to.throw(InvalidOperationError, "Card not in CardGroup");

@@ -1,8 +1,5 @@
-import { CardData } from "../../entities/card/card";
+import { CardData } from "./card-data";
 
-export interface RepositoryCardData extends CardData {
-  id?: string;
-}
 export interface CardRepository {
   add: (card: CardData) => Promise<void>;
   exists: (front: string, back: string) => Promise<boolean>;

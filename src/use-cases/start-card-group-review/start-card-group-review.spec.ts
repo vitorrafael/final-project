@@ -15,10 +15,10 @@ context("[Use Case] Review Card", async () => {
         description: "History Cards about the Farroupilha Revolution",
         tags: ["brazil", "revolution", "rs"],
       });
-      const card = Card.create({
-        front: "What year did the Farroupilha Revolution start?",
-        back: "1835",
-      });
+      const card = Card.create(
+        "What year did the Farroupilha Revolution start?",
+        "1835"
+      );
       cardGroup.addCard(card);
       const cardGroupRepository = new InMemoryCardGroupRepository([cardGroup]);
 

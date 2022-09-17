@@ -2,14 +2,14 @@ import { use, expect } from "chai";
 import chaiAsPromised from "chai-as-promised";
 
 import { InMemoryCardRepository } from "../../adapters/repositories/in-memory-card-repository";
-import { RepositoryCardData } from "../ports/card-repository";
+import { CardData } from "../ports/card-data";
 import { UpdateCard } from "./update-card";
 
 use(chaiAsPromised);
 
 describe("[Use Case] Update Card", () => {
   it("should update the card front and back and reset review data if request contains changes", async () => {
-    const cardData: RepositoryCardData = {
+    const cardData: CardData = {
       id: "1",
       front: "What's the answer of everything?",
       back: "42",
@@ -38,7 +38,7 @@ describe("[Use Case] Update Card", () => {
   });
 
   it("should not update card front if it already exists", async () => {
-    const cardData: RepositoryCardData = {
+    const cardData: CardData = {
       id: "1",
       front: "What's the answer of everything?",
       back: "42",
@@ -46,7 +46,7 @@ describe("[Use Case] Update Card", () => {
       nextReviewDue: new Date(2022, 10, 18),
       reviewCount: 3,
     };
-    const anotherCardData: RepositoryCardData = {
+    const anotherCardData: CardData = {
       id: "2",
       front: "How much is 15 plus 13?",
       back: "38",
@@ -73,7 +73,7 @@ describe("[Use Case] Update Card", () => {
   });
 
   it("should not reset review information if no changes are passed", async () => {
-    const cardData: RepositoryCardData = {
+    const cardData: CardData = {
       id: "1",
       front: "What's the answer of everything?",
       back: "42",

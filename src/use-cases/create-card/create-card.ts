@@ -1,11 +1,12 @@
-import { Card, CardData } from "../../entities/card/card";
+import { Card } from "../../entities/card/card";
+import { CardData } from "../ports/card-data";
 import { CardRepository } from "../ports/card-repository";
 
 export class CreateCard {
   constructor(private readonly cardRepository: CardRepository) {}
 
   public async createCard(cardData: CardData): Promise<Card> {
-    const card = Card.create(cardData);
+    const card = Card.create(cardData.front, cardData.back);
 
     const isCardAlreadyCreated = await this.cardRepository.exists(
       card.front,

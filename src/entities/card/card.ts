@@ -1,13 +1,5 @@
 import { InvalidCardError } from "./errors/invalid-card-error";
 
-export interface CardData {
-  front: string;
-  back: string;
-  nextReviewDue?: Date;
-  reviewCount?: number;
-  eFactor?: number;
-}
-
 export class Card {
   private constructor(
     public readonly front: string,
@@ -17,8 +9,13 @@ export class Card {
     public readonly eFactor: number
   ) {}
 
-  static create(cardData: CardData): Card {
-    const { front, back, nextReviewDue, reviewCount, eFactor } = cardData;
+  static create(
+    front: string,
+    back: string,
+    nextReviewDue?: Date,
+    reviewCount?: number,
+    eFactor?: number
+  ): Card {
     const nextReview = nextReviewDue || new Date();
     const numberOfReviews = reviewCount || 0;
     const actualEFactor = eFactor || 2.5;

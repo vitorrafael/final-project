@@ -21,7 +21,7 @@ describe("[Use Case] Create Card", () => {
   });
 
   it("should throw an error if the to-be-created card already exists", async () => {
-    const cardData = { front: "What's the answer of everything?", back: "42" };
+    const cardData = { id: "1", front: "What's the answer of everything?", back: "42" };
     const cardRepository = new InMemoryCardRepository([cardData]);
     const useCase = new CreateCard(cardRepository);
 

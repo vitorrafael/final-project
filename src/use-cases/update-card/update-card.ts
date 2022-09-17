@@ -15,7 +15,15 @@ export class UpdateCard {
       updateCardData.id
     );
 
-    const updatedCard = Card.create({ ...originalCard, ...updateCardData });
+    const mergedCardData = { ...originalCard, ...updateCardData };
+
+    const updatedCard = Card.create(
+      mergedCardData.front,
+      mergedCardData.back,
+      mergedCardData.nextReviewDue,
+      mergedCardData.reviewCount,
+      mergedCardData.eFactor
+    );
 
     let hasUpdatedCard = false;
     if (
