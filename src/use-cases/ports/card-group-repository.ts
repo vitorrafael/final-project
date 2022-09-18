@@ -6,7 +6,7 @@ export interface RepositoryCardGroup extends CardGroupWithCards {
 }
 
 export interface CardGroupRepository {
-  findCardGroupByTheme: (theme: String) => Promise<RepositoryCardGroup>;
+  findCardGroupByTheme(theme: String): Promise<RepositoryCardGroup>;
   findCardGroupById(id: String): Promise<RepositoryCardGroup>;
   add(cardGroup: CardGroupData): Promise<CardGroupData>;
   updateTopic(id: string, updatedTopic: string): Promise<CardGroupData>;
