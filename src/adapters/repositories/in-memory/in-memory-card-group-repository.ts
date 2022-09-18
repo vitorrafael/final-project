@@ -1,6 +1,6 @@
-import { CardGroupWithCards } from "../../entities/card-group/card-group";
-import { CardGroupData } from "../../use-cases/ports/card-group";
-import { CardGroupRepository } from "../../use-cases/ports/card-group-repository";
+import { CardGroupWithCards } from "../../../entities/card-group/card-group";
+import { CardGroupData } from "../../../use-cases/ports/card-group";
+import { CardGroupRepository } from "../../../use-cases/ports/card-group-repository";
 
 interface TempCardGroup extends CardGroupWithCards {
   id?: string;

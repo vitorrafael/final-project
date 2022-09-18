@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { InMemoryCardGroupRepository } from "../../../src/adapters/repositories/in-memory-card-group-repository";
+import { InMemoryCardGroupRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-group-repository";
 import { CreateCardGroup } from "../../../src/use-cases/create-card-group/create-card-group";
 
 describe("[Use Case] Create Card Group", async () => {
