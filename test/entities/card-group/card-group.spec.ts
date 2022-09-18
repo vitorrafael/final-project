@@ -1,8 +1,8 @@
 import { expect } from "chai";
-import { Card } from "../card/card";
-import { CardGroup } from "./card-group";
-import { InvalidCardGroupError } from "./errors/invalid-card-group-error";
-import { InvalidOperationError } from "./errors/invalid-operation-error";
+import { Card } from "../../../src/entities/card/card";
+import { CardGroup } from "../../../src/entities/card-group/card-group";
+import { InvalidCardGroupError } from "../../../src/entities/card-group/errors/invalid-card-group-error";
+import { InvalidOperationError } from "../../../src/entities/card-group/errors/invalid-operation-error";
 
 const CARD_DATA = {
   front: "What year did the Farroupilha Revolution start?",

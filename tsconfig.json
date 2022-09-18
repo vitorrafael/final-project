@@ -1,11 +1,9 @@
 {
-    "compilerOptions": {
-        "module": "CommonJS",
-        "target": "ES2019",
-        "types": ["node", "mocha"],
-        "esModuleInterop": true
-    },
-    "include": [
-        "src"
-    ]
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2019",
+    "types": ["node", "mocha"],
+    "esModuleInterop": true
+  },
+  "include": ["src", "test"]
 }

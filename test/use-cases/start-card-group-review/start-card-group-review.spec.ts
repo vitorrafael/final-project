@@ -1,9 +1,9 @@
 import { expect, use } from "chai";
 import chaiAsPromised from "chai-as-promised";
-import { InMemoryCardGroupRepository } from "../../adapters/repositories/in-memory-card-group-repository";
-import { CardGroup } from "../../entities/card-group/card-group";
-import { Card } from "../../entities/card/card";
-import { StartCardGroupReview } from "./start-card-group-review";
+import { InMemoryCardGroupRepository } from "../../../src/adapters/repositories/in-memory-card-group-repository";
+import { CardGroup } from "../../../src/entities/card-group/card-group";
+import { Card } from "../../../src/entities/card/card";
+import { StartCardGroupReview } from "../../../src/use-cases/start-card-group-review/start-card-group-review";
 
 use(chaiAsPromised);
 

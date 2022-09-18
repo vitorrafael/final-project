@@ -1,8 +1,8 @@
 import { use, expect } from "chai";
 import chaiAsPromised from "chai-as-promised";
 
-import { InMemoryCardRepository } from "../../adapters/repositories/in-memory-card-repository";
-import { CreateCard } from "./create-card";
+import { InMemoryCardRepository } from "../../../src/adapters/repositories/in-memory-card-repository";
+import { CreateCard } from "../../../src/use-cases/create-card/create-card";
 
 use(chaiAsPromised);
 

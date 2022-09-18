@@ -1,6 +1,6 @@
 import { expect } from "chai";
-import { Card } from "./card";
-import { InvalidCardError } from "./errors/invalid-card-error";
+import { Card } from "../../../src/entities/card/card";
+import { InvalidCardError } from "../../../src/entities/card/errors/invalid-card-error";
 
 describe("[Entity] Card", () => {
   it("should create a card with valid information", () => {

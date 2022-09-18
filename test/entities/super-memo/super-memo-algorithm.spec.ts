@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { SuperMemoAlgorithm } from "./super-memo-algorithm";
+import { SuperMemoAlgorithm } from "../../../src/entities/super-memo/super-memo-algorithm";
 
 describe("[Entity] SuperMemoAlgorithm", async function () {
   const superMemoAlgorithm = new SuperMemoAlgorithm();
