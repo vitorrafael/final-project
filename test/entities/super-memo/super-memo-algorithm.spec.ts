@@ -9,7 +9,7 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     const eFactor = 3;
     const currentInterval = 10;
 
-    const algorithmResponse = superMemoAlgorithm.calculateNextReview(
+    const algorithmResponse = superMemoAlgorithm.execute(
       responseQuality,
       eFactor,
       currentInterval
@@ -24,7 +24,7 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     const eFactor = 1.2;
     const currentInterval = 3;
 
-    const algorithmResponse = superMemoAlgorithm.calculateNextReview(
+    const algorithmResponse = superMemoAlgorithm.execute(
       responseQuality,
       eFactor,
       currentInterval
@@ -41,7 +41,7 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     const eFactor = 2.25;
     const currentInterval = 3;
 
-    const algorithmResponse = superMemoAlgorithm.calculateNextReview(
+    const algorithmResponse = superMemoAlgorithm.execute(
       responseQuality,
       eFactor,
       currentInterval
@@ -55,7 +55,7 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     const eFactor = 2.25;
     const currentInterval = 3;
 
-    const algorithmResponse = superMemoAlgorithm.calculateNextReview(
+    const algorithmResponse = superMemoAlgorithm.execute(
       responseQuality,
       eFactor,
       currentInterval
@@ -69,7 +69,7 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     const eFactor = 2.25;
     const currentInterval = 2;
 
-    const algorithmResponse = superMemoAlgorithm.calculateNextReview(
+    const algorithmResponse = superMemoAlgorithm.execute(
       responseQuality,
       eFactor,
       currentInterval
@@ -83,7 +83,7 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     const eFactor = 2.25;
     const currentInterval = 1;
 
-    const algorithmResponse = superMemoAlgorithm.calculateNextReview(
+    const algorithmResponse = superMemoAlgorithm.execute(
       responseQuality,
       eFactor,
       currentInterval

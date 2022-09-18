@@ -16,7 +16,7 @@ export class SubmitReview {
     const card = await this.cardRepository.findCardByFront(cardFront);
 
     const { eFactor, intervalForNextReview } =
-      this.algorithm.calculateNextReview(
+      this.algorithm.execute(
         responseQuality,
         card.eFactor,
         card.reviewCount

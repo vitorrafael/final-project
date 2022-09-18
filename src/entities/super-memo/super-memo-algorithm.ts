@@ -4,7 +4,7 @@ export interface SuperMemoAlgorithmResponse {
 }
 
 export class SuperMemoAlgorithm {
-  public calculateNextReview(
+  public execute(
     responseQuality: number,
     eFactor: number,
     currentInterval: number
