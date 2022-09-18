@@ -6,7 +6,7 @@ export class CreateCard {
   constructor(private readonly cardRepository: CardRepository) {}
 
   public async createCard(cardData: CardData): Promise<Card> {
-    const card = Card.create(cardData.front, cardData.back);
+    const card = Card.create(cardData.front, cardData.back, new Date(), 0, 2.5);
 
     const isCardAlreadyCreated = await this.cardRepository.exists(
       card.front,
@@ -21,9 +21,9 @@ export class CreateCard {
       back: card.back,
       eFactor: card.eFactor,
       nextReviewDue: card.nextReviewDue,
-      reviewCount: card.reviewCount
+      reviewCount: card.reviewCount,
     });
 
-		return card;
+    return card;
   }
 }

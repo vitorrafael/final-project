@@ -12,14 +12,10 @@ export class Card {
   static create(
     front: string,
     back: string,
-    nextReviewDue?: Date,
-    reviewCount?: number,
-    eFactor?: number
+    nextReviewDue: Date,
+    reviewCount: number,
+    eFactor: number
   ): Card {
-    const nextReview = nextReviewDue || new Date();
-    const numberOfReviews = reviewCount || 0;
-    const actualEFactor = eFactor || 2.5;
-
     if (!front) {
       throw new InvalidCardError("Invalid front content");
     }
@@ -28,6 +24,18 @@ export class Card {
       throw new InvalidCardError("Invalid back content");
     }
 
-    return new Card(front, back, nextReview, numberOfReviews, actualEFactor);
+    if (!nextReviewDue) {
+      throw new InvalidCardError("Invalid next review due");
+    }
+
+    if (reviewCount < 0) {
+      throw new InvalidCardError("Invalid review count");
+    }
+
+    if (eFactor <= 0) {
+      throw new InvalidCardError("Invalid eFactor");
+    }
+
+    return new Card(front, back, nextReviewDue, reviewCount, eFactor);
   }
 }

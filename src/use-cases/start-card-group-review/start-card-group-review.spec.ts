@@ -25,7 +25,9 @@ context("[Use Case] Review Card", async () => {
       const nonDueCard = Card.create(
         "Who was the leader of Farroupilha Revolution?",
         "Bento Gonçalvez",
-        new Date(Date.now() + 24 * 60 * 60 * 2)
+        new Date(Date.now() + 24 * 60 * 60 * 2),
+        1,
+        2.5
       );
 
       cardGroup.addCard(dueCard);

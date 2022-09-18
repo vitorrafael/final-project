@@ -4,7 +4,21 @@ import { CardGroup } from "./card-group";
 import { InvalidCardGroupError } from "./errors/invalid-card-group-error";
 import { InvalidOperationError } from "./errors/invalid-operation-error";
 
+const CARD_DATA = {
+  front: "What year did the Farroupilha Revolution start?",
+  back: "1835",
+  nextReviewDue: new Date(),
+  reviewCount: 2,
+  eFactor: 2.5,
+};
+
+let card;
 describe("[Entity] CardGroup", () => {
+  beforeEach(() => {
+    const { front, back, nextReviewDue, reviewCount, eFactor } = CARD_DATA;
+    card = Card.create(front, back, nextReviewDue, reviewCount, eFactor);
+  });
+
   it("should create a card group with valid information", () => {
     const cardGroupData = {
       topic: "History",
@@ -52,11 +66,7 @@ describe("[Entity] CardGroup", () => {
       description: "History Cards about the Farroupilha Revolution",
       tags: ["brazil", "revolution", "rs"],
     };
-    const cardData = {
-      front: "What year did the Farroupilha Revolution start?",
-      back: "1835",
-    };
-    const card = Card.create(cardData.front, cardData.back);
+
     const cardGroup = CardGroup.create(cardGroupData);
 
     cardGroup.addCard(card);
@@ -70,14 +80,9 @@ describe("[Entity] CardGroup", () => {
       description: "History Cards about the Farroupilha Revolution",
       tags: ["brazil", "revolution", "rs"],
     };
-    const cardData = {
-      front: "What year did the Farroupilha Revolution start?",
-      back: "1835",
-    };
-    const card = Card.create(cardData.front, cardData.back);
     const cardGroup = CardGroup.create(cardGroupData);
     cardGroup.addCard(card);
-    
+
     cardGroup.removeCard(card);
 
     expect(cardGroup.cards).to.not.deep.contain(card);
@@ -90,14 +95,11 @@ describe("[Entity] CardGroup", () => {
       description: "History Cards about the Farroupilha Revolution",
       tags: ["brazil", "revolution", "rs"],
     };
-    const cardData = {
-      front: "What year did the Farroupilha Revolution start?",
-      back: "1835",
-    };
-    const card = Card.create(cardData.front, cardData.back);
     const cardGroup = CardGroup.create(cardGroupData);
-    
-    expect(() => cardGroup.removeCard(card)).to.throw(InvalidOperationError, "Card not in CardGroup");
 
+    expect(() => cardGroup.removeCard(card)).to.throw(
+      InvalidOperationError,
+      "Card not in CardGroup"
+    );
   });
 });
