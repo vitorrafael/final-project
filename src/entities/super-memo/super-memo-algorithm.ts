@@ -15,7 +15,10 @@ export class SuperMemoAlgorithm {
         intervalForNextReview: 1,
       };
     } else {
-      const nextInterval = this.getNextInterval(eFactor, currentInterval);
+      const nextInterval = this.calculateIntervalForNextReview(
+        eFactor,
+        currentInterval
+      );
       const newEFactor = this.calculateEFactor(eFactor, responseQuality);
 
       return {
@@ -25,7 +28,10 @@ export class SuperMemoAlgorithm {
     }
   }
 
-  private getNextInterval(eFactor: number, currentInterval: number): number {
+  private calculateIntervalForNextReview(
+    eFactor: number,
+    currentInterval: number
+  ): number {
     if (currentInterval === 1) return 1;
     if (currentInterval === 2) return 6;
 
