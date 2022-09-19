@@ -1,11 +1,12 @@
 import { Card } from "../../entities/card/card";
 import { CardData } from "../ports/card-data";
 import { CardRepository } from "../ports/card-repository";
+import { UseCase } from "../ports/use-case";
 
-export class CreateCard {
+export class CreateCard implements UseCase {
   constructor(private readonly cardRepository: CardRepository) {}
 
-  public async createCard(cardData: CardData): Promise<Card> {
+  public async execute(cardData: CardData): Promise<CardData> {
     const card = Card.create(cardData.front, cardData.back, new Date(), 0, 2.5);
 
     const isCardAlreadyCreated = await this.cardRepository.exists(
@@ -24,6 +25,8 @@ export class CreateCard {
       reviewCount: card.reviewCount,
     });
 
-    return card;
+    const persistedCard = await this.cardRepository.findCardByFront(card.front);
+
+    return persistedCard;
   }
 }

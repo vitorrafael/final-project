@@ -6,12 +6,9 @@ import { CardGroupData } from "../ports/card-group";
 export interface CreateCardGroupRequest {
   topic: string;
   description: string;
-  tags: string[];
 }
 
-export class CreateCardGroup
-  implements UseCase<CreateCardGroupRequest, CardGroupData>
-{
+export class CreateCardGroup implements UseCase {
   constructor(private readonly cardGroupRepository: CardGroupRepository) {}
 
   public async execute(
@@ -20,7 +17,7 @@ export class CreateCardGroup
     const cardGroup = CardGroup.create({
       topic: request.topic,
       description: request.description,
-    );
+    });
 
     return this.cardGroupRepository.add(cardGroup);
   }
