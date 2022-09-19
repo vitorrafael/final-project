@@ -48,12 +48,4 @@ export class InMemoryCardGroupRepository implements CardGroupRepository {
     this.cardGroups[cardGroupIndex].description = updatedDescription;
     return Promise.resolve(this.cardGroups[cardGroupIndex]);
   }
-
-  public updateTags(id: string, updatedTags: string[]): Promise<CardGroupData> {
-     const cardGroupIndex = this.cardGroups.findIndex(
-      (cardGroup) => cardGroup.id === id
-    );
-    this.cardGroups[cardGroupIndex].tags = updatedTags;
-    return Promise.resolve(this.cardGroups[cardGroupIndex]);   
-  }
 }

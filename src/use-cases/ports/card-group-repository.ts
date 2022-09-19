@@ -14,5 +14,4 @@ export interface CardGroupRepository {
     id: string,
     updatedDescription: string
   ): Promise<CardGroupData>;
-  updateTags(id: string, updatedTags: string[]): Promise<CardGroupData>;
 }

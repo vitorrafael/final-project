@@ -5,7 +5,6 @@ import { InvalidOperationError } from "./errors/invalid-operation-error";
 export interface CardGroupData {
   topic: string;
   description: string;
-  tags: string[];
 }
 
 export interface CardGroupWithCards extends CardGroupData {
@@ -18,17 +17,16 @@ export class CardGroup {
   private constructor(
     public readonly topic: string,
     public readonly description: string,
-    public readonly tags: string[]
   ) {}
 
   static create(cardGroupData: CardGroupData): CardGroup {
-    const { topic, description, tags } = cardGroupData;
+    const { topic, description } = cardGroupData;
 
     if (!topic) {
       throw new InvalidCardGroupError("Invalid topic");
     }
 
-    return new CardGroup(topic, description, tags || []);
+    return new CardGroup(topic, description );
   }
 
   public addCard(card: Card) {

@@ -13,7 +13,6 @@ context("[Use Case] Review Card", async () => {
       const cardGroup = CardGroup.create({
         topic: "History",
         description: "History Cards about the Farroupilha Revolution",
-        tags: ["brazil", "revolution", "rs"],
       });
       const dueCard = Card.create(
         "What year did the Farroupilha Revolution start?",

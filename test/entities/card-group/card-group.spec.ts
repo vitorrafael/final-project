@@ -23,21 +23,18 @@ describe("[Entity] CardGroup", () => {
     const cardGroupData = {
       topic: "History",
       description: "History Cards about the Farroupilha Revolution",
-      tags: ["brazil", "revolution", "rs"],
     };
 
     const cardGroup = CardGroup.create(cardGroupData);
 
     expect(cardGroup.topic).to.equal(cardGroupData.topic);
     expect(cardGroup.description).to.equal(cardGroupData.description);
-    expect(cardGroup.tags).to.deep.equal(cardGroupData.tags);
   });
 
   it("should throw an error when creating a card group without a topic", () => {
     const cardGroupData = {
       topic: "",
       description: "History Cards about the Farroupilha Revolution",
-      tags: ["brazil", "revolution", "rs"],
     };
 
     expect(() => CardGroup.create(cardGroupData)).to.throw(
@@ -46,25 +43,22 @@ describe("[Entity] CardGroup", () => {
     );
   });
 
-  it("should not throw an error when creating a card group without a description nor tags", () => {
+  it("should not throw an error when creating a card group without a description", () => {
     const cardGroupData = {
       topic: "History",
       description: "",
-      tags: undefined,
     };
 
     const cardGroup = CardGroup.create(cardGroupData);
 
     expect(cardGroup.topic).to.equal(cardGroupData.topic);
     expect(cardGroup.description).to.equal(cardGroupData.description);
-    expect(cardGroup.tags).to.deep.equal([]);
   });
 
   it("should add the card to the card group", () => {
     const cardGroupData = {
       topic: "History",
       description: "History Cards about the Farroupilha Revolution",
-      tags: ["brazil", "revolution", "rs"],
     };
 
     const cardGroup = CardGroup.create(cardGroupData);
@@ -78,7 +72,6 @@ describe("[Entity] CardGroup", () => {
     const cardGroupData = {
       topic: "History",
       description: "History Cards about the Farroupilha Revolution",
-      tags: ["brazil", "revolution", "rs"],
     };
     const cardGroup = CardGroup.create(cardGroupData);
     cardGroup.addCard(card);
@@ -93,7 +86,6 @@ describe("[Entity] CardGroup", () => {
     const cardGroupData = {
       topic: "History",
       description: "History Cards about the Farroupilha Revolution",
-      tags: ["brazil", "revolution", "rs"],
     };
     const cardGroup = CardGroup.create(cardGroupData);
 

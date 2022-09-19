@@ -10,7 +10,6 @@ describe("[Use Case] Create Card Group", async () => {
     const cardGroupData = {
       topic: "History",
       description: "History Cards about the Farroupilha Revolution",
-      tags: ["brazil", "revolution", "rs"],
     };
 
     const response = await useCase.execute(cardGroupData);
@@ -20,6 +19,5 @@ describe("[Use Case] Create Card Group", async () => {
     expect(response.description).to.be.equal(
       "History Cards about the Farroupilha Revolution"
     );
-    expect(response.tags).to.be.deep.equal(["brazil", "revolution", "rs"]);
   });
 });

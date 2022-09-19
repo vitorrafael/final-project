@@ -20,8 +20,7 @@ export class CreateCardGroup
     const cardGroup = CardGroup.create({
       topic: request.topic,
       description: request.description,
-      tags: request.tags,
-    });
+    );
 
     return this.cardGroupRepository.add(cardGroup);
   }
