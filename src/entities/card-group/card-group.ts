@@ -3,6 +3,7 @@ import { InvalidCardGroupError } from "./errors/invalid-card-group-error";
 import { InvalidOperationError } from "./errors/invalid-operation-error";
 
 export interface CardGroupData {
+  id?: string;
   topic: string;
   description: string;
 }
@@ -16,7 +17,7 @@ export class CardGroup {
 
   private constructor(
     public readonly topic: string,
-    public readonly description: string,
+    public readonly description: string
   ) {}
 
   static create(cardGroupData: CardGroupData): CardGroup {
@@ -26,7 +27,7 @@ export class CardGroup {
       throw new InvalidCardGroupError("Invalid topic");
     }
 
-    return new CardGroup(topic, description );
+    return new CardGroup(topic, description);
   }
 
   public addCard(card: Card) {
