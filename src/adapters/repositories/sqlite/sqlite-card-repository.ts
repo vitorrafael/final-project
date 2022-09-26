@@ -22,6 +22,12 @@ export class SQLiteCardRepository implements CardRepository {
     );
   }
 
+  public async delete(id: string): Promise<void> {
+    Promise.resolve(
+      SQLiteHelper.getClient().run(`DELETE FROM cards WHERE id = ?`, [id])
+    );
+  }
+
   public async exists(front: string, back: string): Promise<boolean> {
     const foundCard: SQLiteCardData = await new Promise((resolve, reject) => {
       SQLiteHelper.getClient().get(

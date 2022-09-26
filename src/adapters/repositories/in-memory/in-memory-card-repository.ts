@@ -20,14 +20,16 @@ export class InMemoryCardRepository implements CardRepository {
   async findCardById(id: string): Promise<CardData> {
     const cardData = this.cards.find((card) => card.id === id);
 
-    return Promise.resolve({
-      ...cardData,
-      nextReviewDue: new Date(
-        cardData.nextReviewDue.getFullYear(),
-        cardData.nextReviewDue.getMonth(),
-        cardData.nextReviewDue.getDate()
-      ),
-    });
+    return Promise.resolve(
+      cardData && {
+        ...cardData,
+        nextReviewDue: new Date(
+          cardData.nextReviewDue.getFullYear(),
+          cardData.nextReviewDue.getMonth(),
+          cardData.nextReviewDue.getDate()
+        ),
+      }
+    );
   }
 
   async findCardsByGroupId(groupId: string): Promise<CardData[]> {
@@ -46,6 +48,11 @@ export class InMemoryCardRepository implements CardRepository {
     if (!(await this.exists(cardData.front, cardData.back))) {
       this.cards.push({ id: this.cards.length.toString(), ...cardData });
     }
+  }
+
+  async delete(id: string): Promise<void> {
+    const cardIndex = this.cards.findIndex((card) => card.id === id);
+    this.cards.splice(cardIndex, 1);
   }
 
   async update(cardData: CardData): Promise<void> {
