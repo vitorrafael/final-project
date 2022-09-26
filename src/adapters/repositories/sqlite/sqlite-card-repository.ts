@@ -143,6 +143,14 @@ export class SQLiteCardRepository implements CardRepository {
     return this.findCardById(id);
   }
 
+  public async deleteByGroupId(groupId: string): Promise<void> {
+    await Promise.resolve(
+      SQLiteHelper.getClient().run("DELETE FROM cards WHERE group_id = ? ", [
+        groupId,
+      ])
+    );
+  }
+
   private toCardData(sqliteCard: SQLiteCardData): CardData {
     return {
       id: sqliteCard.id.toString(),

@@ -50,11 +50,6 @@ export class InMemoryCardRepository implements CardRepository {
     }
   }
 
-  async delete(id: string): Promise<void> {
-    const cardIndex = this.cards.findIndex((card) => card.id === id);
-    this.cards.splice(cardIndex, 1);
-  }
-
   async update(cardData: CardData): Promise<void> {
     if (await this.exists(cardData.front, cardData.back)) {
       const cardIndex = this.cards.findIndex(
@@ -75,5 +70,14 @@ export class InMemoryCardRepository implements CardRepository {
     const cardIndex = this.cards.findIndex((card) => card.id === id);
     this.cards[cardIndex].back = updatedBack;
     return this.findCardById(id);
+  }
+
+  async delete(id: string): Promise<void> {
+    const cardIndex = this.cards.findIndex((card) => card.id === id);
+    this.cards.splice(cardIndex, 1);
+  }
+
+  async deleteByGroupId(groupId: string): Promise<void> {
+    this.cards = this.cards.filter((card) => card.groupId !== groupId);
   }
 }

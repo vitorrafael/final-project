@@ -89,6 +89,12 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
     return this.findCardGroupById(id);
   }
 
+  public async delete(id: any): Promise<void> {
+    Promise.resolve(
+      SQLiteHelper.getClient().run(`DELETE FROM cardGroups WHERE id = ?`, [id])
+    );
+  }
+
   private toCardGroup(sqliteCardGroup: SQLiteCardGroup): CardGroupData {
     return {
       id: sqliteCardGroup.id,

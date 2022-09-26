@@ -22,7 +22,7 @@ export class InMemoryCardGroupRepository implements CardGroupRepository {
   public add(cardGroup: CardGroupData): Promise<CardGroupData> {
     this.cardGroups.push({
       id: (this.cardGroups.length + 1).toString(),
-      ...cardGroup
+      ...cardGroup,
     });
     return Promise.resolve(this.cardGroups[this.cardGroups.length - 1]);
   }
@@ -35,11 +35,19 @@ export class InMemoryCardGroupRepository implements CardGroupRepository {
     return Promise.resolve(this.cardGroups[cardGroupIndex]);
   }
 
-  public updateDescription(id: string, updatedDescription: string): Promise<CardGroupData> {
+  public updateDescription(
+    id: string,
+    updatedDescription: string
+  ): Promise<CardGroupData> {
     const cardGroupIndex = this.cardGroups.findIndex(
       (cardGroup) => cardGroup.id === id
     );
     this.cardGroups[cardGroupIndex].description = updatedDescription;
     return Promise.resolve(this.cardGroups[cardGroupIndex]);
+  }
+
+  public async delete(id: any): Promise<void> {
+    const groupIndex = this.cardGroups.findIndex((group) => group.id === id);
+    this.cardGroups.splice(groupIndex, 1);
   }
 }
