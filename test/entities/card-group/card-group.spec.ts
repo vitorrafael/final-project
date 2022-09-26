@@ -5,6 +5,7 @@ import { InvalidCardGroupError } from "../../../src/entities/card-group/errors/i
 import { InvalidOperationError } from "../../../src/entities/card-group/errors/invalid-operation-error";
 
 const CARD_DATA = {
+  groupId: "1",
   front: "What year did the Farroupilha Revolution start?",
   back: "1835",
   nextReviewDue: new Date(),
@@ -15,8 +16,8 @@ const CARD_DATA = {
 let card;
 describe("[Entity] CardGroup", () => {
   beforeEach(() => {
-    const { front, back, nextReviewDue, reviewCount, eFactor } = CARD_DATA;
-    card = Card.create(front, back, nextReviewDue, reviewCount, eFactor);
+    const { groupId, front, back, nextReviewDue, reviewCount, eFactor } = CARD_DATA;
+    card = Card.create(groupId, front, back, nextReviewDue, reviewCount, eFactor);
   });
 
   it("should create a card group with valid information", () => {

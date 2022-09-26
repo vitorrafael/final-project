@@ -18,6 +18,7 @@ export class UpdateCard {
     const mergedCardData = { ...originalCard, ...updateCardData };
 
     const updatedCard = Card.create(
+      mergedCardData.groupId,
       mergedCardData.front,
       mergedCardData.back,
       mergedCardData.nextReviewDue,

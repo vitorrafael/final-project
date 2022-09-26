@@ -5,4 +5,5 @@ export interface CardData {
   nextReviewDue?: Date;
   reviewCount?: number;
   eFactor?: number;
+  groupId?: string;
 }

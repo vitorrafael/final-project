@@ -2,22 +2,33 @@ import { use, expect } from "chai";
 import chaiAsPromised from "chai-as-promised";
 
 import { InMemoryCardRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-repository";
-import { CardData } from "../../../src/use-cases/ports/card-data";
 import { UpdateCard } from "../../../src/use-cases/update-card/update-card";
 
 use(chaiAsPromised);
 
+const CARD = {
+  id: "1",
+  front: "What's the answer of everything?",
+  back: "42",
+  eFactor: 3.0,
+  nextReviewDue: new Date(2022, 10, 18),
+  reviewCount: 3,
+  groupId: "1",
+};
+
+const SECOND_CARD = {
+  id: "2",
+  front: "How much is 15 plus 13?",
+  back: "38",
+  eFactor: 2.23,
+  nextReviewDue: new Date(2022, 10, 15),
+  reviewCount: 2,
+  groupId: "1",
+};
+
 describe("[Use Case] Update Card", () => {
   it("should update the card front and back and reset review data if request contains changes", async () => {
-    const cardData: CardData = {
-      id: "1",
-      front: "What's the answer of everything?",
-      back: "42",
-      eFactor: 3.0,
-      nextReviewDue: new Date(2022, 10, 18),
-      reviewCount: 3,
-    };
-    const repository = new InMemoryCardRepository([cardData]);
+    const repository = new InMemoryCardRepository([{ ...CARD }]);
     const useCase = new UpdateCard(repository);
 
     const updateCardData = {
@@ -38,23 +49,10 @@ describe("[Use Case] Update Card", () => {
   });
 
   it("should not update card front if it already exists", async () => {
-    const cardData: CardData = {
-      id: "1",
-      front: "What's the answer of everything?",
-      back: "42",
-      eFactor: 3.0,
-      nextReviewDue: new Date(2022, 10, 18),
-      reviewCount: 3,
-    };
-    const anotherCardData: CardData = {
-      id: "2",
-      front: "How much is 15 plus 13?",
-      back: "38",
-      eFactor: 2.23,
-      nextReviewDue: new Date(2022, 10, 15),
-      reviewCount: 2,
-    };
-    const repository = new InMemoryCardRepository([cardData, anotherCardData]);
+    const repository = new InMemoryCardRepository([
+      { ...CARD },
+      { ...SECOND_CARD },
+    ]);
     const useCase = new UpdateCard(repository);
 
     const updateCardData = {
@@ -73,15 +71,7 @@ describe("[Use Case] Update Card", () => {
   });
 
   it("should not reset review information if no changes are passed", async () => {
-    const cardData: CardData = {
-      id: "1",
-      front: "What's the answer of everything?",
-      back: "42",
-      eFactor: 3.0,
-      nextReviewDue: new Date(2022, 10, 18),
-      reviewCount: 3,
-    };
-    const repository = new InMemoryCardRepository([cardData]);
+    const repository = new InMemoryCardRepository([{ ...CARD }]);
     const useCase = new UpdateCard(repository);
 
     const updateCardData = {

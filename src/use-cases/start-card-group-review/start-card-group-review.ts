@@ -6,9 +6,9 @@ export class StartCardGroupReview {
   constructor(private cardGroupRepository: CardGroupRepository) {}
 
   public async startReview(topic: string): Promise<CardGroupWithCards> {
-    const cardGroup = await this.cardGroupRepository.findCardGroupByTheme(
+    const cardGroup = (await this.cardGroupRepository.findCardGroupByTheme(
       topic
-    );
+    )) as CardGroupWithCards;
 
     if (!cardGroup) {
       throw new Error("Card Group not found for selected topic");

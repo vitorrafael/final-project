@@ -11,10 +11,12 @@ context("[Use Case] Review Card", async () => {
   describe("startReview", async () => {
     it("should return the cards of the group when starting a review", async () => {
       const cardGroup = CardGroup.create({
+        id: "1",
         topic: "History",
         description: "History Cards about the Farroupilha Revolution",
       });
       const dueCard = Card.create(
+        "1",
         "What year did the Farroupilha Revolution start?",
         "1835",
         new Date(2022, 3, 1),
@@ -22,6 +24,7 @@ context("[Use Case] Review Card", async () => {
         2.5
       );
       const nonDueCard = Card.create(
+        "1",
         "Who was the leader of Farroupilha Revolution?",
         "Bento Gonçalvez",
         new Date(Date.now() + 24 * 60 * 60 * 2),
