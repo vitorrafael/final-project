@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { SQLiteHelper } from "../../../../src/adapters/repositories/sqlite/helpers/SQLiteHelper";
 import { SQLiteCardRepository } from "../../../../src/adapters/repositories/sqlite/sqlite-card-repository";
 
-describe.only("[Repository] SQLite Card Repository", () => {
+describe("[Repository] SQLite Card Repository", () => {
   before(async () => {
     await SQLiteHelper.connect("./db/srs-monolith.test.db");
   });
