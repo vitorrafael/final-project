@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/**/*.spec.ts' 'test/**/*.spec.ts'",
-    "test:coverage": "nyc npm run test"
+    "test:coverage": "nyc npm run test",
+    "diagram": "tsuml2 --glob \"./src/**/*.ts\""
   },
   "repository": {
     "type": "git",

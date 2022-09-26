@@ -76,6 +76,24 @@ export class SQLiteCardRepository implements CardRepository {
     return this.toCardData(foundCard);
   }
 
+  public async findCardsByGroupId(groupId: string): Promise<CardData[]> {
+    const cards: SQLiteCardData[] = await new Promise((resolve, reject) => {
+      SQLiteHelper.getClient().all(
+        `SELECT * FROM cards WHERE group_id = ?`,
+        [groupId],
+        (error, results) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        }
+      );
+    });
+
+    return cards.map(this.toCardData);
+  }
+
   public async update(card: CardData): Promise<void> {
     Promise.resolve(
       SQLiteHelper.getClient().run(

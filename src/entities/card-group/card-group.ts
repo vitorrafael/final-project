@@ -8,10 +8,6 @@ export interface CardGroupData {
   description: string;
 }
 
-export interface CardGroupWithCards extends CardGroupData {
-  cards: Card[];
-}
-
 export class CardGroup {
   public cards: Card[] = [];
 

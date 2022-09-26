@@ -1,7 +1,5 @@
 import { CardData } from "../../../use-cases/ports/card-data";
-import {
-  CardRepository,
-} from "../../../use-cases/ports/card-repository";
+import { CardRepository } from "../../../use-cases/ports/card-repository";
 
 export class InMemoryCardRepository implements CardRepository {
   private cards: CardData[] = [];
@@ -30,6 +28,12 @@ export class InMemoryCardRepository implements CardRepository {
         cardData.nextReviewDue.getDate()
       ),
     });
+  }
+
+  async findCardsByGroupId(groupId: string): Promise<CardData[]> {
+    const cards = this.cards.filter((card) => card.groupId === groupId);
+
+    return Promise.resolve(cards);
   }
 
   async exists(front: string, back: string) {

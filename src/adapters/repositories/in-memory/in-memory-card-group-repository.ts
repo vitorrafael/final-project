@@ -1,24 +1,19 @@
-import { CardGroupWithCards } from "../../../entities/card-group/card-group";
 import { CardGroupData } from "../../../use-cases/ports/card-group";
 import { CardGroupRepository } from "../../../use-cases/ports/card-group-repository";
 
-interface TempCardGroup extends CardGroupWithCards {
-  id?: string;
-}
-
 export class InMemoryCardGroupRepository implements CardGroupRepository {
-  private cardGroups: TempCardGroup[] = [];
-  constructor(cardGroups: TempCardGroup[]) {
+  private cardGroups: CardGroupData[] = [];
+  constructor(cardGroups: CardGroupData[]) {
     this.cardGroups = cardGroups;
   }
 
-  public findCardGroupByTheme(theme: String): Promise<CardGroupWithCards> {
+  public findCardGroupByTheme(theme: String): Promise<CardGroupData> {
     return Promise.resolve(
       this.cardGroups.find((cardGroup) => cardGroup.topic === theme)
     );
   }
 
-  public findCardGroupById(id: String): Promise<CardGroupWithCards> {
+  public findCardGroupById(id: String): Promise<CardGroupData> {
     return Promise.resolve(
       this.cardGroups.find((cardGroup) => cardGroup.id === id)
     );
@@ -27,8 +22,7 @@ export class InMemoryCardGroupRepository implements CardGroupRepository {
   public add(cardGroup: CardGroupData): Promise<CardGroupData> {
     this.cardGroups.push({
       id: (this.cardGroups.length + 1).toString(),
-      ...cardGroup,
-      cards: [],
+      ...cardGroup
     });
     return Promise.resolve(this.cardGroups[this.cardGroups.length - 1]);
   }
