@@ -1,12 +1,13 @@
 import { SuperMemoAlgorithm } from "../../entities/super-memo/super-memo-algorithm";
 import { CardRepository } from "../ports/card-repository";
+import { UseCase } from "../ports/use-case";
 
-export class SubmitReview {
-   constructor(
+export class SubmitReview implements UseCase {
+  constructor(
     private cardRepository: CardRepository,
     private algorithm: SuperMemoAlgorithm
   ) {}
-  public async submitReviewResults({
+  public async execute({
     cardFront,
     responseQuality,
   }: {
@@ -15,12 +16,11 @@ export class SubmitReview {
   }): Promise<void> {
     const card = await this.cardRepository.findCardByFront(cardFront);
 
-    const { eFactor, intervalForNextReview } =
-      this.algorithm.execute(
-        responseQuality,
-        card.eFactor,
-        card.reviewCount
-      );
+    const { eFactor, intervalForNextReview } = this.algorithm.execute(
+      responseQuality,
+      card.eFactor,
+      card.reviewCount
+    );
 
     const nextReviewDue = this.calculateNextReviewDueDate(
       card.nextReviewDue,
@@ -42,5 +42,5 @@ export class SubmitReview {
     const tempDate = new Date();
     tempDate.setDate(currentReviewDate.getDate() + intervalForNextReview);
     return tempDate;
-  } 
+  }
 }

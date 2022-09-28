@@ -37,7 +37,7 @@ describe("[Use Case] Update Card", () => {
       back: "What?",
     };
 
-    const updatedCard = await useCase.update(updateCardData);
+    const updatedCard = await useCase.execute(updateCardData);
 
     expect(updatedCard.front).to.be.equal("Some random question");
     expect(updatedCard.back).to.be.equal("What?");
@@ -60,7 +60,7 @@ describe("[Use Case] Update Card", () => {
       front: "How much is 15 plus 13?",
     };
 
-    const updatedCard = await useCase.update(updateCardData);
+    const updatedCard = await useCase.execute(updateCardData);
 
     expect(updatedCard.front).to.be.equal("What's the answer of everything?");
     expect(updatedCard.eFactor).to.be.equal(3);
@@ -78,7 +78,7 @@ describe("[Use Case] Update Card", () => {
       id: "1",
     };
 
-    const updatedCard = await useCase.update(updateCardData);
+    const updatedCard = await useCase.execute(updateCardData);
 
     expect(updatedCard.front).to.be.equal("What's the answer of everything?");
     expect(updatedCard.back).to.be.equal("42");

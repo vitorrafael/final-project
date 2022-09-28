@@ -7,7 +7,7 @@ import { SubmitReview } from "../../../src/use-cases/submit-review/submit-review
 use(chaiAsPromised);
 
 context("[Use Case] Submit Review", async () => {
-  describe("submitReviewResults", async () => {
+  describe("execute", async () => {
     it("should set the next review date based on the current review results", async () => {
       const card = {
         front: "What year did the Farroupilha Revolution start?",
@@ -23,7 +23,7 @@ context("[Use Case] Submit Review", async () => {
         new SuperMemoAlgorithm()
       );
 
-      await useCase.submitReviewResults({
+      await useCase.execute({
         cardFront: card.front,
         responseQuality: 3,
       });

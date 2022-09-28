@@ -1,16 +1,16 @@
-import { Card } from "../../entities/card/card";
 import { CardData } from "../ports/card-data";
 import { CardGroupWithCards } from "../ports/card-group";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
+import { UseCase } from "../ports/use-case";
 
-export class StartCardGroupReview {
+export class StartCardGroupReview implements UseCase {
   constructor(
     private cardGroupRepository: CardGroupRepository,
     private cardRepository: CardRepository
   ) {}
 
-  public async startReview(topic: string): Promise<CardGroupWithCards> {
+  public async execute(topic: string): Promise<CardGroupWithCards> {
     const cardGroup = await this.cardGroupRepository.findCardGroupByTheme(
       topic
     );

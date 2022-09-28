@@ -8,7 +8,7 @@ use(chaiAsPromised);
 
 
 context("[Use Case] Review Card", async () => {
-  describe("startReview", async () => {
+  describe("execute", async () => {
     it("should return the cards of the group when starting a review", async () => {
       const cardGroup = {
         id: "1",
@@ -43,7 +43,7 @@ context("[Use Case] Review Card", async () => {
       );
       const reviewedTopic = "History";
 
-      const returnedCardGroup = await useCase.startReview(reviewedTopic);
+      const returnedCardGroup = await useCase.execute(reviewedTopic);
 
       expect(returnedCardGroup.topic).to.be.equal(reviewedTopic);
       expect(returnedCardGroup.cards).to.contain(dueCard);
@@ -61,7 +61,7 @@ context("[Use Case] Review Card", async () => {
       const reviewedTopic = "History";
 
       return expect(
-        useCase.startReview(reviewedTopic)
+        useCase.execute(reviewedTopic)
       ).to.be.eventually.rejectedWith(
         Error,
         "Card Group not found for selected topic"

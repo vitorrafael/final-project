@@ -1,5 +1,6 @@
 import { Card } from "../../entities/card/card";
 import { CardRepository } from "../ports/card-repository";
+import { UseCase } from "../ports/use-case";
 
 export interface UpdateCardRequest {
   id: string;
@@ -7,10 +8,10 @@ export interface UpdateCardRequest {
   back?: string;
 }
 
-export class UpdateCard {
+export class UpdateCard implements UseCase {
   constructor(private readonly cardRepository: CardRepository) {}
 
-  public async update(updateCardData: UpdateCardRequest) {
+  public async execute(updateCardData: UpdateCardRequest) {
     const originalCard = await this.cardRepository.findCardById(
       updateCardData.id
     );
