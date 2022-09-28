@@ -18,10 +18,9 @@ export class UpdateCardGroup implements UseCase {
 
     const mergedCardData = { ...originalCardGroup, ...updateCardGroup };
 
-    const updatedCardGroup = CardGroup.create({
-      topic: mergedCardData.topic,
-      description: mergedCardData.description,
-    });
+    const { topic, description } = mergedCardData;
+
+    const updatedCardGroup = CardGroup.create(topic, description);
 
     if (
       this.shouldUpdateCardGroupTopic(updateCardGroup) &&

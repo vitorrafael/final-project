@@ -2,12 +2,6 @@ import { Card } from "../card/card";
 import { InvalidCardGroupError } from "./errors/invalid-card-group-error";
 import { InvalidOperationError } from "./errors/invalid-operation-error";
 
-export interface CardGroupData {
-  id?: string;
-  topic: string;
-  description: string;
-}
-
 export class CardGroup {
   public cards: Card[] = [];
 
@@ -16,9 +10,7 @@ export class CardGroup {
     public readonly description: string
   ) {}
 
-  static create(cardGroupData: CardGroupData): CardGroup {
-    const { topic, description } = cardGroupData;
-
+  static create(topic: string, description: string): CardGroup {
     if (!topic) {
       throw new InvalidCardGroupError("Invalid topic");
     }

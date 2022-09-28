@@ -26,7 +26,7 @@ describe("[Entity] CardGroup", () => {
       description: "History Cards about the Farroupilha Revolution",
     };
 
-    const cardGroup = CardGroup.create(cardGroupData);
+    const cardGroup = CardGroup.create(cardGroupData.topic, cardGroupData.description);
 
     expect(cardGroup.topic).to.equal(cardGroupData.topic);
     expect(cardGroup.description).to.equal(cardGroupData.description);
@@ -38,7 +38,7 @@ describe("[Entity] CardGroup", () => {
       description: "History Cards about the Farroupilha Revolution",
     };
 
-    expect(() => CardGroup.create(cardGroupData)).to.throw(
+    expect(() => CardGroup.create(cardGroupData.topic, cardGroupData.description)).to.throw(
       InvalidCardGroupError,
       "Invalid Card Group - Reason: Invalid topic"
     );
@@ -50,7 +50,7 @@ describe("[Entity] CardGroup", () => {
       description: "",
     };
 
-    const cardGroup = CardGroup.create(cardGroupData);
+    const cardGroup = CardGroup.create(cardGroupData.topic, cardGroupData.description);
 
     expect(cardGroup.topic).to.equal(cardGroupData.topic);
     expect(cardGroup.description).to.equal(cardGroupData.description);
@@ -62,7 +62,7 @@ describe("[Entity] CardGroup", () => {
       description: "History Cards about the Farroupilha Revolution",
     };
 
-    const cardGroup = CardGroup.create(cardGroupData);
+    const cardGroup = CardGroup.create(cardGroupData.topic, cardGroupData.description);
 
     cardGroup.addCard(card);
 
@@ -74,7 +74,7 @@ describe("[Entity] CardGroup", () => {
       topic: "History",
       description: "History Cards about the Farroupilha Revolution",
     };
-    const cardGroup = CardGroup.create(cardGroupData);
+    const cardGroup = CardGroup.create(cardGroupData.topic, cardGroupData.description);
     cardGroup.addCard(card);
 
     cardGroup.removeCard(card);
@@ -88,7 +88,7 @@ describe("[Entity] CardGroup", () => {
       topic: "History",
       description: "History Cards about the Farroupilha Revolution",
     };
-    const cardGroup = CardGroup.create(cardGroupData);
+    const cardGroup = CardGroup.create(cardGroupData.topic, cardGroupData.description);
 
     expect(() => cardGroup.removeCard(card)).to.throw(
       InvalidOperationError,

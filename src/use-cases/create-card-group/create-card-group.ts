@@ -14,10 +14,9 @@ export class CreateCardGroup implements UseCase {
   public async execute(
     request: CreateCardGroupRequest
   ): Promise<CardGroupData> {
-    const cardGroup = CardGroup.create({
-      topic: request.topic,
-      description: request.description,
-    });
+    const { topic, description } = request;
+
+    const cardGroup = CardGroup.create(topic, description);
 
     return this.cardGroupRepository.add(cardGroup);
   }
