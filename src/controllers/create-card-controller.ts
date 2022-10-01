@@ -2,14 +2,18 @@ import { CardData } from "../use-cases/ports/card-data";
 import { UseCase } from "../use-cases/ports/use-case";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
+import { RequestValidator } from "./util/request-validator";
 
 export class CreateCard {
+  private readonly mandatoryParameters = ["front", "back", "groupId"];
   constructor(private readonly useCase: UseCase) {}
 
   public async handleRequest(
     request: HttpRequest
   ): Promise<HttpResponse<CardData>> {
     try {
+      RequestValidator.validateRequest(request, this.mandatoryParameters);
+
       const cardData: CardData = {
         front: request.body.front,
         back: request.body.back,
