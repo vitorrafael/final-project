@@ -4,8 +4,6 @@ import { ERRORS } from "../utils/errors";
 
 export interface DeleteCardRequest {
   id: string;
-  front: string;
-  back: string;
 }
 
 export class DeleteCard implements UseCase {

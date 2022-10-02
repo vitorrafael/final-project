@@ -18,8 +18,6 @@ export class DeleteCardController {
 
       const cardData: DeleteCardRequest = {
         id: request.body.id,
-        front: request.body.front,
-        back: request.body.back,
       };
 
       await this.useCase.execute(cardData);
