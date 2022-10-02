@@ -33,9 +33,8 @@ export class CreateCard implements UseCase {
       CONSTANTS.INITIAL_E_FACTOR
     );
 
-    const isCardAlreadyCreated = await this.cardRepository.exists(
-      card.front,
-      card.back
+    const isCardAlreadyCreated = Boolean(
+      await this.cardRepository.findCardByFront(card.front)
     );
     if (isCardAlreadyCreated) {
       throw ERRORS["EXISTENT_CARD"];
