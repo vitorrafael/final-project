@@ -5,6 +5,7 @@ import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
 import { CONSTANTS } from "../utils/constants";
+import { ERRORS } from "../utils/errors";
 
 export interface CreateCardRequest {
   front: string;
@@ -37,7 +38,7 @@ export class CreateCard implements UseCase {
       card.back
     );
     if (isCardAlreadyCreated) {
-      throw new Error("Card already exists");
+      throw ERRORS["EXISTENT_CARD"];
     }
 
     await this.cardRepository.add({

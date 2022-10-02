@@ -3,6 +3,7 @@ import { CardGroupWithCards } from "../ports/card-group";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
+import { ERRORS } from "../utils/errors";
 
 export interface StartCardGroupReviewRequest {
   topic: string;
@@ -22,7 +23,7 @@ export class StartCardGroupReview implements UseCase {
     );
 
     if (!cardGroup) {
-      throw new Error("Card Group not found for selected topic");
+      throw ERRORS["UNEXISTENT_CARD_GROUP"]
     }
 
     const cards = await this.cardRepository.findCardsByGroupId(cardGroup.id);

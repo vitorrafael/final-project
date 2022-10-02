@@ -1,4 +1,5 @@
 import { HttpRequest } from "../ports/http-request";
+import { InvalidRequestError } from "./errors/invalid-request-error";
 
 export class RequestValidator {
   public static validateRequest(
@@ -15,7 +16,7 @@ export class RequestValidator {
     });
 
     if (missingParameters.length > 0) {
-      throw new Error();
+      throw new InvalidRequestError(missingParameters);
     }
   }
 }

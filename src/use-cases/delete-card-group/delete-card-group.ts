@@ -1,6 +1,7 @@
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
+import { ERRORS } from "../utils/errors";
 
 export interface DeleteCardGroupRequest {
   id: string;
@@ -20,7 +21,7 @@ export class DeleteCardGroup implements UseCase {
     );
 
     if (!Boolean(cardGroup)) {
-      throw new Error();
+      throw ERRORS["UNEXISTENT_CARD_GROUP"];
     }
 
     await this.cardRepository.deleteByGroupId(cardGroup.id);
