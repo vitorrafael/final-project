@@ -3,6 +3,7 @@ import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 import { CardGroupWithCards } from "../use-cases/ports/card-group";
+import { StartCardGroupReviewRequest } from "../use-cases/start-card-group-review/start-card-group-review";
 
 export class StartCardGroupReviewController {
   private mandatoryFields = ["topic"];
@@ -15,7 +16,11 @@ export class StartCardGroupReviewController {
     try {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
-      const response = await this.useCase.execute(request.body.topic);
+      const startCardGroupReviewRequest: StartCardGroupReviewRequest = {
+        topic: request.body.topic,
+      };
+
+      const response = await this.useCase.execute(startCardGroupReviewRequest);
 
       return {
         statusCode: 200,

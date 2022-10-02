@@ -1,4 +1,5 @@
 import { UseCase } from "../use-cases/ports/use-case";
+import { SubmitReviewRequest } from "../use-cases/submit-review/submit-review";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
@@ -14,17 +15,13 @@ export class SubmitReviewController {
     try {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
-      const submitReviewData: {
-        id: string;
-        cardFront: string;
-        responseQuality: number;
-      } = {
+      const submitReviewRequest: SubmitReviewRequest = {
         id: request.body.id,
-        cardFront: request.body.cardFront,
+        front: request.body.cardFront,
         responseQuality: request.body.responseQuality,
       };
 
-      await this.useCase.execute(submitReviewData);
+      await this.useCase.execute(submitReviewRequest);
 
       return {
         statusCode: 200,

@@ -6,19 +6,25 @@ import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
 import { CONSTANTS } from "../utils/constants";
 
+export interface CreateCardRequest {
+  front: string;
+  back: string;
+  groupId: string;
+}
+
 export class CreateCard implements UseCase {
   constructor(
     private readonly cardRepository: CardRepository,
     private readonly cardGroupRepository: CardGroupRepository
   ) {}
 
-  public async execute(cardData: CardData): Promise<CardData> {
-    const cardGroup = await this.getCardGroup(cardData.groupId);
+  public async execute(createCardRequest: CreateCardRequest): Promise<CardData> {
+    const cardGroup = await this.getCardGroup(createCardRequest.groupId);
 
     const card = Card.create(
       cardGroup.id,
-      cardData.front,
-      cardData.back,
+      createCardRequest.front,
+      createCardRequest.back,
       new Date(),
       0,
       2.5

@@ -1,7 +1,10 @@
-import { CardGroupData } from "../ports/card-group";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
+
+export interface DeleteCardGroupRequest {
+  id: string;
+}
 
 export class DeleteCardGroup implements UseCase {
   constructor(
@@ -9,9 +12,11 @@ export class DeleteCardGroup implements UseCase {
     private readonly cardRepository: CardRepository
   ) {}
 
-  public async execute(cardGroupData: CardGroupData): Promise<void> {
+  public async execute(
+    deleteCardGroupRequest: DeleteCardGroupRequest
+  ): Promise<void> {
     const cardGroup = await this.cardGroupRepository.findCardGroupById(
-      cardGroupData.id
+      deleteCardGroupRequest.id
     );
 
     if (!Boolean(cardGroup)) {

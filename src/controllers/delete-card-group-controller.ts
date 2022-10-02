@@ -1,3 +1,4 @@
+import { DeleteCardGroupRequest } from "../use-cases/delete-card-group/delete-card-group";
 import { CardGroupData } from "../use-cases/ports/card-group";
 import { UseCase } from "../use-cases/ports/use-case";
 import { HttpRequest } from "./ports/http-request";
@@ -15,10 +16,8 @@ export class DeleteCardGroupController {
     try {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
-      const cardGroupData: CardGroupData = {
+      const cardGroupData: DeleteCardGroupRequest = {
         id: request.body.id,
-        topic: request.body.topic,
-        description: request.body.description,
       };
 
       await this.useCase.execute(cardGroupData);

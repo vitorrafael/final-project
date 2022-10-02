@@ -4,15 +4,21 @@ import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
 
+export interface StartCardGroupReviewRequest {
+  topic: string;
+}
+
 export class StartCardGroupReview implements UseCase {
   constructor(
     private cardGroupRepository: CardGroupRepository,
     private cardRepository: CardRepository
   ) {}
 
-  public async execute(topic: string): Promise<CardGroupWithCards> {
+  public async execute(
+    startCardGroupReviewRequest: StartCardGroupReviewRequest
+  ): Promise<CardGroupWithCards> {
     const cardGroup = await this.cardGroupRepository.findCardGroupByTheme(
-      topic
+      startCardGroupReviewRequest.topic
     );
 
     if (!cardGroup) {

@@ -1,3 +1,4 @@
+import { DeleteCardRequest } from "../use-cases/delete-card/delete-card";
 import { CardData } from "../use-cases/ports/card-data";
 import { UseCase } from "../use-cases/ports/use-case";
 import { HttpRequest } from "./ports/http-request";
@@ -15,7 +16,7 @@ export class DeleteCardController {
     try {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
-      const cardData: CardData = {
+      const cardData: DeleteCardRequest = {
         id: request.body.id,
         front: request.body.front,
         back: request.body.back,

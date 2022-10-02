@@ -1,3 +1,4 @@
+import { CreateCardGroupRequest } from "../use-cases/create-card-group/create-card-group";
 import { CardGroupData } from "../use-cases/ports/card-group";
 import { UseCase } from "../use-cases/ports/use-case";
 import { HttpRequest } from "./ports/http-request";
@@ -15,7 +16,7 @@ export class CreateCardGroupController {
     try {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
-      const cardGroupData: CardGroupData = {
+      const cardGroupData: CreateCardGroupRequest = {
         topic: request.body.topic,
         description: request.body.description,
       };

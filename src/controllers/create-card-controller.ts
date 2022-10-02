@@ -1,3 +1,4 @@
+import { CreateCardRequest } from "../use-cases/create-card/create-card";
 import { CardData } from "../use-cases/ports/card-data";
 import { UseCase } from "../use-cases/ports/use-case";
 import { HttpRequest } from "./ports/http-request";
@@ -14,7 +15,7 @@ export class CreateCard {
     try {
       RequestValidator.validateRequest(request, this.mandatoryParameters);
 
-      const cardData: CardData = {
+      const cardData: CreateCardRequest = {
         front: request.body.front,
         back: request.body.back,
         groupId: request.body.groupId,
