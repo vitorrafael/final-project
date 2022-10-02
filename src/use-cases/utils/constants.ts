@@ -1,3 +1,4 @@
 export const CONSTANTS = {
-  DEFAULT_CARD_GROUP_THEME: "Default"
+  DEFAULT_CARD_GROUP_THEME: "Default",
+  INITIAL_E_FACTOR: 2.5
 }

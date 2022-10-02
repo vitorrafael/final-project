@@ -18,7 +18,9 @@ export class CreateCard implements UseCase {
     private readonly cardGroupRepository: CardGroupRepository
   ) {}
 
-  public async execute(createCardRequest: CreateCardRequest): Promise<CardData> {
+  public async execute(
+    createCardRequest: CreateCardRequest
+  ): Promise<CardData> {
     const cardGroup = await this.getCardGroup(createCardRequest.groupId);
 
     const card = Card.create(
@@ -27,7 +29,7 @@ export class CreateCard implements UseCase {
       createCardRequest.back,
       new Date(),
       0,
-      2.5
+      CONSTANTS.INITIAL_E_FACTOR
     );
 
     const isCardAlreadyCreated = await this.cardRepository.exists(
