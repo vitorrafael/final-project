@@ -10,6 +10,7 @@ context("[Use Case] Submit Review", async () => {
   describe("execute", async () => {
     it("should set the next review date based on the current review results", async () => {
       const card = {
+        id: "1",
         front: "What year did the Farroupilha Revolution start?",
         back: "1835",
         nextReviewDue: new Date(2022, 9 - 1, 10),
@@ -24,7 +25,8 @@ context("[Use Case] Submit Review", async () => {
       );
 
       await useCase.execute({
-        cardFront: card.front,
+        id: "1",
+        front: card.front,
         responseQuality: 3,
       });
 

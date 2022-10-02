@@ -6,7 +6,6 @@ import { StartCardGroupReview } from "../../../src/use-cases/start-card-group-re
 
 use(chaiAsPromised);
 
-
 context("[Use Case] Review Card", async () => {
   describe("execute", async () => {
     it("should return the cards of the group when starting a review", async () => {
@@ -41,11 +40,15 @@ context("[Use Case] Review Card", async () => {
         cardGroupRepository,
         cardRepository
       );
-      const reviewedTopic = "History";
+      const startCardGroupReviewRequest = { topic: "History" };
 
-      const returnedCardGroup = await useCase.execute(reviewedTopic);
+      const returnedCardGroup = await useCase.execute(
+        startCardGroupReviewRequest
+      );
 
-      expect(returnedCardGroup.topic).to.be.equal(reviewedTopic);
+      expect(returnedCardGroup.topic).to.be.equal(
+        startCardGroupReviewRequest.topic
+      );
       expect(returnedCardGroup.cards).to.contain(dueCard);
       expect(returnedCardGroup.cards).to.not.contain(nonDueCard);
     });
@@ -58,10 +61,10 @@ context("[Use Case] Review Card", async () => {
         cardGroupRepository,
         cardRepository
       );
-      const reviewedTopic = "History";
+      const startCardGroupReviewRequest = { topic: "History" };
 
       return expect(
-        useCase.execute(reviewedTopic)
+        useCase.execute(startCardGroupReviewRequest)
       ).to.be.eventually.rejectedWith(
         Error,
         "Card Group not found for selected topic"
