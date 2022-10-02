@@ -3,6 +3,7 @@ import chaiAsPromised from "chai-as-promised";
 import { InMemoryCardGroupRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-group-repository";
 import { InMemoryCardRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-repository";
 import { StartCardGroupReview } from "../../../src/use-cases/start-card-group-review/start-card-group-review";
+import { ERRORS } from "../../../src/use-cases/utils/errors";
 
 use(chaiAsPromised);
 
@@ -65,10 +66,7 @@ context("[Use Case] Review Card", async () => {
 
       return expect(
         useCase.execute(startCardGroupReviewRequest)
-      ).to.be.eventually.rejectedWith(
-        Error,
-        "Card Group not found for selected topic"
-      );
+      ).to.be.eventually.rejectedWith(ERRORS.UNEXISTENT_CARD_GROUP);
     });
   });
 });

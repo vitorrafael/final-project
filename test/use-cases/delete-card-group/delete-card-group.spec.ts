@@ -4,6 +4,7 @@ import { InMemoryCardGroupRepository } from "../../../src/adapters/repositories/
 
 import { InMemoryCardRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-repository";
 import { DeleteCardGroup } from "../../../src/use-cases/delete-card-group/delete-card-group";
+import { ERRORS } from "../../../src/use-cases/utils/errors";
 
 
 use(chaiAsPromised);
@@ -61,7 +62,7 @@ describe("[Use Case] Delete Card Group", () => {
     const useCase = new DeleteCardGroup(cardGroupRepository, cardRepository);
 
     return expect(useCase.execute(CARD_GROUP)).to.be.eventually.rejectedWith(
-      Error
+      ERRORS.UNEXISTENT_CARD_GROUP
     );
   });
 });

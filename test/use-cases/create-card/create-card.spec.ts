@@ -5,6 +5,7 @@ import { InMemoryCardGroupRepository } from "../../../src/adapters/repositories/
 import { InMemoryCardRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-repository";
 
 import { CreateCard } from "../../../src/use-cases/create-card/create-card";
+import { ERRORS } from "../../../src/use-cases/utils/errors";
 
 use(chaiAsPromised);
 
@@ -81,8 +82,7 @@ describe("[Use Case] Create Card", () => {
     const useCase = new CreateCard(cardRepository, cardGroupRepository);
 
     return expect(useCase.execute(RANDOM_CARD)).to.be.eventually.rejectedWith(
-      Error,
-      "Card already exists"
+      ERRORS.EXISTENT_CARD
     );
   });
 });
