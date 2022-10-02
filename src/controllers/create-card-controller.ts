@@ -6,7 +6,7 @@ import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
 export class CreateCard {
-  private readonly mandatoryParameters = ["front", "back", "groupId"];
+  private readonly mandatoryParameters = ["front", "back"];
   constructor(private readonly useCase: UseCase) {}
 
   public async handleRequest(

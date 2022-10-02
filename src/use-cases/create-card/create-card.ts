@@ -10,7 +10,7 @@ import { ERRORS } from "../utils/errors";
 export interface CreateCardRequest {
   front: string;
   back: string;
-  groupId: string;
+  groupId?: string;
 }
 
 export class CreateCard implements UseCase {
