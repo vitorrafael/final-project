@@ -43,7 +43,7 @@ export class SubmitReview implements UseCase {
     currentReviewDate: Date,
     intervalForNextReview: number
   ): Date {
-    const tempDate = new Date();
+    const tempDate = new Date(currentReviewDate);
     tempDate.setDate(currentReviewDate.getDate() + intervalForNextReview);
     return tempDate;
   }
