@@ -5,7 +5,7 @@ import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
-export class CreateCard {
+export class CreateCardController {
   private readonly mandatoryParameters = ["front", "back"];
   constructor(private readonly useCase: UseCase) {}
 
