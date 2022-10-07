@@ -1,11 +1,12 @@
 import { CardGroupData } from "../use-cases/ports/card-group";
 import { UseCase } from "../use-cases/ports/use-case";
 import { UpdateCardRequest } from "../use-cases/update-card/update-card";
+import { Controller } from "./ports/controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
-export class UpdateCardGroupController {
+export class UpdateCardGroupController implements Controller {
   private mandatoryFields = ["id"];
 
   public constructor(private useCase: UseCase) {}

@@ -4,8 +4,9 @@ import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 import { UpdateCardRequest } from "../use-cases/update-card/update-card";
+import { Controller } from "./ports/controller";
 
-export class UpdateCardController {
+export class UpdateCardController implements Controller {
   private mandatoryFields = ["id"];
 
   public constructor(private useCase: UseCase) {}

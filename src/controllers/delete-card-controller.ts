@@ -1,11 +1,12 @@
 import { DeleteCardRequest } from "../use-cases/delete-card/delete-card";
 import { CardData } from "../use-cases/ports/card-data";
 import { UseCase } from "../use-cases/ports/use-case";
+import { Controller } from "./ports/controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
-export class DeleteCardController {
+export class DeleteCardController implements Controller {
   private mandatoryFields = ["id"];
 
   public constructor(private readonly useCase: UseCase) {}

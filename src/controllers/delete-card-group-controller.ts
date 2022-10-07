@@ -1,11 +1,12 @@
 import { DeleteCardGroupRequest } from "../use-cases/delete-card-group/delete-card-group";
 import { CardGroupData } from "../use-cases/ports/card-group";
 import { UseCase } from "../use-cases/ports/use-case";
+import { Controller } from "./ports/controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
-export class DeleteCardGroupController {
+export class DeleteCardGroupController implements Controller {
   private mandatoryFields = ["id"];
 
   public constructor(private useCase: UseCase) {}

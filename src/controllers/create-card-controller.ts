@@ -1,11 +1,12 @@
 import { CreateCardRequest } from "../use-cases/create-card/create-card";
 import { CardData } from "../use-cases/ports/card-data";
 import { UseCase } from "../use-cases/ports/use-case";
+import { Controller } from "./ports/controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
-export class CreateCardController {
+export class CreateCardController implements Controller {
   private readonly mandatoryParameters = ["front", "back"];
   constructor(private readonly useCase: UseCase) {}
 
