@@ -1,6 +1,7 @@
 import { CardGroupData } from "./card-group";
 
 export interface CardGroupRepository {
+  findAllCardGroups(): Promise<CardGroupData[]>;
   findCardGroupByTheme(theme: String): Promise<CardGroupData>;
   findCardGroupById(id: String): Promise<CardGroupData>;
   add(cardGroup: CardGroupData): Promise<CardGroupData>;

@@ -9,6 +9,25 @@ interface SQLiteCardGroup {
 }
 
 export class SQLiteCardGroupRepository implements CardGroupRepository {
+  public async findAllCardGroups(): Promise<CardGroupData[]> {
+    const cardGroups: SQLiteCardGroup[] = await new Promise(
+      (resolve, reject) => {
+        SQLiteHelper.getClient().all(
+          `SELECT * FROM cardGroups`,
+          (error, results) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(results);
+            }
+          }
+        );
+      }
+    );
+
+    return cardGroups.map(this.toCardGroup) as CardGroupData[];
+  }
+
   public async findCardGroupByTheme(theme: String): Promise<CardGroupData> {
     const foundCardGroup: SQLiteCardGroup = await new Promise(
       (resolve, reject) => {
