@@ -5,10 +5,18 @@ import { Controller } from "./ports/controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
+import { ERRORS } from "../use-cases/utils/errors";
 
-export class CreateCardController implements Controller {
+export class CreateCardController extends Controller {
   private readonly mandatoryParameters = ["front", "back"];
-  constructor(private readonly useCase: UseCase) {}
+  
+  protected readonly expectedExceptionsToStatusCode = {
+    [ERRORS.EXISTENT_CARD.name]: 400,
+  };
+
+  constructor(private readonly useCase: UseCase) {
+    super();
+  }
 
   public async handleRequest(
     request: HttpRequest
@@ -29,9 +37,11 @@ export class CreateCardController implements Controller {
         body: useCaseResponse,
       };
     } catch (error) {
+      const statusCode = this.mapExceptionToStatusCode(error);
+
       return {
-        statusCode: 500,
-        body: JSON.stringify(error),
+        statusCode,
+        body: JSON.stringify(error.message),
       };
     }
   }
