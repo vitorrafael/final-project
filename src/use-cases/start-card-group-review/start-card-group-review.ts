@@ -3,6 +3,7 @@ import { CardGroupWithCards } from "../ports/card-group";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
+import { DateHelper } from "../utils/date-helper";
 import { ERRORS } from "../utils/errors";
 
 export interface StartCardGroupReviewRequest {
@@ -28,23 +29,24 @@ export class StartCardGroupReview implements UseCase {
 
     const cards = await this.cardRepository.findCardsByGroupId(cardGroup.id);
 
-    const currentDate = this.getCurrentDate();
+    const currentDate = DateHelper.getCurrentDate();
     const cardsWithDueReview = this.filterDueCards(cards, currentDate);
 
     return { ...cardGroup, cards: cardsWithDueReview };
   }
 
-  private getCurrentDate(): Date {
-    const tempDate = new Date();
-    return new Date(
-      tempDate.getFullYear(),
-      tempDate.getMonth(),
-      tempDate.getDate()
+  private filterDueCards(cards: CardData[], dueDate: Date): CardData[] {
+    const dueCards = cards.filter((card) =>
+      this.isDateSmallerThanOrEqualTo(card.nextReviewDue, dueDate)
     );
+    return dueCards;
   }
 
-  private filterDueCards(cards: CardData[], dueDate: Date): CardData[] {
-    const dueCards = cards.filter((card) => card.nextReviewDue <= dueDate);
-    return dueCards;
+  private isDateSmallerThanOrEqualTo(
+    firstDate: Date,
+    secondDate: Date
+  ): boolean {
+    const dateComparison = DateHelper.compareDates(firstDate, secondDate);
+    return dateComparison !== 1;
   }
 }

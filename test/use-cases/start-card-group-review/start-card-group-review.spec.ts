@@ -28,7 +28,7 @@ context("[Use Case] Review Card", async () => {
         id: 2,
         front: "Who was the leader of Farroupilha Revolution?",
         back: "Bento Gonçalvez",
-        nextReviewDue: new Date(Date.now() + 24 * 60 * 60 * 2),
+        nextReviewDue: new Date(Date.now() + 3600 * 1000 * 24),
         reviewCount: 1,
         eFactor: 2.5,
         groupId: 1,
