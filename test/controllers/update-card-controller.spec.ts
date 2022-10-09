@@ -1,42 +1,38 @@
 import { expect } from "chai";
-import { InMemoryCardGroupRepository } from "../../src/adapters/repositories/in-memory/in-memory-card-group-repository";
 import { InMemoryCardRepository } from "../../src/adapters/repositories/in-memory/in-memory-card-repository";
-import { CreateCardController } from "../../src/controllers/create-card-controller";
-import { CreateCard } from "../../src/use-cases/create-card/create-card";
+import { UpdateCardController } from "../../src/controllers/update-card-controller";
+import { UpdateCard } from "../../src/use-cases/update-card/update-card";
 import { UseCaseWithErrorStub } from "./helper/use-case-error-stub";
 
-const RANDOM_CARD_GROUP = {
-  id: 2,
-  topic: "Random",
-  description: "Group with Random Questions",
-};
 const RANDOM_CARD = {
+  id: 1,
   front: "What's the answer of everything?",
   back: "42",
-  groupId: 2,
+  eFactor: 3.0,
+  nextReviewDue: new Date(2022, 10, 18),
+  reviewCount: 3,
+  groupId: 1,
 };
 
-describe("CreateCardController", () => {
+describe("UpdateCardController", () => {
   let useCase;
   beforeEach(() => {
-    const cardGroupRepository = new InMemoryCardGroupRepository([
-      RANDOM_CARD_GROUP,
-    ]);
-    const cardRepository = new InMemoryCardRepository([RANDOM_CARD]);
-    useCase = new CreateCard(cardRepository, cardGroupRepository);
+    const cardRepository = new InMemoryCardRepository([{ ...RANDOM_CARD }]);
+    useCase = new UpdateCard(cardRepository);
   });
 
-  it("should return persisted card if card does not exist", async () => {
-    const controller = new CreateCardController(useCase);
+  it("should return updated card if card data does not exist", async () => {
+    const controller = new UpdateCardController(useCase);
 
-    const newCard = {
+    const updatedCardData = {
+      id: 1,
       front: "How much is 2 + 2?",
       back: "4",
       groupId: RANDOM_CARD.groupId,
     };
 
     const httpRequest = {
-      body: newCard,
+      body: updatedCardData,
     };
 
     const response = await controller.handleRequest(httpRequest);
@@ -44,17 +40,17 @@ describe("CreateCardController", () => {
     expect(response.statusCode).to.be.equal(200);
   });
 
-  it("should return 400 if card already exists", async () => {
-    const controller = new CreateCardController(useCase);
+  it("should return 400 if updated card data is already used", async () => {
+    const controller = new UpdateCardController(useCase);
 
-    const newCard = {
+    const updatedCardData = {
       front: RANDOM_CARD.front,
       back: RANDOM_CARD.back,
       groupId: RANDOM_CARD.groupId,
     };
 
     const httpRequest = {
-      body: newCard,
+      body: updatedCardData,
     };
 
     const response = await controller.handleRequest(httpRequest);
@@ -63,12 +59,12 @@ describe("CreateCardController", () => {
   });
 
   it("should return 400 if there are missing mandatory parameters", async () => {
-    const controller = new CreateCardController(useCase);
+    const controller = new UpdateCardController(useCase);
 
-    const newCard = {};
+    const updatedCardData = {};
 
     const httpRequest = {
-      body: newCard,
+      body: updatedCardData,
     };
 
     const response = await controller.handleRequest(httpRequest);
@@ -78,7 +74,7 @@ describe("CreateCardController", () => {
 
   it("should return 500 if an error was thrown", async () => {
     const useCaseWithError = new UseCaseWithErrorStub();
-    const controller = new CreateCardController(useCaseWithError);
+    const controller = new UpdateCardController(useCaseWithError);
 
     const response = await controller.handleRequest({});
 
