@@ -18,7 +18,7 @@ export class SQLiteCardRepository implements CardRepository {
     return new Promise((resolve, reject) => {
       SQLiteHelper.getClient().run(
         `INSERT INTO cards (front, back, next_review_due, review_count, e_factor, group_id) VALUES(?, ?, ?, ?, ?, ?)`,
-        [front, back, nextReviewDue, reviewCount, eFactor, groupId],
+        [front, back, nextReviewDue.toISOString(), reviewCount, eFactor, groupId],
         (error) => {
           /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
           if (error) {
@@ -112,7 +112,7 @@ export class SQLiteCardRepository implements CardRepository {
         [
           card.front,
           card.back,
-          card.nextReviewDue,
+          card.nextReviewDue.toISOString(),
           card.reviewCount,
           card.eFactor,
           card.id,
