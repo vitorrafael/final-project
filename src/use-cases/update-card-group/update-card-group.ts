@@ -12,7 +12,7 @@ export interface UpdateCardGroupRequest {
 export class UpdateCardGroup implements UseCase {
   constructor(private readonly cardGroupRepository: CardGroupRepository) {}
 
-  public async execute(updateCardGroup: UpdateCardRequest) {
+  public async execute(updateCardGroup: UpdateCardGroupRequest) {
     const originalCardGroup = await this.cardGroupRepository.findCardGroupById(
       updateCardGroup.id
     );
@@ -45,19 +45,19 @@ export class UpdateCardGroup implements UseCase {
   }
 
   private shouldUpdateCardGroupDescription(
-    updatedCardGroup: UpdateCardRequest
+    updatedCardGroup: UpdateCardGroupRequest
   ): boolean {
     return Object.keys(updatedCardGroup).includes("description");
   }
 
   private shouldUpdateCardGroupTopic(
-    updatedCardGroup: UpdateCardRequest
+    updatedCardGroup: UpdateCardGroupRequest
   ): boolean {
     return Object.keys(updatedCardGroup).includes("topic");
   }
 
   private async newCardGroupTopicAlreadyExists(
-    updatedCardGroup: UpdateCardRequest
+    updatedCardGroup: UpdateCardGroupRequest
   ): Promise<boolean> {
     const potentialCardGroup =
       await this.cardGroupRepository.findCardGroupByTheme(
