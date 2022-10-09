@@ -23,7 +23,7 @@ export class StartCardGroupReview implements UseCase {
     );
 
     if (!cardGroup) {
-      throw ERRORS["UNEXISTENT_CARD_GROUP"]
+      throw ERRORS["UNEXISTENT_CARD_GROUP"];
     }
 
     const cards = await this.cardRepository.findCardsByGroupId(cardGroup.id);
