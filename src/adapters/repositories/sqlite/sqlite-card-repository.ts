@@ -9,41 +9,43 @@ interface SQLiteCardData {
   next_review_due: string;
   review_count: number;
   e_factor: number;
+  group_id: number;
 }
 
 export class SQLiteCardRepository implements CardRepository {
   public async add(card: CardData): Promise<void> {
-    const { front, back, nextReviewDue, reviewCount, eFactor } = card;
-    Promise.resolve(
+    const { front, back, nextReviewDue, reviewCount, eFactor, groupId } = card;
+    return new Promise((resolve, reject) => {
       SQLiteHelper.getClient().run(
-        `INSERT INTO cards (front, back, next_review_due, review_count, e_factor) VALUES(?, ?, ?, ?, ?)`,
-        [front, back, nextReviewDue, reviewCount, eFactor]
-      )
-    );
-  }
-
-  public async delete(id: string): Promise<void> {
-    Promise.resolve(
-      SQLiteHelper.getClient().run(`DELETE FROM cards WHERE id = ?`, [id])
-    );
-  }
-
-  public async exists(front: string, back: string): Promise<boolean> {
-    const foundCard: SQLiteCardData = await new Promise((resolve, reject) => {
-      SQLiteHelper.getClient().get(
-        `SELECT * FROM cards WHERE front = ? AND back = ?`,
-        [front, back],
-        (error, results) => {
+        `INSERT INTO cards (front, back, next_review_due, review_count, e_factor, group_id) VALUES(?, ?, ?, ?, ?, ?)`,
+        [front, back, nextReviewDue, reviewCount, eFactor, groupId],
+        (error) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
           if (error) {
             reject(error);
           } else {
-            resolve(results);
+            resolve();
           }
         }
       );
     });
+  }
 
-    return Boolean(foundCard);
+  public async delete(id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      SQLiteHelper.getClient().run(
+        `DELETE FROM cards WHERE id = ?`,
+        [id],
+        (error) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
   }
 
   public async findCardByFront(front: string): Promise<CardData> {
@@ -52,6 +54,7 @@ export class SQLiteCardRepository implements CardRepository {
         `SELECT * FROM cards WHERE front = ?`,
         [front],
         (error, results) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
           if (error) {
             reject(error);
           } else {
@@ -70,6 +73,7 @@ export class SQLiteCardRepository implements CardRepository {
         `SELECT * FROM cards WHERE id = ?`,
         [id],
         (error, results) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
           if (error) {
             reject(error);
           } else {
@@ -88,6 +92,7 @@ export class SQLiteCardRepository implements CardRepository {
         `SELECT * FROM cards WHERE group_id = ?`,
         [groupId],
         (error, results) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
           if (error) {
             reject(error);
           } else {
@@ -101,7 +106,7 @@ export class SQLiteCardRepository implements CardRepository {
   }
 
   public async update(card: CardData): Promise<void> {
-    Promise.resolve(
+    return new Promise((resolve, reject) => {
       SQLiteHelper.getClient().run(
         `UPDATE cards SET front = ?, back = ?, next_review_due = ?, review_count = ?, e_factor = ? WHERE id = ?`,
         [
@@ -111,49 +116,83 @@ export class SQLiteCardRepository implements CardRepository {
           card.reviewCount,
           card.eFactor,
           card.id,
-        ]
-      )
-    );
+        ],
+        (error) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
   }
 
   public async updateCardFront(
-    id: string,
+    id: number,
     updatedFront: string
   ): Promise<CardData> {
-    await Promise.resolve(
-      SQLiteHelper.getClient().run(`UPDATE cards SET front = ? WHERE id = ?`, [
-        updatedFront,
-        id,
-      ])
-    );
+    await new Promise<void>((resolve, reject) => {
+      SQLiteHelper.getClient().run(
+        `UPDATE cards SET front = ? WHERE id = ?`,
+        [updatedFront, id],
+        (error) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
 
     return this.findCardById(id);
   }
 
   public async updateCardBack(
-    id: string,
+    id: number,
     updatedBack: string
   ): Promise<CardData> {
-    await Promise.resolve(
-      SQLiteHelper.getClient().run(`UPDATE cards SET back = ? WHERE id = ?`, [
-        updatedBack,
-        id,
-      ])
-    );
+    await new Promise<void>((resolve, reject) => {
+      SQLiteHelper.getClient().run(
+        `UPDATE cards SET back = ? WHERE id = ?`,
+        [updatedBack, id],
+        (error) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
     return this.findCardById(id);
   }
 
-  public async deleteByGroupId(groupId: string): Promise<void> {
-    await Promise.resolve(
-      SQLiteHelper.getClient().run("DELETE FROM cards WHERE group_id = ? ", [
-        groupId,
-      ])
-    );
+  public async deleteByGroupId(groupId: number): Promise<void> {
+    await new Promise<void>((resolve, reject) => {
+      SQLiteHelper.getClient().run(
+        "DELETE FROM cards WHERE group_id = ? ",
+        [groupId],
+        (error) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
   }
 
   private toCardData(sqliteCard: SQLiteCardData): CardData {
+    if (!sqliteCard) return undefined;
     return {
-      id: sqliteCard.id.toString(),
+      id: sqliteCard.id,
       front: sqliteCard.front,
       back: sqliteCard.back,
       nextReviewDue: new Date(sqliteCard.next_review_due),

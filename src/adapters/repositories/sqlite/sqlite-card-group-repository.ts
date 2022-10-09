@@ -15,6 +15,7 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
         SQLiteHelper.getClient().all(
           `SELECT * FROM cardGroups`,
           (error, results) => {
+            /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
             if (error) {
               reject(error);
             } else {
@@ -35,6 +36,7 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
           `SELECT * FROM cardGroups WHERE topic = ?`,
           [theme],
           (error, results) => {
+            /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
             if (error) {
               reject(error);
             } else {
@@ -55,6 +57,7 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
           `SELECT * FROM cardGroups WHERE id = ?`,
           [id],
           (error, results) => {
+            /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
             if (error) {
               reject(error);
             } else {
@@ -68,12 +71,20 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
     return this.toCardGroup(foundCardGroup) as CardGroupData;
   }
 
-  public async add(CardGroupData: CardGroupData): Promise<CardGroupData> {
-    const { description, topic } = CardGroupData;
-    Promise.resolve(
+  public async add(cardGroupData: CardGroupData): Promise<CardGroupData> {
+    const { description, topic } = cardGroupData;
+    await new Promise<void>((resolve, reject) =>
       SQLiteHelper.getClient().run(
         `INSERT INTO cardGroups (topic, description) VALUES (?, ?)`,
-        [topic, description]
+        [topic, description],
+        (error) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        }
       )
     );
 
@@ -84,10 +95,18 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
     id: number,
     updatedTopic: string
   ): Promise<CardGroupData> {
-    Promise.resolve(
+    await new Promise<void>((resolve, reject) =>
       SQLiteHelper.getClient().run(
         `UPDATE cardGroups SET topic = ? WHERE id = ?`,
-        [updatedTopic, id]
+        [updatedTopic, id],
+        (error) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        }
       )
     );
 
@@ -98,10 +117,18 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
     id: number,
     updatedDescription: string
   ): Promise<CardGroupData> {
-    Promise.resolve(
+    await new Promise<void>((resolve, reject) =>
       SQLiteHelper.getClient().run(
         `UPDATE cardGroups SET description = ? WHERE id = ?`,
-        [updatedDescription, id]
+        [updatedDescription, id],
+        (error) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        }
       )
     );
 
@@ -109,12 +136,24 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
   }
 
   public async delete(id: any): Promise<void> {
-    Promise.resolve(
-      SQLiteHelper.getClient().run(`DELETE FROM cardGroups WHERE id = ?`, [id])
-    );
+    return new Promise((resolve, reject) => {
+      SQLiteHelper.getClient().run(
+        `DELETE FROM cardGroups WHERE id = ?`,
+        [id],
+        (error) => {
+          /* istanbul ignore if - This means that an error occurred with the database which will not be tested */
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
   }
 
   private toCardGroup(sqliteCardGroup: SQLiteCardGroup): CardGroupData {
+    if (!sqliteCardGroup) return undefined;
     return {
       id: sqliteCardGroup.id,
       topic: sqliteCardGroup.topic,
