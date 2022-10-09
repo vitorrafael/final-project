@@ -4,7 +4,7 @@
   "description": "Source code for the Spaced Repetition based learning using 'Flashcards' and the SuperMemo Algorithm by Piotr Wozniak",
   "main": "index.js",
   "scripts": {
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/**/*.spec.ts' 'test/**/*.spec.ts'",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'test/**/*.spec.ts'",
     "test:coverage": "nyc npm run test",
     "diagram": "tsuml2 --glob \"./src/**/*.ts\""
   },
@@ -40,7 +40,8 @@
       "src/**/!(*.spec.*).[tj]s?(x)"
     ],
     "exclude": [
-      "src/_tests_/**/*.*"
+      "src/_tests_/**/*.*",
+      "src/main"
     ],
     "reporter": [
       "html",
