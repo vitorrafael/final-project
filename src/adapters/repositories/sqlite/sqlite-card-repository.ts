@@ -198,6 +198,7 @@ export class SQLiteCardRepository implements CardRepository {
       nextReviewDue: new Date(sqliteCard.next_review_due),
       reviewCount: sqliteCard.review_count,
       eFactor: sqliteCard.e_factor,
+      groupId: sqliteCard.group_id,
     };
   }
 }
