@@ -54,7 +54,7 @@ export class CreateCard implements UseCase {
     return persistedCard;
   }
 
-  private getCardGroup(id: number): Promise<CardGroupData> {
+  private async getCardGroup(id: number): Promise<CardGroupData> {
     if (!id) {
       return this.cardGroupRepository.findCardGroupByTheme(
         CONSTANTS.DEFAULT_CARD_GROUP_THEME
