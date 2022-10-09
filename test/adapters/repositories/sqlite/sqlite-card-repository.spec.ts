@@ -26,8 +26,29 @@ describe("[Repository] SQLite Card Repository", () => {
       eFactor: 2.5,
     });
 
-    expect(await repository.exists("What's the answer of everything?", "42")).to
-      .be.true;
+    expect(await repository.findCardByFront("What's the answer of everything?"))
+      .to.not.be.undefined;
+  });
+
+  it("should delete card from database", async () => {
+    const repository = new SQLiteCardRepository();
+
+    await repository.add({
+      front: "What's the answer of everything?",
+      back: "42",
+      nextReviewDue: new Date(),
+      reviewCount: 3,
+      eFactor: 2.5,
+    });
+
+    const cardData = await repository.findCardByFront(
+      "What's the answer of everything?"
+    );
+
+    await repository.delete(cardData.id);
+
+    expect(await repository.findCardByFront("What's the answer of everything?"))
+      .to.be.undefined;
   });
 
   it("should find card by front", async () => {
@@ -64,6 +85,57 @@ describe("[Repository] SQLite Card Repository", () => {
 
     const foundCard = await repository.findCardById(persistedCard.id);
     expect(foundCard).to.not.be.undefined;
+  });
+
+  it("should find cards by group id", async () => {
+    const repository = new SQLiteCardRepository();
+
+    await repository.add({
+      front: "What's the answer of everything?",
+      back: "42",
+      nextReviewDue: new Date(),
+      reviewCount: 3,
+      eFactor: 2.5,
+      groupId: 1,
+    });
+    await repository.add({
+      front: "Is that correct?",
+      back: "Yes",
+      nextReviewDue: new Date(),
+      reviewCount: 3,
+      eFactor: 2.5,
+      groupId: 1,
+    });
+
+    const cards = await repository.findCardsByGroupId(1);
+
+    expect(cards.length).to.be.equal(2);
+  });
+
+  it("should delete all cards by group id", async () => {
+    const repository = new SQLiteCardRepository();
+
+    await repository.add({
+      front: "What's the answer of everything?",
+      back: "42",
+      nextReviewDue: new Date(),
+      reviewCount: 3,
+      eFactor: 2.5,
+      groupId: 1,
+    });
+    await repository.add({
+      front: "Is that correct?",
+      back: "Yes",
+      nextReviewDue: new Date(),
+      reviewCount: 3,
+      eFactor: 2.5,
+      groupId: 1,
+    });
+
+    await repository.deleteByGroupId(1);
+
+    const cards = await repository.findCardsByGroupId(1);
+    expect(cards.length).to.be.equal(0);
   });
 
   it("should update card data", async () => {
