@@ -3,7 +3,7 @@ import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
 
 export interface SubmitReviewRequest {
-  id: string;
+  id: number;
   front: string;
   responseQuality: number;
 }

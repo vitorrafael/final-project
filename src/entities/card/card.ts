@@ -2,7 +2,7 @@ import { InvalidCardError } from "./errors/invalid-card-error";
 
 export class Card {
   private constructor(
-    public readonly groupId: string,
+    public readonly groupId: number,
     public readonly front: string,
     public readonly back: string,
     public readonly nextReviewDue: Date,
@@ -11,7 +11,7 @@ export class Card {
   ) {}
 
   static create(
-    groupId: string,
+    groupId: number,
     front: string,
     back: string,
     nextReviewDue: Date,

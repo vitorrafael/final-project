@@ -10,14 +10,14 @@ import { ERRORS } from "../../../src/use-cases/utils/errors";
 use(chaiAsPromised);
 
 const DEFAULT_CARD_GROUP = {
-  id: "1",
+  id: 1,
   topic: "Default",
   description: "Default Theme",
   cards: [],
 };
 
 const RANDOM_CARD_GROUP = {
-  id: "2",
+  id: 2,
   topic: "Random",
   description: "Group with Random Questions",
   cards: [],
@@ -26,7 +26,7 @@ const RANDOM_CARD_GROUP = {
 const RANDOM_CARD = {
   front: "What's the answer of everything?",
   back: "42",
-  groupId: "2",
+  groupId: 2,
 };
 
 const CARD_WITHOUT_CARD_GROUP = {

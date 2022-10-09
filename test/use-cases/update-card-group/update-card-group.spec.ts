@@ -25,7 +25,7 @@ describe("[Use Case] Update Card Grou", () => {
     const useCase = new UpdateCardGroup(cardGroupRepository);
 
     const updateCardGroupData = {
-      id: "1",
+      id: 1,
       topic: "Updated Topic",
       description: "Updated Description",
     };

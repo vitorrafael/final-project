@@ -1,9 +1,9 @@
 export interface CardData {
-  id?: string;
+  id?: number;
   front: string;
   back: string;
   nextReviewDue?: Date;
   reviewCount?: number;
   eFactor?: number;
-  groupId?: string;
+  groupId?: number;
 }

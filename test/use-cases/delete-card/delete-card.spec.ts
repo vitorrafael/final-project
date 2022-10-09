@@ -8,11 +8,11 @@ import { DeleteCard } from "../../../src/use-cases/delete-card/delete-card";
 use(chaiAsPromised);
 
 const RANDOM_CARD = {
-  id: "1",
+  id: 1,
   front: "What's the answer of everything?",
   back: "42",
   nextReviewDue: new Date(2022, 9 - 1, 10),
-  groupId: "2",
+  groupId: 2,
 };
 
 describe("[Use Case] Delete Card", () => {

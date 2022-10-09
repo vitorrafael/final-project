@@ -14,7 +14,7 @@ describe("[Use Case] Create Card Group", async () => {
 
     const response = await useCase.execute(cardGroupData);
 
-    expect(response.id).to.be.equal("1");
+    expect(response.id).to.be.equal(1);
     expect(response.topic).to.be.equal("History");
     expect(response.description).to.be.equal(
       "History Cards about the Farroupilha Revolution"

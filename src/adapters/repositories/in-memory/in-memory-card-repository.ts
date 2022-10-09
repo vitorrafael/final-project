@@ -17,7 +17,7 @@ export class InMemoryCardRepository implements CardRepository {
     );
   }
 
-  async findCardById(id: string): Promise<CardData> {
+  async findCardById(id: number): Promise<CardData> {
     const cardData = this.cards.find((card) => card.id === id);
 
     return Promise.resolve(
@@ -32,52 +32,42 @@ export class InMemoryCardRepository implements CardRepository {
     );
   }
 
-  async findCardsByGroupId(groupId: string): Promise<CardData[]> {
+  async findCardsByGroupId(groupId: number): Promise<CardData[]> {
     const cards = this.cards.filter((card) => card.groupId === groupId);
 
     return Promise.resolve(cards);
   }
 
-  async exists(front: string, back: string) {
-    return Boolean(
-      this.cards.find((card) => card.front === front && card.back === back)
-    );
-  }
-
   async add(cardData: CardData): Promise<void> {
-    if (!(await this.exists(cardData.front, cardData.back))) {
-      this.cards.push({ id: this.cards.length.toString(), ...cardData });
-    }
+    this.cards.push({ id: this.cards.length, ...cardData });
   }
 
   async update(cardData: CardData): Promise<void> {
-    if (await this.exists(cardData.front, cardData.back)) {
-      const cardIndex = this.cards.findIndex(
-        (card) => card.front === cardData.front
-      );
-      const id = this.cards[cardIndex].id;
-      this.cards[cardIndex] = { id, ...cardData };
-    }
+    const cardIndex = this.cards.findIndex(
+      (card) => card.front === cardData.front
+    );
+    const id = this.cards[cardIndex].id;
+    this.cards[cardIndex] = { id, ...cardData };
   }
 
-  async updateCardFront(id: string, updatedFront: string): Promise<CardData> {
+  async updateCardFront(id: number, updatedFront: string): Promise<CardData> {
     const cardIndex = this.cards.findIndex((card) => card.id === id);
     this.cards[cardIndex].front = updatedFront;
     return this.findCardById(id);
   }
 
-  async updateCardBack(id: string, updatedBack: string): Promise<CardData> {
+  async updateCardBack(id: number, updatedBack: string): Promise<CardData> {
     const cardIndex = this.cards.findIndex((card) => card.id === id);
     this.cards[cardIndex].back = updatedBack;
     return this.findCardById(id);
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: number): Promise<void> {
     const cardIndex = this.cards.findIndex((card) => card.id === id);
     this.cards.splice(cardIndex, 1);
   }
 
-  async deleteByGroupId(groupId: string): Promise<void> {
+  async deleteByGroupId(groupId: number): Promise<void> {
     this.cards = this.cards.filter((card) => card.groupId !== groupId);
   }
 }

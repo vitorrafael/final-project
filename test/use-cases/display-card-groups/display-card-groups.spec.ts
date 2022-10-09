@@ -7,35 +7,35 @@ import { DisplayCardGroups } from "../../../src/use-cases/display-card-groups/di
 use(chaiAsPromised);
 
 const HISTORY_CARD_GROUP = {
-  id: "1",
+  id: 1,
   topic: "History",
   description: "History Cards about the Farroupilha Revolution",
 };
 
 const MATH_CARD_GROUP = {
-  id: "2",
+  id: 2,
   topic: "Math",
   description: "Math cards",
 };
 
 const FIRST_CARD = {
-  id: "1",
+  id: 1,
   front: "What year did the Farroupilha Revolution start?",
   back: "1835",
   nextReviewDue: new Date(2022, 3, 1),
   reviewCount: 3,
   eFactor: 2.5,
-  groupId: "1",
+  groupId: 1,
 };
 
 const SECOND_CARD = {
-  id: "2",
+  id: 2,
   front: "Who was the leader of Farroupilha Revolution?",
   back: "Bento Gonçalvez",
   nextReviewDue: new Date(Date.now() + 24 * 60 * 60 * 2),
   reviewCount: 1,
   eFactor: 2.5,
-  groupId: "1",
+  groupId: 1,
 };
 
 const HISTORY_CARD_GROUP_WITH_CARDS = {

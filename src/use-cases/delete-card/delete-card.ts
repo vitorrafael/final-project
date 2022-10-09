@@ -3,7 +3,7 @@ import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
 export interface DeleteCardRequest {
-  id: string;
+  id: number;
 }
 
 export class DeleteCard implements UseCase {

@@ -5,7 +5,7 @@ import { InvalidCardGroupError } from "../../../src/entities/card-group/errors/i
 import { InvalidOperationError } from "../../../src/entities/card-group/errors/invalid-operation-error";
 
 const CARD_DATA = {
-  groupId: "1",
+  groupId: 1,
   front: "What year did the Farroupilha Revolution start?",
   back: "1835",
   nextReviewDue: new Date(),

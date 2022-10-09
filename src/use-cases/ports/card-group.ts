@@ -1,7 +1,7 @@
 import { CardData } from "./card-data";
 
 export interface CardGroupData {
-  id?: string;
+  id?: number;
   topic: string;
   description: string;
 }

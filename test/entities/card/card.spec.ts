@@ -5,7 +5,7 @@ import { InvalidCardError } from "../../../src/entities/card/errors/invalid-card
 describe("[Entity] Card", () => {
   it("should create a card with valid information", () => {
     const cardData = {
-      groupId: "1",
+      groupId: 1,
       front: "What's the answer of everything?",
       back: "42",
       nextReviewDue: new Date(),
@@ -28,7 +28,7 @@ describe("[Entity] Card", () => {
 
   it("should throw an error when creating a card without group id", () => {
     const cardData = {
-      groupId: "",
+      groupId: undefined,
       front: "What's the answer of everything?",
       back: "What do you mean?",
       nextReviewDue: new Date(),
@@ -51,7 +51,7 @@ describe("[Entity] Card", () => {
 
   it("should throw an error when creating a card with invalid front information", () => {
     const cardData = {
-      groupId: "1",
+      groupId: 1,
       front: "",
       back: "What do you mean?",
       nextReviewDue: new Date(),
@@ -74,7 +74,7 @@ describe("[Entity] Card", () => {
 
   it("should throw an error when creating a card with invalid back information", () => {
     const cardData = {
-      groupId: "1",
+      groupId: 1,
       front: "Some unaswered question?",
       back: "",
       nextReviewDue: new Date(),
@@ -97,7 +97,7 @@ describe("[Entity] Card", () => {
 
   it("should throw an error when creating a card with invalid next review due", () => {
     const cardData = {
-      groupId: "1",
+      groupId: 1,
       front: "What's the answer of everything?",
       back: "42",
       nextReviewDue: undefined,
@@ -121,7 +121,7 @@ describe("[Entity] Card", () => {
 
   it("should throw an error when creating a card with invalid review count", () => {
     const cardData = {
-      groupId: "1",
+      groupId: 1,
       front: "What's the answer of everything?",
       back: "42",
       nextReviewDue: new Date(),
@@ -144,7 +144,7 @@ describe("[Entity] Card", () => {
 
   it("should throw an error when creating a card with invalid eFactor", () => {
     const cardData = {
-      groupId: "1",
+      groupId: 1,
       front: "What's the answer of everything?",
       back: "42",
       nextReviewDue: new Date(),

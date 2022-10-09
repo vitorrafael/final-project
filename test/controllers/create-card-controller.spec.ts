@@ -6,14 +6,14 @@ import { CreateCard } from "../../src/use-cases/create-card/create-card";
 import { UseCaseWithErrorStub } from "./helper/use-case-error-stub";
 
 const RANDOM_CARD_GROUP = {
-  id: "2",
+  id: 2,
   topic: "Random",
   description: "Group with Random Questions",
 };
 const RANDOM_CARD = {
   front: "What's the answer of everything?",
   back: "42",
-  groupId: "2",
+  groupId: 2,
 };
 
 describe.only("CreateCardController", () => {

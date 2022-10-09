@@ -10,7 +10,7 @@ import { ERRORS } from "../utils/errors";
 export interface CreateCardRequest {
   front: string;
   back: string;
-  groupId?: string;
+  groupId?: number;
 }
 
 export class CreateCard implements UseCase {
@@ -54,7 +54,7 @@ export class CreateCard implements UseCase {
     return persistedCard;
   }
 
-  private getCardGroup(id: string): Promise<CardGroupData> {
+  private getCardGroup(id: number): Promise<CardGroupData> {
     if (!id) {
       return this.cardGroupRepository.findCardGroupByTheme(
         CONSTANTS.DEFAULT_CARD_GROUP_THEME

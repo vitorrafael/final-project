@@ -7,23 +7,23 @@ import { UpdateCard } from "../../../src/use-cases/update-card/update-card";
 use(chaiAsPromised);
 
 const CARD = {
-  id: "1",
+  id: 1,
   front: "What's the answer of everything?",
   back: "42",
   eFactor: 3.0,
   nextReviewDue: new Date(2022, 10, 18),
   reviewCount: 3,
-  groupId: "1",
+  groupId: 1,
 };
 
 const SECOND_CARD = {
-  id: "2",
+  id: 2,
   front: "How much is 15 plus 13?",
   back: "38",
   eFactor: 2.23,
   nextReviewDue: new Date(2022, 10, 15),
   reviewCount: 2,
-  groupId: "1",
+  groupId: 1,
 };
 
 describe("[Use Case] Update Card", () => {
@@ -32,7 +32,7 @@ describe("[Use Case] Update Card", () => {
     const useCase = new UpdateCard(repository);
 
     const updateCardData = {
-      id: "1",
+      id: 1,
       front: "Some random question",
       back: "What?",
     };
@@ -56,7 +56,7 @@ describe("[Use Case] Update Card", () => {
     const useCase = new UpdateCard(repository);
 
     const updateCardData = {
-      id: "1",
+      id: 1,
       front: "How much is 15 plus 13?",
     };
 
@@ -75,7 +75,7 @@ describe("[Use Case] Update Card", () => {
     const useCase = new UpdateCard(repository);
 
     const updateCardData = {
-      id: "1",
+      id: 1,
     };
 
     const updatedCard = await useCase.execute(updateCardData);

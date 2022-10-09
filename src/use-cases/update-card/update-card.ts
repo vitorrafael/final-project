@@ -1,9 +1,10 @@
 import { Card } from "../../entities/card/card";
 import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
+import { ERRORS } from "../utils/errors";
 
 export interface UpdateCardRequest {
-  id: string;
+  id: number;
   front?: string;
   back?: string;
 }

@@ -4,7 +4,7 @@ import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
 export interface DeleteCardGroupRequest {
-  id: string;
+  id: number;
 }
 
 export class DeleteCardGroup implements UseCase {

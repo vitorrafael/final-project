@@ -2,8 +2,8 @@ import { CardGroup } from "../../entities/card-group/card-group";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { UseCase } from "../ports/use-case";
 
-export interface UpdateCardRequest {
-  id: string;
+export interface UpdateCardGroupRequest {
+  id: number;
   description?: string;
   topic?: string;
 }

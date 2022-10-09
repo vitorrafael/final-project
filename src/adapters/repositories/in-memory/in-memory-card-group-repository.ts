@@ -17,7 +17,7 @@ export class InMemoryCardGroupRepository implements CardGroupRepository {
     );
   }
 
-  public findCardGroupById(id: String): Promise<CardGroupData> {
+  public findCardGroupById(id: number): Promise<CardGroupData> {
     return Promise.resolve(
       this.cardGroups.find((cardGroup) => cardGroup.id === id)
     );
@@ -25,13 +25,13 @@ export class InMemoryCardGroupRepository implements CardGroupRepository {
 
   public add(cardGroup: CardGroupData): Promise<CardGroupData> {
     this.cardGroups.push({
-      id: (this.cardGroups.length + 1).toString(),
+      id: (this.cardGroups.length + 1),
       ...cardGroup,
     });
     return Promise.resolve(this.cardGroups[this.cardGroups.length - 1]);
   }
 
-  public updateTopic(id: string, updatedTopic: string): Promise<CardGroupData> {
+  public updateTopic(id: number, updatedTopic: string): Promise<CardGroupData> {
     const cardGroupIndex = this.cardGroups.findIndex(
       (cardGroup) => cardGroup.id === id
     );
@@ -40,7 +40,7 @@ export class InMemoryCardGroupRepository implements CardGroupRepository {
   }
 
   public updateDescription(
-    id: string,
+    id: number,
     updatedDescription: string
   ): Promise<CardGroupData> {
     const cardGroupIndex = this.cardGroups.findIndex(

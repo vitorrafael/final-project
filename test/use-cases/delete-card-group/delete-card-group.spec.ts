@@ -10,32 +10,32 @@ import { ERRORS } from "../../../src/use-cases/utils/errors";
 use(chaiAsPromised);
 
 const CARD_GROUP = {
-  id: "1",
+  id: 1,
   topic: "Some theme",
   description: "Default Theme",
 };
 
 const RANDOM_CARDS = [
   {
-    id: "1",
+    id: 1,
     front: "What's the answer of everything?",
     back: "42",
     nextReviewDue: new Date(2022, 9 - 1, 10),
-    groupId: "1",
+    groupId: 1,
   },
   {
-    id: "2",
+    id: 2,
     front: "What's the answer of everything?",
     back: "42",
     nextReviewDue: new Date(2022, 9 - 1, 10),
-    groupId: "1",
+    groupId: 1,
   },
   {
-    id: "3",
+    id: 3,
     front: "What's the answer of everything?",
     back: "42",
     nextReviewDue: new Date(2022, 9 - 1, 10),
-    groupId: "1",
+    groupId: 1,
   },
 ];
 

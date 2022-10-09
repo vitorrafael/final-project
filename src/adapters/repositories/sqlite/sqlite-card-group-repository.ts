@@ -3,7 +3,7 @@ import { CardGroupRepository } from "../../../use-cases/ports/card-group-reposit
 import { SQLiteHelper } from "./helpers/SQLiteHelper";
 
 interface SQLiteCardGroup {
-  id: string;
+  id: number;
   topic: string;
   description;
 }
@@ -48,7 +48,7 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
     return this.toCardGroup(foundCardGroup) as CardGroupData;
   }
 
-  public async findCardGroupById(id: String): Promise<CardGroupData> {
+  public async findCardGroupById(id: number): Promise<CardGroupData> {
     const foundCardGroup: SQLiteCardGroup = await new Promise(
       (resolve, reject) => {
         SQLiteHelper.getClient().get(
@@ -81,7 +81,7 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
   }
 
   public async updateTopic(
-    id: string,
+    id: number,
     updatedTopic: string
   ): Promise<CardGroupData> {
     Promise.resolve(
@@ -94,8 +94,8 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
     return this.findCardGroupById(id);
   }
 
-  updateDescription(
-    id: string,
+  public async updateDescription(
+    id: number,
     updatedDescription: string
   ): Promise<CardGroupData> {
     Promise.resolve(

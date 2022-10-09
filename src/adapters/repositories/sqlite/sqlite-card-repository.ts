@@ -64,7 +64,7 @@ export class SQLiteCardRepository implements CardRepository {
     return this.toCardData(foundCard);
   }
 
-  public async findCardById(id: string): Promise<CardData> {
+  public async findCardById(id: number): Promise<CardData> {
     const foundCard: SQLiteCardData = await new Promise((resolve, reject) => {
       SQLiteHelper.getClient().get(
         `SELECT * FROM cards WHERE id = ?`,
@@ -82,7 +82,7 @@ export class SQLiteCardRepository implements CardRepository {
     return this.toCardData(foundCard);
   }
 
-  public async findCardsByGroupId(groupId: string): Promise<CardData[]> {
+  public async findCardsByGroupId(groupId: number): Promise<CardData[]> {
     const cards: SQLiteCardData[] = await new Promise((resolve, reject) => {
       SQLiteHelper.getClient().all(
         `SELECT * FROM cards WHERE group_id = ?`,
