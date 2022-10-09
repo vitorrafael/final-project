@@ -4,12 +4,18 @@ import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 import { UpdateCardRequest } from "../use-cases/update-card/update-card";
-import { Controller } from "./ports/controller";
+import { Controller } from "./controller";
+import { ERRORS } from "../use-cases/utils/errors";
 
-export class UpdateCardController implements Controller {
+export class UpdateCardController extends Controller {
   private mandatoryFields = ["id"];
+  protected expectedExceptionsToStatusCode: { [errorName: string]: number } = {
+    [ERRORS.EXISTENT_CARD.name]: 400,
+  };
 
-  public constructor(private useCase: UseCase) {}
+  public constructor(private useCase: UseCase) {
+    super();
+  }
 
   public async handleRequest(
     request: HttpRequest
@@ -30,8 +36,10 @@ export class UpdateCardController implements Controller {
         body: response,
       };
     } catch (error) {
+      const statusCode = this.mapExceptionToStatusCode(error);
+
       return {
-        statusCode: 500,
+        statusCode,
         body: error.message,
       };
     }

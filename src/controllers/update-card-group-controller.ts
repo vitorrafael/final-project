@@ -1,15 +1,21 @@
 import { CardGroupData } from "../use-cases/ports/card-group";
 import { UseCase } from "../use-cases/ports/use-case";
-import { UpdateCardRequest } from "../use-cases/update-card/update-card";
-import { Controller } from "./ports/controller";
+import { UpdateCardGroupRequest } from "../use-cases/update-card-group/update-card-group";
+import { ERRORS } from "../use-cases/utils/errors";
+import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
-export class UpdateCardGroupController implements Controller {
+export class UpdateCardGroupController extends Controller {
   private mandatoryFields = ["id"];
+  protected expectedExceptionsToStatusCode = {
+    [ERRORS["EXISTENT_CARD_GROUP"].name]: 400,
+  };
 
-  public constructor(private useCase: UseCase) {}
+  public constructor(private useCase: UseCase) {
+    super();
+  }
 
   public async handleRequest(
     request: HttpRequest
@@ -17,21 +23,23 @@ export class UpdateCardGroupController implements Controller {
     try {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
-      const cardData: UpdateCardRequest = {
+      const cardGroupData: UpdateCardGroupRequest = {
         id: request.body.id,
-        front: request.body.front,
-        back: request.body.back,
+        topic: request.body.topic,
+        description: request.body.description,
       };
 
-      const response = await this.useCase.execute(cardData);
+      const response = await this.useCase.execute(cardGroupData);
 
       return {
         statusCode: 200,
         body: response,
       };
     } catch (error) {
+      const statusCode = this.mapExceptionToStatusCode(error);
+
       return {
-        statusCode: 500,
+        statusCode,
         body: error.message,
       };
     }

@@ -1,15 +1,21 @@
 import { DeleteCardGroupRequest } from "../use-cases/delete-card-group/delete-card-group";
 import { CardGroupData } from "../use-cases/ports/card-group";
 import { UseCase } from "../use-cases/ports/use-case";
-import { Controller } from "./ports/controller";
+import { ERRORS } from "../use-cases/utils/errors";
+import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
-export class DeleteCardGroupController implements Controller {
+export class DeleteCardGroupController extends Controller {
   private mandatoryFields = ["id"];
+  protected expectedExceptionsToStatusCode = {
+    [ERRORS.UNEXISTENT_CARD_GROUP.name]: 404,
+  };
 
-  public constructor(private useCase: UseCase) {}
+  public constructor(private useCase: UseCase) {
+    super();
+  }
 
   public async handleRequest(
     request: HttpRequest
@@ -28,9 +34,10 @@ export class DeleteCardGroupController implements Controller {
         body: undefined,
       };
     } catch (error) {
+      const statusCode = this.mapExceptionToStatusCode(error);
       return {
-        statusCode: 500,
-        body: JSON.stringify(error.message),
+        statusCode,
+        body: error.message,
       };
     }
   }

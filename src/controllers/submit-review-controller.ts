@@ -1,14 +1,17 @@
 import { UseCase } from "../use-cases/ports/use-case";
 import { SubmitReviewRequest } from "../use-cases/submit-review/submit-review";
-import { Controller } from "./ports/controller";
+import { ERRORS } from "../use-cases/utils/errors";
+import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
-export class SubmitReviewController implements Controller {
+export class SubmitReviewController extends Controller {
   private mandatoryFields = ["id", "responseQuality"];
 
-  public constructor(private useCase: UseCase) {}
+  public constructor(private useCase: UseCase) {
+    super();
+  }
 
   public async handleRequest(
     request: HttpRequest
@@ -29,8 +32,10 @@ export class SubmitReviewController implements Controller {
         body: undefined,
       };
     } catch (error) {
+      const statusCode = this.mapExceptionToStatusCode(error);
+
       return {
-        statusCode: 500,
+        statusCode,
         body: error.message,
       };
     }

@@ -1,15 +1,21 @@
 import { CreateCardGroupRequest } from "../use-cases/create-card-group/create-card-group";
 import { CardGroupData } from "../use-cases/ports/card-group";
 import { UseCase } from "../use-cases/ports/use-case";
-import { Controller } from "./ports/controller";
+import { ERRORS } from "../use-cases/utils/errors";
+import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
-export class CreateCardGroupController implements Controller {
+export class CreateCardGroupController extends Controller {
   private mandatoryFields = ["topic"];
+  protected expectedExceptionsToStatusCode = {
+    [ERRORS["EXISTENT_CARD_GROUP"].name]: 400,
+  };
 
-  public constructor(private useCase: UseCase) {}
+  public constructor(private useCase: UseCase) {
+    super();
+  }
 
   public async handleRequest(
     request: HttpRequest
@@ -26,7 +32,9 @@ export class CreateCardGroupController implements Controller {
 
       return { statusCode: 200, body: response };
     } catch (error) {
-      return { statusCode: 500, body: JSON.stringify(error.message) };
+      const statusCode = this.mapExceptionToStatusCode(error);
+
+      return { statusCode, body: error.message };
     }
   }
 }
