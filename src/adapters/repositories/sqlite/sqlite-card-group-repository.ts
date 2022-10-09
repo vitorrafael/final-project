@@ -32,7 +32,7 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
     const foundCardGroup: SQLiteCardGroup = await new Promise(
       (resolve, reject) => {
         SQLiteHelper.getClient().get(
-          `SELECT * FROM cardGroups WHERE theme = ?`,
+          `SELECT * FROM cardGroups WHERE topic = ?`,
           [theme],
           (error, results) => {
             if (error) {
