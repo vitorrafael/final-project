@@ -1,6 +1,7 @@
 import { CardGroup } from "../../entities/card-group/card-group";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { UseCase } from "../ports/use-case";
+import { ERRORS } from "../utils/errors";
 
 export interface UpdateCardGroupRequest {
   id: number;
@@ -22,10 +23,11 @@ export class UpdateCardGroup implements UseCase {
 
     const updatedCardGroup = CardGroup.create(topic, description);
 
-    if (
-      this.shouldUpdateCardGroupTopic(updateCardGroup) &&
-      !(await this.newCardGroupTopicAlreadyExists(updateCardGroup))
-    ) {
+    if (this.shouldUpdateCardGroupTopic(updateCardGroup)) {
+      if (await this.newCardGroupTopicAlreadyExists(updateCardGroup)) {
+        throw ERRORS["EXISTENT_CARD_GROUP"];
+      }
+
       await this.cardGroupRepository.updateTopic(
         updateCardGroup.id,
         updatedCardGroup.topic

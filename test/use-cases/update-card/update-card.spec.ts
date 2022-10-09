@@ -3,6 +3,7 @@ import chaiAsPromised from "chai-as-promised";
 
 import { InMemoryCardRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-repository";
 import { UpdateCard } from "../../../src/use-cases/update-card/update-card";
+import { ERRORS } from "../../../src/use-cases/utils/errors";
 
 use(chaiAsPromised);
 
@@ -60,14 +61,9 @@ describe("[Use Case] Update Card", () => {
       front: "How much is 15 plus 13?",
     };
 
-    const updatedCard = await useCase.execute(updateCardData);
-
-    expect(updatedCard.front).to.be.equal("What's the answer of everything?");
-    expect(updatedCard.eFactor).to.be.equal(3);
-    expect(updatedCard.nextReviewDue.toDateString()).to.be.equal(
-      new Date(2022, 10, 18).toDateString()
-    );
-    expect(updatedCard.reviewCount).to.be.equal(3);
+    return expect(
+      useCase.execute(updateCardData)
+    ).to.be.eventually.rejectedWith(ERRORS["EXISTENT_CARD"]);
   });
 
   it("should not reset review information if no changes are passed", async () => {

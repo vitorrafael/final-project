@@ -2,6 +2,7 @@ import { CardGroupRepository } from "../ports/card-group-repository";
 import { UseCase } from "../ports/use-case";
 import { CardGroup } from "../../entities/card-group/card-group";
 import { CardGroupData } from "../ports/card-group";
+import { ERRORS } from "../utils/errors";
 
 export interface CreateCardGroupRequest {
   topic: string;
@@ -15,6 +16,10 @@ export class CreateCardGroup implements UseCase {
     request: CreateCardGroupRequest
   ): Promise<CardGroupData> {
     const { topic, description } = request;
+
+    if (await this.cardGroupRepository.findCardGroupByTheme(topic)) {
+      throw ERRORS["EXISTENT_CARD_GROUP"];
+    }
 
     const cardGroup = CardGroup.create(topic, description);
 

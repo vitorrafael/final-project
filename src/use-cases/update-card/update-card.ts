@@ -30,9 +30,12 @@ export class UpdateCard implements UseCase {
 
     let hasUpdatedCard = false;
     if (
-      this.shouldUpdateCardFront(updateCardData) &&
-      !(await this.newCardFrontAlreadyExists(updateCardData))
+      this.shouldUpdateCardFront(updateCardData)
     ) {
+      if (await this.newCardFrontAlreadyExists(updateCardData)) {
+        throw ERRORS["EXISTENT_CARD"]
+      }
+
       await this.cardRepository.updateCardFront(
         updateCardData.id,
         updatedCard.front
