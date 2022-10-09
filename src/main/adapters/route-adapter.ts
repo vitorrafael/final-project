@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Controller } from "../../controllers/ports/controller";
+import { Controller } from "../../controllers/controller";
 import { HttpRequest } from "../../controllers/ports/http-request";
 
 export class RouteAdapter {
