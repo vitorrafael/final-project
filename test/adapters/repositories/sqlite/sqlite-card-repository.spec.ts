@@ -24,6 +24,7 @@ describe("[Repository] SQLite Card Repository", () => {
       nextReviewDue: new Date(),
       reviewCount: 3,
       eFactor: 2.5,
+      groupId: 0,
     });
 
     expect(await repository.findCardByFront("What's the answer of everything?"))
@@ -39,6 +40,7 @@ describe("[Repository] SQLite Card Repository", () => {
       nextReviewDue: new Date(),
       reviewCount: 3,
       eFactor: 2.5,
+      groupId: 0,
     });
 
     const cardData = await repository.findCardByFront(
@@ -60,6 +62,7 @@ describe("[Repository] SQLite Card Repository", () => {
       nextReviewDue: new Date(),
       reviewCount: 3,
       eFactor: 2.5,
+      groupId: 0,
     });
 
     const foundCard = await repository.findCardByFront(
@@ -77,6 +80,7 @@ describe("[Repository] SQLite Card Repository", () => {
       nextReviewDue: new Date(),
       reviewCount: 3,
       eFactor: 2.5,
+      groupId: 0,
     });
 
     const persistedCard = await repository.findCardByFront(
@@ -147,6 +151,7 @@ describe("[Repository] SQLite Card Repository", () => {
       nextReviewDue: new Date(),
       reviewCount: 3,
       eFactor: 2.5,
+      groupId: 0,
     });
 
     const persistedCard = await repository.findCardByFront(
@@ -181,6 +186,7 @@ describe("[Repository] SQLite Card Repository", () => {
       nextReviewDue: new Date(),
       reviewCount: 3,
       eFactor: 2.5,
+      groupId: 0,
     });
 
     const persistedCard = await repository.findCardByFront(
@@ -209,6 +215,7 @@ describe("[Repository] SQLite Card Repository", () => {
       nextReviewDue: new Date(),
       reviewCount: 3,
       eFactor: 2.5,
+      groupId: 0,
     });
 
     const persistedCard = await repository.findCardByFront(
