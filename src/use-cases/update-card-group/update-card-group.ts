@@ -17,11 +17,15 @@ export class UpdateCardGroup implements UseCase {
       updateCardGroup.id
     );
 
-    const mergedCardData = { ...originalCardGroup, ...updateCardGroup };
+    const mergedCardGroupData = {
+      topic: updateCardGroup.topic || originalCardGroup.topic,
+      description: updateCardGroup.description || originalCardGroup.topic,
+    };
 
-    const { topic, description } = mergedCardData;
-
-    const updatedCardGroup = CardGroup.create(topic, description);
+    const updatedCardGroup = CardGroup.create(
+      mergedCardGroupData.topic,
+      mergedCardGroupData.description
+    );
 
     if (this.shouldUpdateCardGroupTopic(updateCardGroup)) {
       if (await this.newCardGroupTopicAlreadyExists(updateCardGroup)) {

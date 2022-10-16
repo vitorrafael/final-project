@@ -17,7 +17,15 @@ export class UpdateCard implements UseCase {
       updateCardData.id
     );
 
-    const mergedCardData = { ...originalCard, ...updateCardData };
+    const mergedCardData = {
+      groupId: originalCard.groupId,
+      nextReviewDue: originalCard.nextReviewDue,
+      reviewCount: originalCard.reviewCount,
+      eFactor: originalCard.eFactor,
+
+      front: updateCardData.front || originalCard.front,
+      back: updateCardData.back || originalCard.back,
+    };
 
     const updatedCard = Card.create(
       mergedCardData.groupId,
@@ -29,11 +37,9 @@ export class UpdateCard implements UseCase {
     );
 
     let hasUpdatedCard = false;
-    if (
-      this.shouldUpdateCardFront(updateCardData)
-    ) {
+    if (this.shouldUpdateCardFront(updateCardData)) {
       if (await this.newCardFrontAlreadyExists(updateCardData)) {
-        throw ERRORS["EXISTENT_CARD"]
+        throw ERRORS["EXISTENT_CARD"];
       }
 
       await this.cardRepository.updateCardFront(
