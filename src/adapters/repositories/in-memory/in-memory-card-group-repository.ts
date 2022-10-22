@@ -11,7 +11,7 @@ export class InMemoryCardGroupRepository implements CardGroupRepository {
     return Promise.resolve(this.cardGroups);
   }
 
-  public findCardGroupByTheme(theme: String): Promise<CardGroupData> {
+  public findCardGroupByTheme(theme: string): Promise<CardGroupData> {
     return Promise.resolve(
       this.cardGroups.find((cardGroup) => cardGroup.topic === theme)
     );

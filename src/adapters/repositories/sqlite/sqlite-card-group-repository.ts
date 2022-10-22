@@ -29,7 +29,7 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
     return cardGroups.map(this.toCardGroup) as CardGroupData[];
   }
 
-  public async findCardGroupByTheme(theme: String): Promise<CardGroupData> {
+  public async findCardGroupByTheme(theme: string): Promise<CardGroupData> {
     const foundCardGroup: SQLiteCardGroup = await new Promise(
       (resolve, reject) => {
         SQLiteHelper.getClient().get(

@@ -20,7 +20,7 @@ export class DeleteCardGroup implements UseCase {
       deleteCardGroupRequest.id
     );
 
-    if (!Boolean(cardGroup)) {
+    if (!cardGroup) {
       throw ERRORS["UNEXISTENT_CARD_GROUP"];
     }
 
