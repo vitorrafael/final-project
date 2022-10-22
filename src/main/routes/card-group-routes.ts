@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { CreateCardGroupController } from "../../controllers/create-card-group-controller";
 import { DeleteCardGroupController } from "../../controllers/delete-card-group-controller";
-import { DisplayCardGroupsController } from "../../controllers/display-card-groups.controller";
+import { DisplayCardGroupsController } from "../../controllers/display-card-groups-controller";
 import { StartCardGroupReviewController } from "../../controllers/start-card-group-review-controller";
 import { UpdateCardGroupController } from "../../controllers/update-card-group-controller";
 import { RouteAdapter } from "../adapters/route-adapter";
