@@ -1,17 +1,23 @@
-import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";
 import { RequestValidator } from "./util/request-validator";
 
-import { CardGroupData, CreateCardGroupRequest, UseCase } from "../use-cases/ports";
+import {
+  CardGroupData,
+  CreateCardGroupRequest,
+  Errors,
+  UseCase,
+} from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
 export class CreateCardGroupController extends Controller {
   private mandatoryFields = ["topic"];
   protected expectedExceptionsToStatusCode = {
-    [ERRORS["EXISTENT_CARD_GROUP"].name]: 400,
+    [Errors.EXISTENT_CARD_GROUP]: 400,
   };
 
-  public constructor(private useCase: UseCase<CreateCardGroupRequest, CardGroupData>) {
+  public constructor(
+    private useCase: UseCase<CreateCardGroupRequest, CardGroupData>
+  ) {
     super();
   }
 

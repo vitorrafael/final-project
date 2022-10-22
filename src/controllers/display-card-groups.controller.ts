@@ -23,7 +23,7 @@ export class DisplayCardGroupsController extends Controller {
       );
       return {
         statusCode: 200,
-        body: useCaseResponse
+        body: useCaseResponse,
       };
     } catch (error) {
       const statusCode = this.mapExceptionToStatusCode(error);

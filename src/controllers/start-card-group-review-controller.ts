@@ -1,14 +1,18 @@
-import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";
 import { RequestValidator } from "./util/request-validator";
 
-import { CardGroupWithCards, StartCardGroupReviewRequest, UseCase } from "../use-cases/ports";
+import {
+  CardGroupWithCards,
+  Errors,
+  StartCardGroupReviewRequest,
+  UseCase,
+} from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
 export class StartCardGroupReviewController extends Controller {
   private mandatoryFields = ["topic"];
   protected expectedExceptionsToStatusCode = {
-    [ERRORS["UNEXISTENT_CARD_GROUP"].name]: 400,
+    [Errors.UNEXISTENT_CARD_GROUP]: 400,
   };
 
   public constructor(

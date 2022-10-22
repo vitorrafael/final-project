@@ -1,14 +1,13 @@
-import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";
 import { RequestValidator } from "./util/request-validator";
 
-import { DeleteCardGroupRequest, UseCase } from "../use-cases/ports";
+import { DeleteCardGroupRequest, Errors, UseCase } from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
 export class DeleteCardGroupController extends Controller {
   private mandatoryFields = ["id"];
   protected expectedExceptionsToStatusCode = {
-    [ERRORS.UNEXISTENT_CARD_GROUP.name]: 404,
+    [Errors.UNEXISTENT_CARD_GROUP]: 404,
   };
 
   public constructor(private useCase: UseCase<DeleteCardGroupRequest, void>) {

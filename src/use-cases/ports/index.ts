@@ -4,5 +4,4 @@ export * from "./card-group-repository";
 export * from "./card-repository";
 export * from "./requests";
 export * from "./use-case";
-
-
+export * from "./errors";

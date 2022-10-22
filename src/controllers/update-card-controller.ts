@@ -1,5 +1,9 @@
-import { CardData, UpdateCardRequest, UseCase } from "../use-cases/ports";
-import { ERRORS } from "../use-cases/utils/errors";
+import {
+  CardData,
+  Errors,
+  UpdateCardRequest,
+  UseCase,
+} from "../use-cases/ports";
 import { Controller } from "./controller";
 import { HttpRequest, HttpResponse } from "./ports";
 import { RequestValidator } from "./util/request-validator";
@@ -7,7 +11,7 @@ import { RequestValidator } from "./util/request-validator";
 export class UpdateCardController extends Controller {
   private mandatoryFields = ["id"];
   protected expectedExceptionsToStatusCode: { [errorName: string]: number } = {
-    [ERRORS.EXISTENT_CARD.name]: 400,
+    [Errors.EXISTENT_CARD]: 400,
   };
 
   public constructor(private useCase: UseCase<UpdateCardRequest, CardData>) {

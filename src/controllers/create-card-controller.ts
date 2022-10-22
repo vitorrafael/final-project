@@ -1,15 +1,19 @@
-import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";
 import { RequestValidator } from "./util/request-validator";
 
-import { CardData, CreateCardRequest, UseCase } from "../use-cases/ports";
+import {
+  CardData,
+  CreateCardRequest,
+  Errors,
+  UseCase,
+} from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
 export class CreateCardController extends Controller {
   private readonly mandatoryParameters = ["front", "back"];
 
   protected readonly expectedExceptionsToStatusCode = {
-    [ERRORS.EXISTENT_CARD.name]: 400,
+    [Errors.EXISTENT_CARD]: 400,
   };
 
   constructor(private readonly useCase: UseCase<CreateCardRequest, CardData>) {
