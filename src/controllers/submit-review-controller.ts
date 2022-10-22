@@ -1,5 +1,5 @@
+import { SubmitReviewRequest } from "../use-cases/ports/requests";
 import { UseCase } from "../use-cases/ports/use-case";
-import { SubmitReviewRequest } from "../use-cases/submit-review/submit-review";
 import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";

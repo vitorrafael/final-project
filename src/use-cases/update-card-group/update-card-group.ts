@@ -1,14 +1,10 @@
 import { CardGroup } from "../../entities/card-group/card-group";
 import { CardGroupData } from "../ports/card-group";
 import { CardGroupRepository } from "../ports/card-group-repository";
+import { UpdateCardGroupRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
-export interface UpdateCardGroupRequest {
-  id: number;
-  description?: string;
-  topic?: string;
-}
 
 export class UpdateCardGroup
   implements UseCase<UpdateCardGroupRequest, CardGroupData>

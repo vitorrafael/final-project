@@ -1,11 +1,9 @@
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
+import { DeleteCardGroupRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
-export interface DeleteCardGroupRequest {
-  id: number;
-}
 
 export class DeleteCardGroup implements UseCase<DeleteCardGroupRequest, void> {
   constructor(

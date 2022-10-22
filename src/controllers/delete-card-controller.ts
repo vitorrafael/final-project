@@ -1,4 +1,4 @@
-import { DeleteCardRequest } from "../use-cases/delete-card/delete-card";
+import { DeleteCardRequest } from "../use-cases/ports/requests";
 import { UseCase } from "../use-cases/ports/use-case";
 import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";

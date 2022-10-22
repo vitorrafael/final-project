@@ -1,5 +1,5 @@
-import { CreateCardGroupRequest } from "../use-cases/create-card-group/create-card-group";
 import { CardGroupData } from "../use-cases/ports/card-group";
+import { CreateCardGroupRequest } from "../use-cases/ports/requests";
 import { UseCase } from "../use-cases/ports/use-case";
 import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";

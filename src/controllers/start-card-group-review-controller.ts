@@ -3,9 +3,9 @@ import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 import { CardGroupWithCards } from "../use-cases/ports/card-group";
-import { StartCardGroupReviewRequest } from "../use-cases/start-card-group-review/start-card-group-review";
 import { Controller } from "./controller";
 import { ERRORS } from "../use-cases/utils/errors";
+import { StartCardGroupReviewRequest } from "../use-cases/ports/requests";
 
 export class StartCardGroupReviewController extends Controller {
   private mandatoryFields = ["topic"];

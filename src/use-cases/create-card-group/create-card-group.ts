@@ -3,11 +3,8 @@ import { UseCase } from "../ports/use-case";
 import { CardGroup } from "../../entities/card-group/card-group";
 import { CardGroupData } from "../ports/card-group";
 import { ERRORS } from "../utils/errors";
+import { CreateCardGroupRequest } from "../ports/requests";
 
-export interface CreateCardGroupRequest {
-  topic: string;
-  description: string;
-}
 
 export class CreateCardGroup
   implements UseCase<CreateCardGroupRequest, CardGroupData>

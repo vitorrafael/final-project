@@ -1,10 +1,7 @@
 import { CardRepository } from "../ports/card-repository";
+import { DeleteCardRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
-
-export interface DeleteCardRequest {
-  id: number;
-}
 
 export class DeleteCard implements UseCase<DeleteCardRequest, void> {
   constructor(private readonly cardRepository: CardRepository) {}

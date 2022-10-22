@@ -3,9 +3,9 @@ import { UseCase } from "../use-cases/ports/use-case";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
-import { UpdateCardRequest } from "../use-cases/update-card/update-card";
 import { Controller } from "./controller";
 import { ERRORS } from "../use-cases/utils/errors";
+import { UpdateCardRequest } from "../use-cases/ports/requests";
 
 export class UpdateCardController extends Controller {
   private mandatoryFields = ["id"];

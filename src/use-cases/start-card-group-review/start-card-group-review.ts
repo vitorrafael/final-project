@@ -2,13 +2,11 @@ import { CardData } from "../ports/card-data";
 import { CardGroupWithCards } from "../ports/card-group";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
+import { StartCardGroupReviewRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { DateHelper } from "../utils/date-helper";
 import { ERRORS } from "../utils/errors";
 
-export interface StartCardGroupReviewRequest {
-  topic: string;
-}
 
 export class StartCardGroupReview
   implements UseCase<StartCardGroupReviewRequest, CardGroupWithCards>

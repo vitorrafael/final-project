@@ -3,15 +3,11 @@ import { CardData } from "../ports/card-data";
 import { CardGroupData } from "../ports/card-group";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
+import { CreateCardRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { CONSTANTS } from "../utils/constants";
 import { ERRORS } from "../utils/errors";
 
-export interface CreateCardRequest {
-  front: string;
-  back: string;
-  groupId?: number;
-}
 
 export class CreateCard implements UseCase<CreateCardRequest, CardData> {
   constructor(

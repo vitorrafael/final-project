@@ -1,12 +1,7 @@
 import { SuperMemoAlgorithm } from "../../entities/super-memo/super-memo-algorithm";
 import { CardRepository } from "../ports/card-repository";
+import { SubmitReviewRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
-
-export interface SubmitReviewRequest {
-  id: number;
-  front: string;
-  responseQuality: number;
-}
 
 export class SubmitReview implements UseCase<SubmitReviewRequest, void> {
   constructor(
