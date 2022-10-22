@@ -1,9 +1,8 @@
-import { HttpRequest } from "./ports/http-request";
-import { HttpResponse } from "./ports/http-response";
-import { RequestValidator } from "./util/request-validator";
-import { Controller } from "./controller";
-import { ERRORS } from "../use-cases/utils/errors";
 import { CardData, UpdateCardRequest, UseCase } from "../use-cases/ports";
+import { ERRORS } from "../use-cases/utils/errors";
+import { Controller } from "./controller";
+import { HttpRequest, HttpResponse } from "./ports";
+import { RequestValidator } from "./util/request-validator";
 
 export class UpdateCardController extends Controller {
   private mandatoryFields = ["id"];

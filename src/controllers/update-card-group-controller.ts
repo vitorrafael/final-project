@@ -1,8 +1,7 @@
 import { CardGroupData, UpdateCardGroupRequest, UseCase } from "../use-cases/ports";
 import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";
-import { HttpRequest } from "./ports/http-request";
-import { HttpResponse } from "./ports/http-response";
+import { HttpRequest, HttpResponse } from "./ports";
 import { RequestValidator } from "./util/request-validator";
 
 export class UpdateCardGroupController extends Controller {

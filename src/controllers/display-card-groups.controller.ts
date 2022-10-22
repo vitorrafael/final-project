@@ -1,9 +1,8 @@
 import { Controller } from "./controller";
-import { HttpRequest } from "./ports/http-request";
-import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
-import { UseCase, CardGroupWithCards } from "../use-cases/ports";
+import { CardGroupWithCards, UseCase } from "../use-cases/ports";
+import { HttpRequest, HttpResponse } from "./ports";
 
 export class DisplayCardGroupsController extends Controller {
   private readonly mandatoryParameters = [];

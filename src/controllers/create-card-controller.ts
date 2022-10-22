@@ -1,10 +1,9 @@
-import { Controller } from "./controller";
-import { HttpRequest } from "./ports/http-request";
-import { HttpResponse } from "./ports/http-response";
-import { RequestValidator } from "./util/request-validator";
 import { ERRORS } from "../use-cases/utils/errors";
+import { Controller } from "./controller";
+import { RequestValidator } from "./util/request-validator";
 
-import { CardData, CreateCardRequest, UseCase } from "../use-cases/ports"
+import { CardData, CreateCardRequest, UseCase } from "../use-cases/ports";
+import { HttpRequest, HttpResponse } from "./ports";
 
 export class CreateCardController extends Controller {
   private readonly mandatoryParameters = ["front", "back"];

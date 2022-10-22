@@ -1,10 +1,9 @@
 import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";
-import { HttpRequest } from "./ports/http-request";
-import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
 
 import { CardGroupData, CreateCardGroupRequest, UseCase } from "../use-cases/ports";
+import { HttpRequest, HttpResponse } from "./ports";
 
 export class CreateCardGroupController extends Controller {
   private mandatoryFields = ["topic"];

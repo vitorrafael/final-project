@@ -1,6 +1,5 @@
 import { InvalidRequestError } from "./util/errors/invalid-request-error";
-import { HttpRequest } from "./ports/http-request";
-import { HttpResponse } from "./ports/http-response";
+import { HttpRequest, HttpResponse } from "./ports";
 
 export abstract class Controller {
   protected readonly expectedExceptionsToStatusCode: {
