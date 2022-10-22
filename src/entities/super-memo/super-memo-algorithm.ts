@@ -3,6 +3,7 @@ export interface SuperMemoAlgorithmResponse {
   intervalForNextReview: number;
 }
 
+
 export class SuperMemoAlgorithm {
   public execute(
     responseQuality: number,

@@ -5,7 +5,6 @@ import { UpdateCardRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
-
 export class UpdateCard implements UseCase<UpdateCardRequest, CardData> {
   constructor(private readonly cardRepository: CardRepository) {}
 
@@ -14,15 +13,7 @@ export class UpdateCard implements UseCase<UpdateCardRequest, CardData> {
       updateCardData.id
     );
 
-    const mergedCardData = {
-      groupId: originalCard.groupId,
-      nextReviewDue: originalCard.nextReviewDue,
-      reviewCount: originalCard.reviewCount,
-      eFactor: originalCard.eFactor,
-
-      front: updateCardData.front || originalCard.front,
-      back: updateCardData.back || originalCard.back,
-    };
+    const mergedCardData = this.mergeCardsData(originalCard, updateCardData);
 
     const updatedCard = Card.create(
       mergedCardData.groupId,
@@ -33,18 +24,25 @@ export class UpdateCard implements UseCase<UpdateCardRequest, CardData> {
       mergedCardData.eFactor
     );
 
-    let hasUpdatedCard = false;
+    if (this.shouldPerformCardUpdates(updateCardData)) {
+      await this.handleCardUpdates(updateCardData, updatedCard);
+      await this.resetReviewInformation(originalCard.id, updatedCard);
+    }
+
+    return this.cardRepository.findCardById(updateCardData.id);
+  }
+
+  private async handleCardUpdates(
+    updateCardData: UpdateCardRequest,
+    updatedCard: Card
+  ) {
     if (this.shouldUpdateCardFront(updateCardData)) {
-      if (await this.newCardFrontAlreadyExists(updateCardData)) {
-        throw ERRORS["EXISTENT_CARD"];
-      }
+      await this.validateNewCardFront(updateCardData);
 
       await this.cardRepository.updateCardFront(
         updateCardData.id,
         updatedCard.front
       );
-
-      hasUpdatedCard = true;
     }
 
     if (this.shouldUpdateCardBack(updateCardData)) {
@@ -52,15 +50,32 @@ export class UpdateCard implements UseCase<UpdateCardRequest, CardData> {
         updateCardData.id,
         updatedCard.back
       );
-
-      hasUpdatedCard = true;
     }
+  }
 
-    if (hasUpdatedCard) {
-      await this.resetReviewInformation(updatedCard);
+  private shouldPerformCardUpdates(updateCardData: UpdateCardRequest): boolean {
+    return Object.keys(updateCardData).length > 1;
+  }
+
+  private async validateNewCardFront(updateCardData: UpdateCardRequest) {
+    if (await this.newCardFrontAlreadyExists(updateCardData)) {
+      throw ERRORS["EXISTENT_CARD"];
     }
+  }
 
-    return this.cardRepository.findCardById(updateCardData.id);
+  private mergeCardsData(
+    originalCard: CardData,
+    updateCardData: UpdateCardRequest
+  ) {
+    return {
+      groupId: originalCard.groupId,
+      nextReviewDue: originalCard.nextReviewDue,
+      reviewCount: originalCard.reviewCount,
+      eFactor: originalCard.eFactor,
+
+      front: updateCardData.front || originalCard.front,
+      back: updateCardData.back || originalCard.back,
+    };
   }
 
   private shouldUpdateCardFront(updateCardData: UpdateCardRequest): boolean {
@@ -80,9 +95,13 @@ export class UpdateCard implements UseCase<UpdateCardRequest, CardData> {
     return Boolean(potentialCard);
   }
 
-  private async resetReviewInformation(updatedCardData: Card): Promise<void> {
+  private async resetReviewInformation(
+    cardId: number,
+    updatedCardData: Card
+  ): Promise<void> {
     return this.cardRepository.update({
       ...updatedCardData,
+      id: cardId,
       reviewCount: 0,
       nextReviewDue: new Date(),
       eFactor: 2.5,

@@ -18,30 +18,50 @@ export class Card {
     reviewCount: number,
     eFactor: number
   ): Card {
-    if (!groupId) {
-      throw new InvalidCardError("Card cannot be created without a Group Id")
-    }
 
-    if (!front) {
-      throw new InvalidCardError("Invalid front content");
-    }
+    Card.validateGroupId(groupId);
+    Card.validateCardFront(front);
+    Card.validateCardBack(back);
+    Card.validateNextReviewDue(nextReviewDue);
+    Card.validateReviewCount(reviewCount);
+    Card.validateEFactor(eFactor);
 
-    if (!back) {
-      throw new InvalidCardError("Invalid back content");
-    }
+    return new Card(groupId, front, back, nextReviewDue, reviewCount, eFactor);
+  }
 
-    if (!nextReviewDue) {
-      throw new InvalidCardError("Invalid next review due");
-    }
-
-    if (reviewCount < 0) {
-      throw new InvalidCardError("Invalid review count");
-    }
-
+  private static validateEFactor(eFactor: number) {
     if (eFactor <= 0) {
       throw new InvalidCardError("Invalid eFactor");
     }
+  }
 
-    return new Card(groupId, front, back, nextReviewDue, reviewCount, eFactor);
+  private static validateReviewCount(reviewCount: number) {
+    if (reviewCount < 0) {
+      throw new InvalidCardError("Invalid review count");
+    }
+  }
+
+  private static validateNextReviewDue(nextReviewDue: Date) {
+    if (!nextReviewDue) {
+      throw new InvalidCardError("Invalid next review due");
+    }
+  }
+
+  private static validateCardBack(back: string) {
+    if (!back) {
+      throw new InvalidCardError("Invalid back content");
+    }
+  }
+
+  private static validateCardFront(front: string) {
+    if (!front) {
+      throw new InvalidCardError("Invalid front content");
+    }
+  }
+
+  private static validateGroupId(groupId: number) {
+    if (!groupId) {
+      throw new InvalidCardError("Card cannot be created without a Group Id");
+    }
   }
 }

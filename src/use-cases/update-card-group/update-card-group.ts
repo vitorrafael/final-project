@@ -5,7 +5,6 @@ import { UpdateCardGroupRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
-
 export class UpdateCardGroup
   implements UseCase<UpdateCardGroupRequest, CardGroupData>
 {
@@ -18,10 +17,10 @@ export class UpdateCardGroup
       updateCardGroup.id
     );
 
-    const mergedCardGroupData = {
-      topic: updateCardGroup.topic || originalCardGroup.topic,
-      description: updateCardGroup.description || originalCardGroup.topic,
-    };
+    const mergedCardGroupData = this.mergeCardGroups(
+      updateCardGroup,
+      originalCardGroup
+    );
 
     const updatedCardGroup = CardGroup.create(
       mergedCardGroupData.topic,
@@ -29,14 +28,7 @@ export class UpdateCardGroup
     );
 
     if (this.shouldUpdateCardGroupTopic(updateCardGroup)) {
-      if (await this.newCardGroupTopicAlreadyExists(updateCardGroup)) {
-        throw ERRORS["EXISTENT_CARD_GROUP"];
-      }
-
-      await this.cardGroupRepository.updateTopic(
-        updateCardGroup.id,
-        updatedCardGroup.topic
-      );
+      await this.handleUpdateCardGroupTopic(updateCardGroup, updatedCardGroup);
     }
 
     if (this.shouldUpdateCardGroupDescription(updateCardGroup)) {
@@ -47,6 +39,30 @@ export class UpdateCardGroup
     }
 
     return this.cardGroupRepository.findCardGroupById(updateCardGroup.id);
+  }
+
+  private mergeCardGroups(
+    updateCardGroup: UpdateCardGroupRequest,
+    originalCardGroup: CardGroupData
+  ): CardGroupData {
+    return {
+      topic: updateCardGroup.topic || originalCardGroup.topic,
+      description: updateCardGroup.description || originalCardGroup.topic,
+    };
+  }
+
+  private async handleUpdateCardGroupTopic(
+    updateCardGroup: UpdateCardGroupRequest,
+    updatedCardGroup: CardGroup
+  ) {
+    if (await this.newCardGroupTopicAlreadyExists(updateCardGroup)) {
+      throw ERRORS["EXISTENT_CARD_GROUP"];
+    }
+
+    await this.cardGroupRepository.updateTopic(
+      updateCardGroup.id,
+      updatedCardGroup.topic
+    );
   }
 
   private shouldUpdateCardGroupDescription(

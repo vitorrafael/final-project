@@ -49,6 +49,46 @@ describe("[Use Case] Update Card", () => {
     expect(updatedCard.reviewCount).to.be.equal(0);
   });
 
+  it("should update only card front if back is not passed", async () => {
+    const repository = new InMemoryCardRepository([{ ...CARD }]);
+    const useCase = new UpdateCard(repository);
+
+    const updateCardData = {
+      id: 1,
+      front: "Some random question",
+    };
+
+    const updatedCard = await useCase.execute(updateCardData);
+
+    expect(updatedCard.front).to.be.equal("Some random question");
+    expect(updatedCard.back).to.be.equal("42");
+    expect(updatedCard.eFactor).to.be.equal(2.5);
+    expect(updatedCard.nextReviewDue.toDateString()).to.be.equal(
+      new Date().toDateString()
+    );
+    expect(updatedCard.reviewCount).to.be.equal(0);
+  });
+
+  it("should update only card back if front is not passed", async () => {
+    const repository = new InMemoryCardRepository([{ ...CARD }]);
+    const useCase = new UpdateCard(repository);
+
+    const updateCardData = {
+      id: 1,
+      back: "What?",
+    };
+
+    const updatedCard = await useCase.execute(updateCardData);
+
+    expect(updatedCard.front).to.be.equal("What's the answer of everything?");
+    expect(updatedCard.back).to.be.equal("What?");
+    expect(updatedCard.eFactor).to.be.equal(2.5);
+    expect(updatedCard.nextReviewDue.toDateString()).to.be.equal(
+      new Date().toDateString()
+    );
+    expect(updatedCard.reviewCount).to.be.equal(0);
+  });
+
   it("should not update card front if it already exists", async () => {
     const repository = new InMemoryCardRepository([
       { ...CARD },

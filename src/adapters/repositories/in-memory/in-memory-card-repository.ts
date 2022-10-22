@@ -42,9 +42,7 @@ export class InMemoryCardRepository implements CardRepository {
   }
 
   async update(cardData: CardData): Promise<void> {
-    const cardIndex = this.cards.findIndex(
-      (card) => card.front === cardData.front
-    );
+    const cardIndex = this.cards.findIndex((card) => card.id === cardData.id);
     const id = this.cards[cardIndex].id;
     this.cards[cardIndex] = { id, ...cardData };
   }
