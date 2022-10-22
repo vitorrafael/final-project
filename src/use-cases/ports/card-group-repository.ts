@@ -1,4 +1,4 @@
-import { CardGroupData } from "./card-group";
+import { CardGroupData } from "./card-group-data";
 
 export interface CardGroupRepository {
   findAllCardGroups(): Promise<CardGroupData[]>;

@@ -1,5 +1,5 @@
 import { CardData } from "../ports/card-data";
-import { CardGroupWithCards } from "../ports/card-group";
+import { CardGroupWithCards } from "../ports/card-group-data";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { StartCardGroupReviewRequest } from "../ports/requests";

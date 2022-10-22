@@ -1,4 +1,4 @@
-import { CardGroupData, CardGroupWithCards } from "../ports/card-group";
+import { CardGroupData, CardGroupWithCards } from "../ports/card-group-data";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";

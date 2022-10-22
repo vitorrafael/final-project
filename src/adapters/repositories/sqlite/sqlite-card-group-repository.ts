@@ -1,4 +1,4 @@
-import { CardGroupData } from "../../../use-cases/ports/card-group";
+import { CardGroupData } from "../../../use-cases/ports/card-group-data";
 import { CardGroupRepository } from "../../../use-cases/ports/card-group-repository";
 import { SQLiteHelper } from "./helpers/SQLiteHelper";
 

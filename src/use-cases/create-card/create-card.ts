@@ -1,6 +1,6 @@
 import { Card } from "../../entities/card/card";
 import { CardData } from "../ports/card-data";
-import { CardGroupData } from "../ports/card-group";
+import { CardGroupData } from "../ports/card-group-data";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { CreateCardRequest } from "../ports/requests";

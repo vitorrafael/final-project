@@ -1,4 +1,4 @@
-import { CardGroupWithCards } from "../use-cases/ports/card-group";
+import { CardGroupWithCards } from "../use-cases/ports/card-group-data";
 import { UseCase } from "../use-cases/ports/use-case";
 import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";

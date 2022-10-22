@@ -1,7 +1,7 @@
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { UseCase } from "../ports/use-case";
 import { CardGroup } from "../../entities/card-group/card-group";
-import { CardGroupData } from "../ports/card-group";
+import { CardGroupData } from "../ports/card-group-data";
 import { ERRORS } from "../utils/errors";
 import { CreateCardGroupRequest } from "../ports/requests";
 

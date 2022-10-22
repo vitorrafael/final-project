@@ -1,5 +1,5 @@
 import { CardGroup } from "../../entities/card-group/card-group";
-import { CardGroupData } from "../ports/card-group";
+import { CardGroupData } from "../ports/card-group-data";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { UpdateCardGroupRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
