@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { InMemoryCardRepository } from "../../src/adapters/repositories/in-memory/in-memory-card-repository";
 import { UpdateCardController } from "../../src/controllers/update-card-controller";
-import { UpdateCard } from "../../src/use-cases/update-card/update-card";
+import { UpdateCard } from "../../src/use-cases";
 import { UseCaseWithErrorStub } from "./helper/use-case-error-stub";
 
 const RANDOM_CARD = {

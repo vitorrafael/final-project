@@ -3,7 +3,7 @@ import chaiAsPromised from "chai-as-promised";
 import { InMemoryCardRepository } from "../../src/adapters/repositories/in-memory/in-memory-card-repository";
 import { SubmitReviewController } from "../../src/controllers/submit-review-controller";
 import { SuperMemoAlgorithm } from "../../src/entities/super-memo/super-memo-algorithm";
-import { SubmitReview } from "../../src/use-cases/submit-review/submit-review";
+import { SubmitReview } from "../../src/use-cases";
 import { UseCaseWithErrorStub } from "./helper/use-case-error-stub";
 
 use(chaiAsPromised);

@@ -1,6 +1,6 @@
 import { SQLiteCardGroupRepository } from "../../../adapters/repositories/sqlite/sqlite-card-group-repository";
 import { SQLiteCardRepository } from "../../../adapters/repositories/sqlite/sqlite-card-repository";
-import { DeleteCardGroup } from "../../../use-cases/delete-card-group/delete-card-group";
+import { DeleteCardGroup } from "../../../use-cases";
 
 export class DeleteCardGroupFactory {
   public static make() {

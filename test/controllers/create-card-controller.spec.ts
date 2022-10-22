@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { InMemoryCardGroupRepository } from "../../src/adapters/repositories/in-memory/in-memory-card-group-repository";
 import { InMemoryCardRepository } from "../../src/adapters/repositories/in-memory/in-memory-card-repository";
 import { CreateCardController } from "../../src/controllers/create-card-controller";
-import { CreateCard } from "../../src/use-cases/create-card/create-card";
+import { CreateCard } from "../../src/use-cases";
 import { UseCaseWithErrorStub } from "./helper/use-case-error-stub";
 
 const RANDOM_CARD_GROUP = {

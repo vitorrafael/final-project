@@ -1,8 +1,7 @@
 import { expect } from "chai";
 import { InMemoryCardRepository } from "../../src/adapters/repositories/in-memory/in-memory-card-repository";
-import { CreateCardController } from "../../src/controllers/create-card-controller";
 import { DeleteCardController } from "../../src/controllers/delete-card-controller";
-import { DeleteCard } from "../../src/use-cases/delete-card/delete-card";
+import { DeleteCard } from "../../src/use-cases";
 import { UseCaseWithErrorStub } from "./helper/use-case-error-stub";
 
 const RANDOM_CARD = {
@@ -70,7 +69,7 @@ describe("[Controller] Delete Card", () => {
 
   it("should return 500 if an error was thrown", async () => {
     const useCaseWithError = new UseCaseWithErrorStub();
-    const controller = new CreateCardController(useCaseWithError);
+    const controller = new DeleteCardController(useCaseWithError);
 
     const response = await controller.handleRequest({});
 

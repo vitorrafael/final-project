@@ -1,6 +1,6 @@
 import { SQLiteCardGroupRepository } from "../../../adapters/repositories/sqlite/sqlite-card-group-repository";
 import { SQLiteCardRepository } from "../../../adapters/repositories/sqlite/sqlite-card-repository";
-import { CreateCard } from "../../../use-cases/create-card/create-card";
+import { CreateCard } from "../../../use-cases";
 
 export class CreateCardFactory {
   public static make() {

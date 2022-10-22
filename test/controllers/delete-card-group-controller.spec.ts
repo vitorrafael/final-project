@@ -2,8 +2,7 @@ import { expect } from "chai";
 import { InMemoryCardGroupRepository } from "../../src/adapters/repositories/in-memory/in-memory-card-group-repository";
 import { InMemoryCardRepository } from "../../src/adapters/repositories/in-memory/in-memory-card-repository";
 import { DeleteCardGroupController } from "../../src/controllers/delete-card-group-controller";
-import { UpdateCardGroupController } from "../../src/controllers/update-card-group-controller";
-import { DeleteCardGroup } from "../../src/use-cases/delete-card-group/delete-card-group";
+import { DeleteCardGroup } from "../../src/use-cases";
 import { UseCaseWithErrorStub } from "./helper/use-case-error-stub";
 
 const RANDOM_CARD_GROUP = {
@@ -81,7 +80,7 @@ describe("[Controller] Delete Card Group", () => {
 
   it("should return 500 if an error was thrown", async () => {
     const useCaseWithError = new UseCaseWithErrorStub();
-    const controller = new UpdateCardGroupController(useCaseWithError);
+    const controller = new DeleteCardGroupController(useCaseWithError);
 
     const response = await controller.handleRequest({});
 

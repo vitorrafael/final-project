@@ -3,7 +3,7 @@ import chaiAsPromised from "chai-as-promised";
 
 import { InMemoryCardRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-repository";
 
-import { DeleteCard } from "../../../src/use-cases/delete-card/delete-card";
+import { DeleteCard } from "../../../src/use-cases";
 
 use(chaiAsPromised);
 

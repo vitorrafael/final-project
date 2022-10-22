@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { InMemoryCardGroupRepository } from "../../src/adapters/repositories/in-memory/in-memory-card-group-repository";
 import { UpdateCardGroupController } from "../../src/controllers/update-card-group-controller";
-import { UpdateCardGroup } from "../../src/use-cases/update-card-group/update-card-group";
+import { UpdateCardGroup } from "../../src/use-cases";
 import { UseCaseWithErrorStub } from "./helper/use-case-error-stub";
 
 const RANDOM_CARD_GROUP_ONE = {

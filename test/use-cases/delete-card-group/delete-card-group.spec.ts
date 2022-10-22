@@ -3,7 +3,7 @@ import chaiAsPromised from "chai-as-promised";
 import { InMemoryCardGroupRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-group-repository";
 
 import { InMemoryCardRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-repository";
-import { DeleteCardGroup } from "../../../src/use-cases/delete-card-group/delete-card-group";
+import { DeleteCardGroup } from "../../../src/use-cases";
 import { ERRORS } from "../../../src/use-cases/utils/errors";
 
 

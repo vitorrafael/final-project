@@ -1,5 +1,5 @@
 import { SQLiteCardRepository } from "../../../adapters/repositories/sqlite/sqlite-card-repository";
-import { UpdateCard } from "../../../use-cases/update-card/update-card";
+import { UpdateCard } from "../../../use-cases";
 
 export class UpdateCardFactory {
   public static make() {

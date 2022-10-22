@@ -1,6 +1,6 @@
 import { SQLiteCardGroupRepository } from "../../../adapters/repositories/sqlite/sqlite-card-group-repository";
 import { SQLiteCardRepository } from "../../../adapters/repositories/sqlite/sqlite-card-repository";
-import { DisplayCardGroups } from "../../../use-cases/display-card-groups/display-card-groups";
+import { DisplayCardGroups } from "../../../use-cases";
 
 export class DisplayCardGroupsFactory {
   public static make() {

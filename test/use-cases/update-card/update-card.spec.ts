@@ -2,7 +2,7 @@ import { use, expect } from "chai";
 import chaiAsPromised from "chai-as-promised";
 
 import { InMemoryCardRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-repository";
-import { UpdateCard } from "../../../src/use-cases/update-card/update-card";
+import { UpdateCard } from "../../../src/use-cases";
 import { ERRORS } from "../../../src/use-cases/utils/errors";
 
 use(chaiAsPromised);

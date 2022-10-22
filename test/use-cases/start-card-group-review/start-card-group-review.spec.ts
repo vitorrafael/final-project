@@ -2,7 +2,7 @@ import { expect, use } from "chai";
 import chaiAsPromised from "chai-as-promised";
 import { InMemoryCardGroupRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-group-repository";
 import { InMemoryCardRepository } from "../../../src/adapters/repositories/in-memory/in-memory-card-repository";
-import { StartCardGroupReview } from "../../../src/use-cases/start-card-group-review/start-card-group-review";
+import { StartCardGroupReview } from "../../../src/use-cases";
 import { ERRORS } from "../../../src/use-cases/utils/errors";
 
 use(chaiAsPromised);
