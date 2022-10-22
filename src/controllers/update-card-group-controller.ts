@@ -1,6 +1,4 @@
-import { CardGroupData } from "../use-cases/ports/card-group-data";
-import { UpdateCardGroupRequest } from "../use-cases/ports/requests";
-import { UseCase } from "../use-cases/ports/use-case";
+import { CardGroupData, UpdateCardGroupRequest, UseCase } from "../use-cases/ports";
 import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";

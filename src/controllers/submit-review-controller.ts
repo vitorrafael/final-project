@@ -1,9 +1,9 @@
-import { SubmitReviewRequest } from "../use-cases/ports/requests";
-import { UseCase } from "../use-cases/ports/use-case";
 import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
+
+import { SubmitReviewRequest, UseCase } from "../use-cases/ports";
 
 export class SubmitReviewController extends Controller {
   private mandatoryFields = ["id", "responseQuality"];

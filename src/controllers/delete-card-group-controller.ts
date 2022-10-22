@@ -1,10 +1,10 @@
-import { DeleteCardGroupRequest } from "../use-cases/ports/requests";
-import { UseCase } from "../use-cases/ports/use-case";
 import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
+
+import { DeleteCardGroupRequest, UseCase } from "../use-cases/ports";
 
 export class DeleteCardGroupController extends Controller {
   private mandatoryFields = ["id"];

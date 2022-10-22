@@ -1,11 +1,10 @@
-import { UseCase } from "../use-cases/ports/use-case";
+import { ERRORS } from "../use-cases/utils/errors";
+import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
-import { CardGroupWithCards } from "../use-cases/ports/card-group-data";
-import { Controller } from "./controller";
-import { ERRORS } from "../use-cases/utils/errors";
-import { StartCardGroupReviewRequest } from "../use-cases/ports/requests";
+
+import { CardGroupWithCards, StartCardGroupReviewRequest, UseCase } from "../use-cases/ports";
 
 export class StartCardGroupReviewController extends Controller {
   private mandatoryFields = ["topic"];
