@@ -1,5 +1,4 @@
-import { CardData } from "../../../use-cases/ports/card-data";
-import { CardRepository } from "../../../use-cases/ports/card-repository";
+import { CardData, CardRepository } from "../../../use-cases/ports";
 import { SQLiteHelper } from "./helpers/SQLiteHelper";
 
 interface SQLiteCardData {

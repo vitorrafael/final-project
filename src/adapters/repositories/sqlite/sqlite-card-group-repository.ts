@@ -1,5 +1,4 @@
-import { CardGroupData } from "../../../use-cases/ports/card-group-data";
-import { CardGroupRepository } from "../../../use-cases/ports/card-group-repository";
+import { CardGroupData, CardGroupRepository } from "../../../use-cases/ports";
 import { SQLiteHelper } from "./helpers/SQLiteHelper";
 
 interface SQLiteCardGroup {

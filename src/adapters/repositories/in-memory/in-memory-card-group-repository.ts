@@ -1,5 +1,4 @@
-import { CardGroupData } from "../../../use-cases/ports/card-group-data";
-import { CardGroupRepository } from "../../../use-cases/ports/card-group-repository";
+import { CardGroupData, CardGroupRepository } from "../../../use-cases/ports";
 
 export class InMemoryCardGroupRepository implements CardGroupRepository {
   private cardGroups: CardGroupData[] = [];
