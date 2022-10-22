@@ -1,3 +1,3 @@
-export interface UseCase {
-  execute(requestData: any): Promise<any>;
+export interface UseCase<Request, Response> {
+  execute(requestData: Request): Promise<Response>;
 }

@@ -10,7 +10,9 @@ export interface StartCardGroupReviewRequest {
   topic: string;
 }
 
-export class StartCardGroupReview implements UseCase {
+export class StartCardGroupReview
+  implements UseCase<StartCardGroupReviewRequest, CardGroupWithCards>
+{
   constructor(
     private cardGroupRepository: CardGroupRepository,
     private cardRepository: CardRepository

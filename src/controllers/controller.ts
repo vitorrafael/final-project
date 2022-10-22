@@ -9,7 +9,7 @@ export abstract class Controller {
 
   public abstract handleRequest(
     httpRequest: HttpRequest
-  ): Promise<HttpResponse<any>>;
+  ): Promise<HttpResponse<unknown>>;
 
   protected mapExceptionToStatusCode(error: Error): number {
     if (error instanceof InvalidRequestError) return 400;

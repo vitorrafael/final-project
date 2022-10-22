@@ -9,12 +9,12 @@ import { ERRORS } from "../use-cases/utils/errors";
 
 export class CreateCardController extends Controller {
   private readonly mandatoryParameters = ["front", "back"];
-  
+
   protected readonly expectedExceptionsToStatusCode = {
     [ERRORS.EXISTENT_CARD.name]: 400,
   };
 
-  constructor(private readonly useCase: UseCase) {
+  constructor(private readonly useCase: UseCase<CreateCardRequest, CardData>) {
     super();
   }
 
@@ -25,9 +25,9 @@ export class CreateCardController extends Controller {
       RequestValidator.validateRequest(request, this.mandatoryParameters);
 
       const cardData: CreateCardRequest = {
-        front: request.body.front,
-        back: request.body.back,
-        groupId: request.body.groupId,
+        front: request.body.front as string,
+        back: request.body.back as string,
+        groupId: request.body.groupId as number,
       };
 
       const useCaseResponse: CardData = await this.useCase.execute(cardData);

@@ -50,7 +50,7 @@ export class InMemoryCardGroupRepository implements CardGroupRepository {
     return Promise.resolve(this.cardGroups[cardGroupIndex]);
   }
 
-  public async delete(id: any): Promise<void> {
+  public async delete(id: number): Promise<void> {
     const groupIndex = this.cardGroups.findIndex((group) => group.id === id);
     this.cardGroups.splice(groupIndex, 1);
   }

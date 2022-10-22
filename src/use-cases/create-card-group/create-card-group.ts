@@ -9,7 +9,9 @@ export interface CreateCardGroupRequest {
   description: string;
 }
 
-export class CreateCardGroup implements UseCase {
+export class CreateCardGroup
+  implements UseCase<CreateCardGroupRequest, CardGroupData>
+{
   constructor(private readonly cardGroupRepository: CardGroupRepository) {}
 
   public async execute(

@@ -13,7 +13,9 @@ export class StartCardGroupReviewController extends Controller {
     [ERRORS["UNEXISTENT_CARD_GROUP"].name]: 400,
   };
 
-  public constructor(private useCase: UseCase) {
+  public constructor(
+    private useCase: UseCase<StartCardGroupReviewRequest, CardGroupWithCards>
+  ) {
     super();
   }
 
@@ -24,7 +26,7 @@ export class StartCardGroupReviewController extends Controller {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
       const startCardGroupReviewRequest: StartCardGroupReviewRequest = {
-        topic: request.body.topic,
+        topic: request.body.topic as string,
       };
 
       const response = await this.useCase.execute(startCardGroupReviewRequest);

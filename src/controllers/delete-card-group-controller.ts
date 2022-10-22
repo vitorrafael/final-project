@@ -1,5 +1,4 @@
 import { DeleteCardGroupRequest } from "../use-cases/delete-card-group/delete-card-group";
-import { CardGroupData } from "../use-cases/ports/card-group";
 import { UseCase } from "../use-cases/ports/use-case";
 import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";
@@ -13,7 +12,7 @@ export class DeleteCardGroupController extends Controller {
     [ERRORS.UNEXISTENT_CARD_GROUP.name]: 404,
   };
 
-  public constructor(private useCase: UseCase) {
+  public constructor(private useCase: UseCase<DeleteCardGroupRequest, void>) {
     super();
   }
 
@@ -24,7 +23,7 @@ export class DeleteCardGroupController extends Controller {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
       const cardGroupData: DeleteCardGroupRequest = {
-        id: request.body.id,
+        id: request.body.id as number,
       };
 
       await this.useCase.execute(cardGroupData);

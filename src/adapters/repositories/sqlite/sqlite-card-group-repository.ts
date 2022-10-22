@@ -135,7 +135,7 @@ export class SQLiteCardGroupRepository implements CardGroupRepository {
     return this.findCardGroupById(id);
   }
 
-  public async delete(id: any): Promise<void> {
+  public async delete(id: number): Promise<void> {
     return new Promise((resolve, reject) => {
       SQLiteHelper.getClient().run(
         `DELETE FROM cardGroups WHERE id = ?`,

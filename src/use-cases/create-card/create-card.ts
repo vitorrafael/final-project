@@ -13,7 +13,7 @@ export interface CreateCardRequest {
   groupId?: number;
 }
 
-export class CreateCard implements UseCase {
+export class CreateCard implements UseCase<CreateCardRequest, CardData> {
   constructor(
     private readonly cardRepository: CardRepository,
     private readonly cardGroupRepository: CardGroupRepository

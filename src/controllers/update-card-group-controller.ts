@@ -13,7 +13,7 @@ export class UpdateCardGroupController extends Controller {
     [ERRORS["EXISTENT_CARD_GROUP"].name]: 400,
   };
 
-  public constructor(private useCase: UseCase) {
+  public constructor(private useCase: UseCase<UpdateCardGroupRequest, CardGroupData>) {
     super();
   }
 
@@ -24,12 +24,12 @@ export class UpdateCardGroupController extends Controller {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
       const cardGroupData: UpdateCardGroupRequest = {
-        id: request.body.id,
-        topic: request.body.topic,
-        description: request.body.description,
+        id: request.body.id as number,
+        topic: request.body.topic as string,
+        description: request.body.description as string,
       };
 
-      const response = await this.useCase.execute(cardGroupData);
+      const response = await this.useCase.execute(cardGroupData) as CardGroupData;
 
       return {
         statusCode: 200,

@@ -10,5 +10,5 @@ export interface CardGroupRepository {
     id: number,
     updatedDescription: string
   ): Promise<CardGroupData>;
-  delete(id): Promise<void>;
+  delete(id: number): Promise<void>;
 }

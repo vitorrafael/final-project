@@ -6,7 +6,7 @@ export interface DeleteCardRequest {
   id: number;
 }
 
-export class DeleteCard implements UseCase {
+export class DeleteCard implements UseCase<DeleteCardRequest, void> {
   constructor(private readonly cardRepository: CardRepository) {}
 
   public async execute(deleteCardRequest: DeleteCardRequest): Promise<void> {

@@ -7,7 +7,7 @@ export interface DeleteCardGroupRequest {
   id: number;
 }
 
-export class DeleteCardGroup implements UseCase {
+export class DeleteCardGroup implements UseCase<DeleteCardGroupRequest, void> {
   constructor(
     private readonly cardGroupRepository: CardGroupRepository,
     private readonly cardRepository: CardRepository

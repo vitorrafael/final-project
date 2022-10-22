@@ -1,4 +1,5 @@
 import { CardGroup } from "../../entities/card-group/card-group";
+import { CardGroupData } from "../ports/card-group";
 import { CardGroupRepository } from "../ports/card-group-repository";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
@@ -9,10 +10,14 @@ export interface UpdateCardGroupRequest {
   topic?: string;
 }
 
-export class UpdateCardGroup implements UseCase {
+export class UpdateCardGroup
+  implements UseCase<UpdateCardGroupRequest, CardGroupData>
+{
   constructor(private readonly cardGroupRepository: CardGroupRepository) {}
 
-  public async execute(updateCardGroup: UpdateCardGroupRequest) {
+  public async execute(
+    updateCardGroup: UpdateCardGroupRequest
+  ): Promise<CardGroupData> {
     const originalCardGroup = await this.cardGroupRepository.findCardGroupById(
       updateCardGroup.id
     );

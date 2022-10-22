@@ -1,5 +1,4 @@
 import { DeleteCardRequest } from "../use-cases/delete-card/delete-card";
-import { CardData } from "../use-cases/ports/card-data";
 import { UseCase } from "../use-cases/ports/use-case";
 import { ERRORS } from "../use-cases/utils/errors";
 import { Controller } from "./controller";
@@ -13,7 +12,9 @@ export class DeleteCardController extends Controller {
     [ERRORS["UNEXISTENT_CARD"].name]: 404,
   };
 
-  public constructor(private readonly useCase: UseCase) {
+  public constructor(
+    private readonly useCase: UseCase<DeleteCardRequest, void>
+  ) {
     super();
   }
 
@@ -24,7 +25,7 @@ export class DeleteCardController extends Controller {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
       const cardData: DeleteCardRequest = {
-        id: request.body.id,
+        id: request.body.id as number,
       };
 
       await this.useCase.execute(cardData);

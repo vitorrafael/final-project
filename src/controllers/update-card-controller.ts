@@ -13,7 +13,7 @@ export class UpdateCardController extends Controller {
     [ERRORS.EXISTENT_CARD.name]: 400,
   };
 
-  public constructor(private useCase: UseCase) {
+  public constructor(private useCase: UseCase<UpdateCardRequest, CardData>) {
     super();
   }
 
@@ -24,9 +24,9 @@ export class UpdateCardController extends Controller {
       RequestValidator.validateRequest(request, this.mandatoryFields);
 
       const updateCardData: UpdateCardRequest = {
-        id: request.body.id,
-        front: request.body.front,
-        back: request.body.back,
+        id: request.body.id as number,
+        front: request.body.front as string,
+        back: request.body.back as string,
       };
 
       const response = await this.useCase.execute(updateCardData);

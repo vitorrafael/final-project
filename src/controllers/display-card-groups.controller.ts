@@ -1,30 +1,30 @@
-import { CreateCardRequest } from "../use-cases/create-card/create-card";
-import { CardData } from "../use-cases/ports/card-data";
+import { CardGroupWithCards } from "../use-cases/ports/card-group";
 import { UseCase } from "../use-cases/ports/use-case";
 import { Controller } from "./controller";
 import { HttpRequest } from "./ports/http-request";
 import { HttpResponse } from "./ports/http-response";
 import { RequestValidator } from "./util/request-validator";
-import { ERRORS } from "../use-cases/utils/errors";
 
 export class DisplayCardGroupsController extends Controller {
   private readonly mandatoryParameters = [];
 
   protected readonly expectedExceptionsToStatusCode = {};
 
-  constructor(private readonly useCase: UseCase) {
+  constructor(private readonly useCase: UseCase<object, CardGroupWithCards[]>) {
     super();
   }
 
   public async handleRequest(
     request: HttpRequest
-  ): Promise<HttpResponse<CardData>> {
+  ): Promise<HttpResponse<CardGroupWithCards[]>> {
     try {
       RequestValidator.validateRequest(request, this.mandatoryParameters);
-      const useCaseResponse: CardData = await this.useCase.execute({});
-    return {
+      const useCaseResponse: CardGroupWithCards[] = await this.useCase.execute(
+        {}
+      );
+      return {
         statusCode: 200,
-        body: useCaseResponse,
+        body: useCaseResponse
       };
     } catch (error) {
       const statusCode = this.mapExceptionToStatusCode(error);

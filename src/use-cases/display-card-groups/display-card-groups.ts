@@ -3,13 +3,16 @@ import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
 
-export class DisplayCardGroups implements UseCase {
+export class DisplayCardGroups
+  implements UseCase<object, CardGroupWithCards[]>
+{
   public constructor(
     private cardGroupRepository: CardGroupRepository,
     private cardRepository: CardRepository
   ) {}
 
-  public async execute(requestData: any): Promise<CardGroupWithCards[]> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public async execute(_requestData: object): Promise<CardGroupWithCards[]> {
     const cardGroupsData = await this.cardGroupRepository.findAllCardGroups();
 
     const cardGroupsWithCards = await this.fillCardGroupsWithCards(

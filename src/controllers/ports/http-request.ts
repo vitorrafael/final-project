@@ -1,3 +1,3 @@
 export interface HttpRequest {
-  body?: any;
+  body?: { [key: string]: unknown };
 }

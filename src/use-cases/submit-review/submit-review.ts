@@ -8,7 +8,7 @@ export interface SubmitReviewRequest {
   responseQuality: number;
 }
 
-export class SubmitReview implements UseCase {
+export class SubmitReview implements UseCase<SubmitReviewRequest, void> {
   constructor(
     private cardRepository: CardRepository,
     private algorithm: SuperMemoAlgorithm
