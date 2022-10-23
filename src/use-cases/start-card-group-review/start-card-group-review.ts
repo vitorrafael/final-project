@@ -7,7 +7,7 @@ import { UseCase } from "../ports/use-case";
 import { DateHelper } from "../utils/date-helper";
 import { ERRORS } from "../utils/errors";
 
-
+// Ca = 1
 export class StartCardGroupReview
   implements UseCase<StartCardGroupReviewRequest, CardGroupWithCards>
 {

@@ -4,6 +4,7 @@ import { RequestValidator } from "./util/request-validator";
 import { CardGroupWithCards, UseCase } from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
+// Ca = 1
 export class DisplayCardGroupsController extends Controller {
   private readonly mandatoryParameters = [];
 

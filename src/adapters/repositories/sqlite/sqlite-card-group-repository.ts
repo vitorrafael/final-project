@@ -7,6 +7,7 @@ interface SQLiteCardGroup {
   description;
 }
 
+// Ca = 7
 export class SQLiteCardGroupRepository implements CardGroupRepository {
   public async findAllCardGroups(): Promise<CardGroupData[]> {
     const cardGroups: SQLiteCardGroup[] = await new Promise(

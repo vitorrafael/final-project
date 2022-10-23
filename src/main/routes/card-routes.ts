@@ -9,6 +9,7 @@ import { DeleteCardFactory } from "../factories/use-cases/delete-card-factory";
 import { SubmitReviewFactory } from "../factories/use-cases/submit-review-factory";
 import { UpdateCardFactory } from "../factories/use-cases/update-card-factory";
 
+// Ca = 0
 export function setupCardRoutes(router: Router) {
   const createCard = CreateCardFactory.make();
   const deleteCard = DeleteCardFactory.make();

@@ -5,7 +5,7 @@ import { CardGroupData } from "../ports/card-group-data";
 import { ERRORS } from "../utils/errors";
 import { CreateCardGroupRequest } from "../ports/requests";
 
-
+// Ca = 1
 export class CreateCardGroup
   implements UseCase<CreateCardGroupRequest, CardGroupData>
 {

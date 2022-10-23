@@ -4,6 +4,7 @@ import { RequestValidator } from "./util/request-validator";
 import { DeleteCardGroupRequest, Errors, UseCase } from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
+// Ca = 1
 export class DeleteCardGroupController extends Controller {
   private mandatoryFields = ["id"];
   protected expectedExceptionsToStatusCode = {

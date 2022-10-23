@@ -9,6 +9,7 @@ import {
 } from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
+// Ca = 1
 export class CreateCardController extends Controller {
   private readonly mandatoryParameters = ["front", "back"];
 

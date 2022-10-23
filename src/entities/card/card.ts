@@ -1,5 +1,6 @@
 import { InvalidCardError } from "./errors/invalid-card-error";
 
+// Ca = 2
 export class Card {
   private constructor(
     public readonly groupId: number,

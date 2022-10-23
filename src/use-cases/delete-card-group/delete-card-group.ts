@@ -4,7 +4,7 @@ import { DeleteCardGroupRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
-
+// Ca = 1
 export class DeleteCardGroup implements UseCase<DeleteCardGroupRequest, void> {
   constructor(
     private readonly cardGroupRepository: CardGroupRepository,
