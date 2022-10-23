@@ -11,6 +11,7 @@ import { DisplayCardGroupsFactory } from "../factories/use-cases/display-card-gr
 import { StartCardGroupReviewFactory } from "../factories/use-cases/start-card-group-review-factory";
 import { UpdateCardGroupFactory } from "../factories/use-cases/update-card-group-factory";
 
+// Ce = 1
 export function setupCardGroupRoutes(router: Router) {
   const createCardGroupUseCase = CreateCardGroupFactory.make();
   const deleteCardGroupUseCase = DeleteCardGroupFactory.make();

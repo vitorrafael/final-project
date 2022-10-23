@@ -8,7 +8,7 @@ import { UseCase } from "../ports/use-case";
 import { CONSTANTS } from "../utils/constants";
 import { ERRORS } from "../utils/errors";
 
-
+// Ce = 1
 export class CreateCard implements UseCase<CreateCardRequest, CardData> {
   constructor(
     private readonly cardRepository: CardRepository,

@@ -1,5 +1,6 @@
 import { Database } from "sqlite3";
 
+// Ce = 1
 export const SQLiteHelper = {
   _client: null as Database,
 

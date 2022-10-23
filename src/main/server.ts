@@ -3,6 +3,7 @@ import express, { json, Router } from "express";
 import { setupCardGroupRoutes } from "./routes/card-group-routes";
 import { setupCardRoutes } from "./routes/card-routes";
 
+// Ce = 1
 SQLiteHelper.connect("./db/srs-monolith.db").then(
   function startServer() {
     const app = express();

@@ -2,6 +2,8 @@ import { SQLiteCardGroupRepository } from "../../../adapters/repositories/sqlite
 import { SQLiteCardRepository } from "../../../adapters/repositories/sqlite/sqlite-card-repository";
 import { CreateCard } from "../../../use-cases";
 
+
+// Ce = 1
 export class CreateCardFactory {
   public static make() {
     const cardRepository = new SQLiteCardRepository();

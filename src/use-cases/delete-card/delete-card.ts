@@ -3,6 +3,7 @@ import { DeleteCardRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
+// Ce = 0
 export class DeleteCard implements UseCase<DeleteCardRequest, void> {
   constructor(private readonly cardRepository: CardRepository) {}
 

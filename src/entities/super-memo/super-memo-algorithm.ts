@@ -3,7 +3,7 @@ export interface SuperMemoAlgorithmResponse {
   intervalForNextReview: number;
 }
 
-
+// Ce = 0
 export class SuperMemoAlgorithm {
   public execute(
     responseQuality: number,

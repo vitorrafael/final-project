@@ -2,6 +2,7 @@ import { Card } from "../card/card";
 import { InvalidCardGroupError } from "./errors/invalid-card-group-error";
 import { InvalidOperationError } from "./errors/invalid-operation-error";
 
+// Ce = 0
 export class CardGroup {
   public cards: Card[] = [];
 

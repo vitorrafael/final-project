@@ -9,6 +9,7 @@ import {
 } from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
+// Ce = 0
 export class CreateCardGroupController extends Controller {
   private mandatoryFields = ["topic"];
   protected expectedExceptionsToStatusCode = {

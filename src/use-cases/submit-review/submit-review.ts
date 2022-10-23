@@ -3,6 +3,7 @@ import { CardRepository } from "../ports/card-repository";
 import { SubmitReviewRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 
+// Ce = 1
 export class SubmitReview implements UseCase<SubmitReviewRequest, void> {
   constructor(
     private cardRepository: CardRepository,

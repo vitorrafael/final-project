@@ -4,6 +4,7 @@ import { RequestValidator } from "./util/request-validator";
 import { SubmitReviewRequest, UseCase } from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
+// Ce = 0
 export class SubmitReviewController extends Controller {
   private mandatoryFields = ["id", "responseQuality"];
 

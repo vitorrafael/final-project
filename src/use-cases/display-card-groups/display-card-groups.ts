@@ -3,6 +3,7 @@ import { CardGroupRepository } from "../ports/card-group-repository";
 import { CardRepository } from "../ports/card-repository";
 import { UseCase } from "../ports/use-case";
 
+// Ce = 0
 export class DisplayCardGroups
   implements UseCase<object, CardGroupWithCards[]>
 {

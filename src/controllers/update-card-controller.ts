@@ -8,6 +8,7 @@ import { Controller } from "./controller";
 import { HttpRequest, HttpResponse } from "./ports";
 import { RequestValidator } from "./util/request-validator";
 
+// Ce = 0
 export class UpdateCardController extends Controller {
   private mandatoryFields = ["id"];
   protected expectedExceptionsToStatusCode: { [errorName: string]: number } = {
