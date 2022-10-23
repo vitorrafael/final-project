@@ -4,6 +4,7 @@ export interface SuperMemoAlgorithmResponse {
 }
 
 
+// Coupling = 0
 export class SuperMemoAlgorithm {
   public execute(
     responseQuality: number,

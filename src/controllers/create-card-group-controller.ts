@@ -9,6 +9,7 @@ import {
 } from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
+// Coupling = 1: Depends on Interface and Inheritance should not be considered
 export class CreateCardGroupController extends Controller {
   private mandatoryFields = ["topic"];
   protected expectedExceptionsToStatusCode = {

@@ -6,6 +6,7 @@ import { ERRORS } from "../utils/errors";
 import { CreateCardGroupRequest } from "../ports/requests";
 
 
+// Coupling = 2 - Error and CardGroup - Interfaces are not considered
 export class CreateCardGroup
   implements UseCase<CreateCardGroupRequest, CardGroupData>
 {

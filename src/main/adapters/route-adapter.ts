@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Controller } from "../../controllers/controller";
 import { HttpRequest } from "../../controllers/ports/http-request";
 
+// Coupling = 1
 export class RouteAdapter {
   public static adapt(controller: Controller) {
     return async function (request: Request, response: Response) {

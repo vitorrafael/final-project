@@ -8,6 +8,7 @@ import { Controller } from "./controller";
 import { HttpRequest, HttpResponse } from "./ports";
 import { RequestValidator } from "./util/request-validator";
 
+// Coupling = 1: Depends on Interface and Inheritance should not be considered
 export class UpdateCardGroupController extends Controller {
   private mandatoryFields = ["id"];
   protected expectedExceptionsToStatusCode = {

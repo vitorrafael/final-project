@@ -3,6 +3,7 @@ import { CardRepository } from "../ports/card-repository";
 import { SubmitReviewRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 
+// Coupling = 1 - Depending on class not interface, so we should count it
 export class SubmitReview implements UseCase<SubmitReviewRequest, void> {
   constructor(
     private cardRepository: CardRepository,

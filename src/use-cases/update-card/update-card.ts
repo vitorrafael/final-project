@@ -5,6 +5,7 @@ import { UpdateCardRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
+// Coupling = 2 - Card and Error
 export class UpdateCard implements UseCase<UpdateCardRequest, CardData> {
   constructor(private readonly cardRepository: CardRepository) {}
 

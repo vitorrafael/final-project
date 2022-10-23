@@ -1,3 +1,4 @@
+// Coupling = 0
 export class InvalidRequestError extends Error {
   constructor(missingParameters: string[]) {
     super(

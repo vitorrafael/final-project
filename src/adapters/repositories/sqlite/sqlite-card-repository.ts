@@ -11,6 +11,7 @@ interface SQLiteCardData {
   group_id: number;
 }
 
+// Coupling 0: SQLiteHelper
 export class SQLiteCardRepository implements CardRepository {
   public async add(card: CardData): Promise<void> {
     const { front, back, nextReviewDue, reviewCount, eFactor, groupId } = card;

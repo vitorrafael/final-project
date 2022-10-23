@@ -9,6 +9,7 @@ import { CONSTANTS } from "../utils/constants";
 import { ERRORS } from "../utils/errors";
 
 
+// Coupling = 2 - Error and Card - Interfaces are not considered
 export class CreateCard implements UseCase<CreateCardRequest, CardData> {
   constructor(
     private readonly cardRepository: CardRepository,

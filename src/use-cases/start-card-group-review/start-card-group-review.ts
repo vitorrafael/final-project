@@ -8,6 +8,7 @@ import { DateHelper } from "../utils/date-helper";
 import { ERRORS } from "../utils/errors";
 
 
+// Coupling = 2 - DateHelper and Error
 export class StartCardGroupReview
   implements UseCase<StartCardGroupReviewRequest, CardGroupWithCards>
 {

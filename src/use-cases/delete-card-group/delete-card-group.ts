@@ -5,6 +5,7 @@ import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
 
+// Coupling = 1 - Error - Interfaces are not considered
 export class DeleteCardGroup implements UseCase<DeleteCardGroupRequest, void> {
   constructor(
     private readonly cardGroupRepository: CardGroupRepository,

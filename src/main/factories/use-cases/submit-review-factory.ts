@@ -2,6 +2,7 @@ import { SQLiteCardRepository } from "../../../adapters/repositories/sqlite/sqli
 import { SuperMemoAlgorithm } from "../../../entities/super-memo/super-memo-algorithm";
 import { SubmitReview } from "../../../use-cases";
 
+// Coupling = 3
 export class SubmitReviewFactory {
   public static make() {
     const cardRepository = new SQLiteCardRepository();

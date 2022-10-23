@@ -1,6 +1,7 @@
 import { HttpRequest } from "../ports/http-request";
 import { InvalidRequestError } from "./errors/invalid-request-error";
 
+// Coupling = 1
 export class RequestValidator {
   public static validateRequest(
     request: HttpRequest,

@@ -1,5 +1,6 @@
 import { CardData, CardRepository } from "../../../use-cases/ports";
 
+// Coupling 0
 export class InMemoryCardRepository implements CardRepository {
   private cards: CardData[] = [];
   constructor(cards: CardData[]) {

@@ -5,6 +5,7 @@ import { UpdateCardGroupRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
+// Coupling = 2 - CardGroup and Error
 export class UpdateCardGroup
   implements UseCase<UpdateCardGroupRequest, CardGroupData>
 {

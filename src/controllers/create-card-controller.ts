@@ -9,6 +9,8 @@ import {
 } from "../use-cases/ports";
 import { HttpRequest, HttpResponse } from "./ports";
 
+
+// Coupling = 1 Depends on Interface and Inheritance should not be considered
 export class CreateCardController extends Controller {
   private readonly mandatoryParameters = ["front", "back"];
 

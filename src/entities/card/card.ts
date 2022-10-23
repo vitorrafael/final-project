@@ -1,5 +1,6 @@
 import { InvalidCardError } from "./errors/invalid-card-error";
 
+// Coupling = 1
 export class Card {
   private constructor(
     public readonly groupId: number,

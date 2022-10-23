@@ -1,5 +1,6 @@
 import { CardGroupData, CardGroupRepository } from "../../../use-cases/ports";
 
+// Coupling = 0
 export class InMemoryCardGroupRepository implements CardGroupRepository {
   private cardGroups: CardGroupData[] = [];
   constructor(cardGroups: CardGroupData[]) {

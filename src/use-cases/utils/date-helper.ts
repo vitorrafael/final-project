@@ -1,3 +1,4 @@
+// Coupling = 0
 export class DateHelper {
   public static getCurrentDate() {
     return DateHelper.toDateOnly(new Date());

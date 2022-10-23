@@ -2,6 +2,7 @@ import { SQLiteCardGroupRepository } from "../../../adapters/repositories/sqlite
 import { SQLiteCardRepository } from "../../../adapters/repositories/sqlite/sqlite-card-repository";
 import { DeleteCardGroup } from "../../../use-cases";
 
+// Coupling = 3
 export class DeleteCardGroupFactory {
   public static make() {
     const cardGroupRepository = new SQLiteCardGroupRepository();

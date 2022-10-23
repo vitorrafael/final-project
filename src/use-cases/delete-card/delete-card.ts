@@ -3,6 +3,7 @@ import { DeleteCardRequest } from "../ports/requests";
 import { UseCase } from "../ports/use-case";
 import { ERRORS } from "../utils/errors";
 
+// Coupling = 1 - Error - Interfaces are not considered
 export class DeleteCard implements UseCase<DeleteCardRequest, void> {
   constructor(private readonly cardRepository: CardRepository) {}
 
