@@ -1,3 +1,3 @@
-export interface UseCase<Request, Response> {
-  execute(requestData: Request): Promise<Response>;
+export abstract class UseCase<Request, Response> {
+  public abstract execute(requestData: Request): Promise<Response>;
 }
