@@ -1,21 +1,29 @@
 import { Database } from "sqlite3";
 
-export const SQLiteHelper = {
-  _client: null as Database,
+export class SQLiteHelper {
+  private static client: Database = null;
 
-  async connect(databaseUri: string): Promise<void> {
-    this._client = new Database(databaseUri);
-  },
+  public static async connect(databaseUri: string): Promise<void> {
+    SQLiteHelper.client = new Database(databaseUri);
+  }
 
-  closeConnection() {
-    this._client.close();
-  },
+  public static closeConnection(): void {
+    SQLiteHelper.client.close();
+  }
 
-  getClient(): Database {
-    return this._client;
-  },
+  public static getClient(): Database {
+    return SQLiteHelper.client;
+  }
 
-  clearTable(tableName: string): void {
-    Promise.resolve(this._client.run(`DELETE FROM ${tableName}`));
-  },
-};
+  public static async clearTable(tableName): Promise<void> {
+    return new Promise((resolve, reject) => {
+      SQLiteHelper.getClient().run(`DELETE FROM ${tableName}`, (res, error) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(res);
+        }
+      });
+    });
+  }
+}
