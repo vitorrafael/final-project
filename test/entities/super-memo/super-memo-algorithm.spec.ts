@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { SuperMemoAlgorithm } from "../../../src/entities/super-memo/super-memo-algorithm";
 
-describe("[Entity] SuperMemoAlgorithm", async function () {
+describe("[Entity] SuperMemoAlgorithm", async () => {
   const superMemoAlgorithm = new SuperMemoAlgorithm();
 
   it("Should reset the interval for review if the response quality is less than 3", () => {
@@ -36,7 +36,7 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     );
   });
 
-	it("Should calculate and set the eFactor correctly if it is not less than 1.3", () => {
+  it("Should calculate and set the eFactor correctly if it is not less than 1.3", () => {
     const responseQuality = 5;
     const eFactor = 2.25;
     const currentInterval = 3;
@@ -48,9 +48,9 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     );
 
     expect(algorithmResponse.eFactor).to.be.equal(2.35);
-	})
+  });
 
-	it("Should calculate and set the nextIntervalForReview correctly if it is at least the third review", () => {
+  it("Should calculate and set the nextIntervalForReview correctly if it is at least the third review", () => {
     const responseQuality = 5;
     const eFactor = 2.25;
     const currentInterval = 3;
@@ -62,9 +62,9 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     );
 
     expect(algorithmResponse.intervalForNextReview).to.be.equal(7);
-	})
+  });
 
-	it("Should return pre-defined interval 6 if it is the second review", () => {
+  it("Should return pre-defined interval 6 if it is the second review", () => {
     const responseQuality = 5;
     const eFactor = 2.25;
     const currentInterval = 2;
@@ -76,9 +76,9 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     );
 
     expect(algorithmResponse.intervalForNextReview).to.be.equal(6);
-	})
+  });
 
-	it("Should return pre-defined interval 1 if it is at least the first review", () => {
+  it("Should return pre-defined interval 1 if it is at least the first review", () => {
     const responseQuality = 5;
     const eFactor = 2.25;
     const currentInterval = 1;
@@ -90,5 +90,5 @@ describe("[Entity] SuperMemoAlgorithm", async function () {
     );
 
     expect(algorithmResponse.intervalForNextReview).to.be.equal(1);
-	})
+  });
 });
