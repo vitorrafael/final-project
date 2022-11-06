@@ -1,22 +1,23 @@
 import { SQLiteHelper } from "../adapters/repositories/sqlite/helpers/SQLiteHelper";
 import express, { json, Router } from "express";
-import { setupCardGroupRoutes } from "./routes/card-group-routes";
-import { setupCardRoutes } from "./routes/card-routes";
+import { CardGroupRouter } from "./routes/card-group-routes";
+import { CardRouter } from "./routes/card-routes";
 
-SQLiteHelper.connect("./db/srs-monolith.db").then(
-  function startServer() {
-    const app = express();
+SQLiteHelper.connect("./db/srs-monolith.db").then(function startServer() {
+  const app = express();
 
-    app.use(json())
+  app.use(json());
 
-    const router = Router();
-    app.use("/api", router);
+  const router = Router();
+  app.use("/api", router);
 
-    setupCardGroupRoutes(router);
-    setupCardRoutes(router);
+  const cardGroupRouter = new CardGroupRouter(router);
+  const cardRouter = new CardRouter(router);
 
-    app.listen(8000, () => {
-      console.log(`Server running on port: 8000`)
-    })
-  }
-);
+  cardGroupRouter.start();
+  cardRouter.start();
+
+  app.listen(8000, () => {
+    console.log(`Server running on port: 8000`);
+  });
+});

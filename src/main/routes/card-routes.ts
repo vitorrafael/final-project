@@ -9,22 +9,26 @@ import { DeleteCardFactory } from "../factories/use-cases/delete-card-factory";
 import { SubmitReviewFactory } from "../factories/use-cases/submit-review-factory";
 import { UpdateCardFactory } from "../factories/use-cases/update-card-factory";
 
-export function setupCardRoutes(router: Router) {
-  const createCard = CreateCardFactory.make();
-  const deleteCard = DeleteCardFactory.make();
-  const updateCard = UpdateCardFactory.make();
-  const submitReview = SubmitReviewFactory.make();
+export class CardRouter {
+  public constructor(private router: Router) {}
 
-  const createCardController = new CreateCardController(createCard);
-  const deleteCardController = new DeleteCardController(deleteCard);
-  const updateCardController = new UpdateCardController(updateCard);
-  const submitReviewController = new SubmitReviewController(submitReview);
+  public start(): void {
+    const createCard = CreateCardFactory.make();
+    const deleteCard = DeleteCardFactory.make();
+    const updateCard = UpdateCardFactory.make();
+    const submitReview = SubmitReviewFactory.make();
 
-  router.post("/cards", RouteAdapter.adapt(createCardController));
-  router.delete("/cards/:id", RouteAdapter.adapt(deleteCardController));
-  router.put("/cards/:id", RouteAdapter.adapt(updateCardController));
-  router.get(
-    "/cards/submitReview/:id",
-    RouteAdapter.adapt(submitReviewController)
-  );
+    const createCardController = new CreateCardController(createCard);
+    const deleteCardController = new DeleteCardController(deleteCard);
+    const updateCardController = new UpdateCardController(updateCard);
+    const submitReviewController = new SubmitReviewController(submitReview);
+
+    this.router.post("/cards", RouteAdapter.adapt(createCardController));
+    this.router.delete("/cards/:id", RouteAdapter.adapt(deleteCardController));
+    this.router.put("/cards/:id", RouteAdapter.adapt(updateCardController));
+    this.router.get(
+      "/cards/submitReview/:id",
+      RouteAdapter.adapt(submitReviewController)
+    );
+  }
 }

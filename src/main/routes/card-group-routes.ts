@@ -11,38 +11,51 @@ import { DisplayCardGroupsFactory } from "../factories/use-cases/display-card-gr
 import { StartCardGroupReviewFactory } from "../factories/use-cases/start-card-group-review-factory";
 import { UpdateCardGroupFactory } from "../factories/use-cases/update-card-group-factory";
 
-export function setupCardGroupRoutes(router: Router) {
-  const createCardGroupUseCase = CreateCardGroupFactory.make();
-  const deleteCardGroupUseCase = DeleteCardGroupFactory.make();
-  const updateCardGroupUseCase = UpdateCardGroupFactory.make();
-  const startCardGroupReviewUseCase = StartCardGroupReviewFactory.make();
-  const displayCardGroupsUseCase = DisplayCardGroupsFactory.make();
+export class CardGroupRouter {
+  public constructor(private router: Router) {}
 
-  const createCardGroupController = new CreateCardGroupController(
-    createCardGroupUseCase
-  );
-  const deleteCardGroupController = new DeleteCardGroupController(
-    deleteCardGroupUseCase
-  );
-  const updateCardGroupController = new UpdateCardGroupController(
-    updateCardGroupUseCase
-  );
-  const startCardGroupReviewController = new StartCardGroupReviewController(
-    startCardGroupReviewUseCase
-  );
-  const displayCardGroupsController = new DisplayCardGroupsController(
-    displayCardGroupsUseCase
-  );
+  public start(): void {
+    const createCardGroupUseCase = CreateCardGroupFactory.make();
+    const deleteCardGroupUseCase = DeleteCardGroupFactory.make();
+    const updateCardGroupUseCase = UpdateCardGroupFactory.make();
+    const startCardGroupReviewUseCase = StartCardGroupReviewFactory.make();
+    const displayCardGroupsUseCase = DisplayCardGroupsFactory.make();
 
-  router.post("/cardGroups", RouteAdapter.adapt(createCardGroupController));
-  router.delete(
-    "/cardGroups/:id",
-    RouteAdapter.adapt(deleteCardGroupController)
-  );
-  router.put("/cardGroups/:id", RouteAdapter.adapt(updateCardGroupController));
-  router.get(
-    "/cardGroups/startReview/:id",
-    RouteAdapter.adapt(startCardGroupReviewController)
-  );
-  router.get("/cardGroups", RouteAdapter.adapt(displayCardGroupsController));
+    const createCardGroupController = new CreateCardGroupController(
+      createCardGroupUseCase
+    );
+    const deleteCardGroupController = new DeleteCardGroupController(
+      deleteCardGroupUseCase
+    );
+    const updateCardGroupController = new UpdateCardGroupController(
+      updateCardGroupUseCase
+    );
+    const startCardGroupReviewController = new StartCardGroupReviewController(
+      startCardGroupReviewUseCase
+    );
+    const displayCardGroupsController = new DisplayCardGroupsController(
+      displayCardGroupsUseCase
+    );
+
+    this.router.post(
+      "/cardGroups",
+      RouteAdapter.adapt(createCardGroupController)
+    );
+    this.router.delete(
+      "/cardGroups/:id",
+      RouteAdapter.adapt(deleteCardGroupController)
+    );
+    this.router.put(
+      "/cardGroups/:id",
+      RouteAdapter.adapt(updateCardGroupController)
+    );
+    this.router.get(
+      "/cardGroups/startReview/:id",
+      RouteAdapter.adapt(startCardGroupReviewController)
+    );
+    this.router.get(
+      "/cardGroups",
+      RouteAdapter.adapt(displayCardGroupsController)
+    );
+  }
 }
