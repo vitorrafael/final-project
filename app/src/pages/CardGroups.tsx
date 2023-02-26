@@ -19,14 +19,14 @@ export function CardGroups() {
 
   return (
     <>
-      <h2>Card Groups</h2>
+      <h2 className="text-xl text-black text-left p-6">Card Groups</h2>
 
       <ul className="bulletless-list">
         {cardGroups.map(({ topic, description }) => (
-          <li>
+          <li className="p-6 max-w-autox mx-auto bg-white rounded-xl shadow-lg flex-col items-start">
             <div>
-              <h3>{topic}</h3>
-              <p>{description}</p>
+              <h3 className="text-left font-medium text-black">{topic}</h3>
+              <p className="text-left text-slate-500">{description}</p>
             </div>
           </li>
         ))}
