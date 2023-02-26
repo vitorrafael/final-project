@@ -21,12 +21,16 @@ export function CardGroups() {
     <>
       <h2>Card Groups</h2>
 
-      {cardGroups.map(({ topic, description }) => (
-        <div>
-          <p>{topic}</p>
-          <p>{description}</p>
-        </div>
-      ))}
+      <ul className="bulletless-list">
+        {cardGroups.map(({ topic, description }) => (
+          <li>
+            <div>
+              <h3>{topic}</h3>
+              <p>{description}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
