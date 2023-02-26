@@ -1,5 +1,6 @@
 import { SQLiteHelper } from "../adapters/repositories/sqlite/helpers/SQLiteHelper";
 import express, { json, Router } from "express";
+import cors from "cors";
 import { CardGroupRouter } from "./routes/card-group-routes";
 import { CardRouter } from "./routes/card-routes";
 
@@ -7,6 +8,9 @@ SQLiteHelper.connect("./db/srs-monolith.db").then(function startServer() {
   const app = express();
 
   app.use(json());
+  app.use(cors({
+    origin: "*"
+  }))
 
   const router = Router();
   app.use("/api", router);
